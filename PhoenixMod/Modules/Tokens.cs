@@ -10,7 +10,7 @@ namespace PhoenixWright.Modules
             #region PheonixWright
             string prefix = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_";
 
-            string desc = "Phoenix has no idea where he is.<color=#CCD3E0>" + Environment.NewLine + Environment.NewLine;
+            string desc = "Phoenix is a survivor who starts off weak in investigation mode and becomes very powerful once he collects enough evidence and enters turnabout mode.<color=#CCD3E0>" + Environment.NewLine + Environment.NewLine;
             desc = desc + "< ! > Sword is a good all-rounder while Boxing Gloves are better for laying a beatdown on more powerful foes." + Environment.NewLine + Environment.NewLine;
             desc = desc + "< ! > Pistol is a powerful anti air, with its low cooldown and high damage." + Environment.NewLine + Environment.NewLine;
             desc = desc + "< ! > Roll has a lingering armor buff that helps to use it aggressively." + Environment.NewLine + Environment.NewLine;

@@ -87,7 +87,7 @@ namespace PhoenixWright.Modules.Survivors
             string prefix = PhoenixPlugin.developerPrefix;
 
             #region Primary
-            Modules.Skills.AddPrimarySkill(bodyPrefab, Modules.Skills.CreatePrimarySkillDef(new EntityStates.SerializableEntityStateType(typeof(SkillStates.SlashCombo)), "Weapon", prefix + "_HENRY_BODY_PRIMARY_SLASH_NAME", prefix + "_HENRY_BODY_PRIMARY_SLASH_DESCRIPTION", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPrimaryIcon"), true));
+            Modules.Skills.AddPrimarySkill(bodyPrefab, Modules.Skills.CreatePrimarySkillDef(new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)), "Weapon", "Throw Evidence", "Phoenix throws any evidence he can find, dealing damage depending on the item thrown. If Phoenix does not attack for 5 seconds and his current evidence is decisive evidence, he will store that evidence.", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texVaseIcon"), true));
             #endregion
 
             #region Secondary
@@ -100,7 +100,7 @@ namespace PhoenixWright.Modules.Survivors
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Shoot)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
-                baseRechargeInterval = 1f,
+                baseRechargeInterval = 0f,
                 beginSkillCooldownOnSkillEnd = false,
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
@@ -122,10 +122,10 @@ namespace PhoenixWright.Modules.Survivors
             #region Utility
             SkillDef rollSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_HENRY_BODY_UTILITY_ROLL_NAME",
+                skillName = prefix + "Trip",
                 skillNameToken = prefix + "_HENRY_BODY_UTILITY_ROLL_NAME",
                 skillDescriptionToken = prefix + "_HENRY_BODY_UTILITY_ROLL_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texUtilityIcon"),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTripIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Roll)),
                 activationStateMachineName = "Body",
                 baseMaxStock = 1,
@@ -154,10 +154,10 @@ namespace PhoenixWright.Modules.Survivors
                 skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
                 skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSpecialIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowBomb)),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
-                baseRechargeInterval = 10f,
+                baseRechargeInterval = 0f,
                 beginSkillCooldownOnSkillEnd = false,
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,

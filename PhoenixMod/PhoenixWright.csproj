@@ -14,13 +14,13 @@
 
   <ItemGroup>
     <None Remove="Modules\Survivors\Henry.cs~RF6221a098.TMP" />
-    <None Remove="PhoenixAssets" />
+    <None Remove="phoenixassets" />
     <None Remove="PhoenixBank.bnk" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="phoenixassets" />
     <EmbeddedResource Include="PhoenixBank.bnk" />
-    <EmbeddedResource Include="PhoenixAssets" />
   </ItemGroup>
 
   <ItemGroup>

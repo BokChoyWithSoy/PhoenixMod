@@ -33,7 +33,7 @@ namespace PhoenixWright.Modules
         private static string[] assetNames = new string[0];
 
         // CHANGE THIS
-        private const string assetbundleName = "PhoenixAssets";
+        private const string assetbundleName = "phoenixassets";
 
         internal static void Initialize()
         {

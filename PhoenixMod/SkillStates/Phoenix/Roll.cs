@@ -46,7 +46,8 @@ namespace PhoenixWright.SkillStates
             Vector3 b = base.characterMotor ? base.characterMotor.velocity : Vector3.zero;
             this.previousPosition = base.transform.position - b;
 
-            base.PlayAnimation("FullBody, Override", "Roll", "Roll.playbackRate", Roll.duration);
+            base.PlayAnimation("FullBody, Override", "FallFlat", "Roll.playbackRate", Roll.duration * 2);
+            base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Roll.duration * 2);
             Util.PlaySound(Roll.dodgeSoundString, base.gameObject);
 
             if (NetworkServer.active)

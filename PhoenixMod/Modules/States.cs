@@ -12,13 +12,12 @@ namespace PhoenixWright.Modules
         internal static void RegisterStates()
         {
             entityStates.Add(typeof(BaseMeleeAttack));
-            entityStates.Add(typeof(SlashCombo));
 
             entityStates.Add(typeof(Shoot));
 
             entityStates.Add(typeof(Roll));
 
-            entityStates.Add(typeof(ThrowBomb));
+            entityStates.Add(typeof(ThrowVase));
         }
     }
 }
