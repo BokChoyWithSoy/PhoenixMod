@@ -72,10 +72,20 @@ namespace PhoenixWright.SkillStates
         {
             base.FixedUpdate();
 
-            if (base.fixedAge >= this.fireTime)
+            if (base.fixedAge >= this.fireTime && !hasFired)
             {
                 this.Fire();
-                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                nextItem = Random.Range(0, 2);
+                switch (nextItem)
+                {
+                    case 0:
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                        break;
+                    case 1:
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                        break;
+                }
             }
 
             if (base.fixedAge >= this.duration && base.isAuthority)

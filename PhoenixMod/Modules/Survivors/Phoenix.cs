@@ -205,9 +205,9 @@ namespace PhoenixWright.Modules.Survivors
             #region PrimaryVase
             Phoenix.primaryVase = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_PHOENIX_BODY_SPECIAL_VASE_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_VASE_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_VASE_DESCRIPTION",
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texVaseIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)),
                 activationStateMachineName = "Slide",
