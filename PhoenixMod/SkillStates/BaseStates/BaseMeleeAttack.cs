@@ -45,7 +45,7 @@ namespace PhoenixWright.SkillStates.BaseStates
                 {
                     Ray aimRay = base.GetAimRay();
 
-                    ProjectileManager.instance.FireProjectile(Modules.Projectiles.bombPrefab,
+                    ProjectileManager.instance.FireProjectile(Modules.Projectiles.vasePrefab,
                         aimRay.origin,
                         Util.QuaternionSafeLookRotation(aimRay.direction),
                         base.gameObject,

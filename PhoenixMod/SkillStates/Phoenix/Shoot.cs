@@ -17,13 +17,18 @@ namespace PhoenixWright.SkillStates
         private float duration;
         private float fireTime;
         private bool hasFired;
+        private bool justSwitched = true;
         private string muzzleString;
 
         public override void OnEnter()
         {
             base.OnEnter();
             this.duration = Shoot.baseDuration / this.attackSpeedStat;
-            this.fireTime = 0.2f * this.duration;
+            if(justSwitched)
+            {
+                this.fireTime = 0.4f * this.duration;
+            }
+            else this.fireTime = 0.2f * this.duration;
             base.characterBody.SetAimTimer(2f);
             this.muzzleString = "Muzzle";
 

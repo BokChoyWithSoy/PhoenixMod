@@ -10,15 +10,18 @@ namespace PhoenixWright.Modules
     {
         internal static GameObject vasePrefab;
         internal static GameObject knifePrefab;
+        internal static GameObject phonePrefab;
 
         internal static void RegisterProjectiles()
         {
             // only separating into separate methods for my sanity
             Createvase();
             Createknife();
+            Createphone();
 
             AddProjectile(vasePrefab);
             AddProjectile(knifePrefab);
+            AddProjectile(phonePrefab);
         }
 
         internal static void AddProjectile(GameObject projectileToAdd)
@@ -50,7 +53,7 @@ namespace PhoenixWright.Modules
         {
             knifePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
 
-            ProjectileImpactExplosion bombImpactExplosion = vasePrefab.GetComponent<ProjectileImpactExplosion>();
+            ProjectileImpactExplosion bombImpactExplosion = knifePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
 
             bombImpactExplosion.blastRadius = 5f;
@@ -61,8 +64,28 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.timerAfterImpact = true;
             bombImpactExplosion.lifetimeAfterImpact = 0.1f;
 
-            ProjectileController bombController = vasePrefab.GetComponent<ProjectileController>();
-            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("VaseGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("VaseGhost");
+            ProjectileController bombController = knifePrefab.GetComponent<ProjectileController>();
+            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("KnifeGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("KnifeGhost");
+            bombController.startSound = "";
+        }
+
+        private static void Createphone()
+        {
+            phonePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+
+            ProjectileImpactExplosion bombImpactExplosion = phonePrefab.GetComponent<ProjectileImpactExplosion>();
+            InitializeImpactExplosion(bombImpactExplosion);
+
+            bombImpactExplosion.blastRadius = 5f;
+            bombImpactExplosion.destroyOnEnemy = true;
+            bombImpactExplosion.lifetime = 12f;
+            bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
+            //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
+            bombImpactExplosion.timerAfterImpact = true;
+            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+
+            ProjectileController bombController = phonePrefab.GetComponent<ProjectileController>();
+            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("PhoneGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("PhoneGhost");
             bombController.startSound = "";
         }
 

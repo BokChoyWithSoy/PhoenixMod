@@ -27,7 +27,7 @@ namespace PhoenixWright.Modules.Achievements
 
         public override BodyIndex LookUpRequiredBodyIndex()
         {
-            return BodyCatalog.FindBodyIndex(Modules.Survivors.MyCharacter.instance.fullBodyName);
+            return BodyCatalog.FindBodyIndex(Modules.Survivors.Phoenix.instance.fullBodyName);
         }
 
         public void ClearCheck(Run run, RunReport runReport)

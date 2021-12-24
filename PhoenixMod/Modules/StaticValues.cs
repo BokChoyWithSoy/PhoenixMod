@@ -10,10 +10,12 @@ namespace PhoenixWright.Modules
              + "< ! > Roll has a lingering armor buff that helps to use it aggressively." + Environment.NewLine + Environment.NewLine
              + "< ! > Bomb can be used to wipe crowds with ease." + Environment.NewLine + Environment.NewLine;
 
-        internal const float swordDamageCoefficient = 1000f;
+        internal const float swordDamageCoefficient = 10f;
 
-        internal const float gunDamageCoefficient = 1000f;
+        internal const float gunDamageCoefficient = 100f;
 
-        internal const float bombDamageCoefficient = 2000f;
+        internal const float fallDamageCoefficient = 2f;
+
+        internal const float bombDamageCoefficient = 16f;
     }
 }

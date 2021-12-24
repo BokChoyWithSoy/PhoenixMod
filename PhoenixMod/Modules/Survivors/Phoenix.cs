@@ -7,9 +7,13 @@ using UnityEngine;
 
 namespace PhoenixWright.Modules.Survivors
 {
-    internal class MyCharacter : SurvivorBase
+    internal class Phoenix : SurvivorBase
     {
         internal override string bodyName { get; set; } = "Phoenix";
+
+        internal static SkillDef primaryVase;
+        internal static SkillDef primaryKnife;
+        internal static SkillDef primaryPhone;
 
         internal override GameObject bodyPrefab { get; set; }
         internal override GameObject displayPrefab { get; set; }
@@ -86,9 +90,6 @@ namespace PhoenixWright.Modules.Survivors
 
             string prefix = PhoenixPlugin.developerPrefix;
 
-            #region Primary
-            Modules.Skills.AddPrimarySkill(bodyPrefab, Modules.Skills.CreatePrimarySkillDef(new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)), "Weapon", "Throw Evidence", "Phoenix throws any evidence he can find, dealing damage depending on the item thrown. If Phoenix does not attack for 5 seconds and his current evidence is decisive evidence, he will store that evidence.", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texVaseIcon"), true));
-            #endregion
 
             #region Secondary
             SkillDef shootSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
@@ -122,9 +123,9 @@ namespace PhoenixWright.Modules.Survivors
             #region Utility
             SkillDef rollSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "Trip",
-                skillNameToken = prefix + "_HENRY_BODY_UTILITY_ROLL_NAME",
-                skillDescriptionToken = prefix + "_HENRY_BODY_UTILITY_ROLL_DESCRIPTION",
+                skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTripIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Roll)),
                 activationStateMachineName = "Body",
@@ -173,6 +174,86 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddSpecialSkills(bodyPrefab, bombSkillDef);
+            #endregion
+
+            #region PrimaryKnife
+            Phoenix.primaryKnife = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
+                skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
+                skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texKnifeIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowKnife)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1
+            });
+            #endregion
+
+            #region PrimaryVase
+            Phoenix.primaryVase = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SPECIAL_VASE_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_VASE_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_VASE_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texVaseIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1
+            });
+
+            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryVase);
+            #endregion
+
+            #region PrimaryPhone
+            Phoenix.primaryPhone = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
+                skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
+                skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPhoneIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowPhone)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1
+            });
             #endregion
         }
 
