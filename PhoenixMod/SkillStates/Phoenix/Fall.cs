@@ -2,26 +2,38 @@
 using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
 
 namespace PhoenixWright.SkillStates
 {
-    public class Roll : BaseSkillState
+    public class Fall : BaseSkillState
     {
+        
+
+        public static float damageCoefficient = 3f;
+        public static float procCoefficient = 1f;
         public static float duration = 0.5f;
         public static float initialSpeedCoefficient = 5f;
         public static float finalSpeedCoefficient = 2.5f;
 
+        private bool hasFired;
         public static string dodgeSoundString = "HenryRoll";
         public static float dodgeFOV = EntityStates.Commando.DodgeState.dodgeFOV;
-
+        private float stopwatch;
         private float rollSpeed;
         private Vector3 forwardDirection;
         private Animator animator;
         private Vector3 previousPosition;
 
+        protected string hitboxName = "fall";
+        protected OverlapAttack attack;
+        protected float attackStartTime = 0.58f * duration;
+        protected float attackEndTime = 1f *duration;
+
         public override void OnEnter()
         {
             base.OnEnter();
+            this.hasFired = false;
             this.animator = base.GetModelAnimator();
 
             if (base.isAuthority && base.inputBank && base.characterDirection)
@@ -46,20 +58,39 @@ namespace PhoenixWright.SkillStates
             Vector3 b = base.characterMotor ? base.characterMotor.velocity : Vector3.zero;
             this.previousPosition = base.transform.position - b;
 
-            base.PlayAnimation("FullBody, Override", "FallFlat", "Roll.playbackRate", Roll.duration * 2);
-            base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Roll.duration * 2);
-            Util.PlaySound(Roll.dodgeSoundString, base.gameObject);
+            base.PlayAnimation("FullBody, Override", "FallFlat", "Roll.playbackRate", Fall.duration * 2);
+            HitBoxGroup hitBoxGroup = null;
+            Transform modelTransform = base.GetModelTransform();
+            base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Fall.duration * 2);
+            Util.PlaySound(Fall.dodgeSoundString, base.gameObject);
+
+            if (modelTransform)
+            {
+                hitBoxGroup = Array.Find<HitBoxGroup>(modelTransform.GetComponents<HitBoxGroup>(), (HitBoxGroup element) => element.groupName == this.hitboxName);
+            }
+
+            this.attack = new OverlapAttack();
+            this.attack.damageType = DamageType.Stun1s;
+            this.attack.attacker = base.gameObject;
+            this.attack.inflictor = base.gameObject;
+            this.attack.teamIndex = base.GetTeam();
+            this.attack.damage = damageCoefficient * this.damageStat;
+            this.attack.procCoefficient = procCoefficient;
+            this.attack.hitBoxGroup = hitBoxGroup;
+            this.attack.isCrit = base.RollCrit();
 
             if (NetworkServer.active)
             {
-                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 3f * Roll.duration);
-                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 0.5f * Roll.duration);
+                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 3f * Fall.duration);
+                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 0.5f * Fall.duration);
             }
+
+
         }
 
         private void RecalculateRollSpeed()
         {
-            this.rollSpeed = this.moveSpeedStat * Mathf.Lerp(Roll.initialSpeedCoefficient, Roll.finalSpeedCoefficient, base.fixedAge / Roll.duration);
+            this.rollSpeed = this.moveSpeedStat * Mathf.Lerp(Fall.initialSpeedCoefficient, Fall.finalSpeedCoefficient, base.fixedAge / Fall.duration);
         }
 
         public override void FixedUpdate()
@@ -68,7 +99,7 @@ namespace PhoenixWright.SkillStates
             this.RecalculateRollSpeed();
 
             if (base.characterDirection) base.characterDirection.forward = this.forwardDirection;
-            if (base.cameraTargetParams) base.cameraTargetParams.fovOverride = Mathf.Lerp(Roll.dodgeFOV, 60f, base.fixedAge / Roll.duration);
+            if (base.cameraTargetParams) base.cameraTargetParams.fovOverride = Mathf.Lerp(Fall.dodgeFOV, 60f, base.fixedAge / Fall.duration);
 
             Vector3 normalized = (base.transform.position - this.previousPosition).normalized;
             if (base.characterMotor && base.characterDirection && normalized != Vector3.zero)
@@ -82,7 +113,13 @@ namespace PhoenixWright.SkillStates
             }
             this.previousPosition = base.transform.position;
 
-            if (base.isAuthority && base.fixedAge >= Roll.duration)
+            stopwatch += Time.fixedDeltaTime;
+            if (this.stopwatch >= attackStartTime && this.stopwatch <= attackEndTime )
+            {
+                FireAttack();
+            }
+
+            if (base.isAuthority && base.fixedAge >= Fall.duration)
             {
                 this.outer.SetNextStateToMain();
                 return;
@@ -107,6 +144,15 @@ namespace PhoenixWright.SkillStates
         {
             base.OnDeserialize(reader);
             this.forwardDirection = reader.ReadVector3();
+        }
+
+        private void FireAttack()
+        {
+            if (!this.hasFired)
+            {
+                this.hasFired = true;
+                this.attack.Fire();
+            }
         }
     }
 }

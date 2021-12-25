@@ -79,11 +79,11 @@ namespace PhoenixWright.Modules.Survivors
 
         internal override void InitializeHitboxes()
         {
-            /*ChildLocator childLocator = bodyPrefab.GetComponentInChildren<ChildLocator>();
+            ChildLocator childLocator = bodyPrefab.GetComponentInChildren<ChildLocator>();
             GameObject model = childLocator.gameObject;
 
-            Transform hitboxTransform = childLocator.FindChild("SwordHitbox");
-            Modules.Prefabs.SetupHitbox(model, hitboxTransform, "Sword");*/
+            Transform hitboxTransform = childLocator.FindChild("FallHitbox");
+            Modules.Prefabs.SetupHitbox(model, hitboxTransform, "fall");
         }
 
         internal override void InitializeSkills()
@@ -129,7 +129,7 @@ namespace PhoenixWright.Modules.Survivors
                 skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
                 skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTripIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Roll)),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Fall)),
                 activationStateMachineName = "Body",
                 baseMaxStock = 1,
                 baseRechargeInterval = 4f,

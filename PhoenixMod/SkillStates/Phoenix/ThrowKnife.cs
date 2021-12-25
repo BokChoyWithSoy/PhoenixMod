@@ -12,7 +12,7 @@ namespace PhoenixWright.SkillStates
         public static float damageCoefficient = 6f;
         public static float procCoefficient = 1f;
         public static float baseDuration = 1f;
-        public static float throwForce = 50f;
+        public static float throwForce = 80f;
 
         private float duration;
         private float fireTime;

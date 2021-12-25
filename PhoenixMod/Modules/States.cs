@@ -15,7 +15,7 @@ namespace PhoenixWright.Modules
 
             entityStates.Add(typeof(Shoot));
 
-            entityStates.Add(typeof(Roll));
+            entityStates.Add(typeof(Fall));
 
             entityStates.Add(typeof(ThrowVase));
         }
