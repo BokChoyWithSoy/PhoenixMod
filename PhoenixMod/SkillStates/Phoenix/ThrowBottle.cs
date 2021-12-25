@@ -7,13 +7,12 @@ using PhoenixWright.Modules.Survivors;
 
 namespace PhoenixWright.SkillStates
 {
-    public class ThrowVase : BaseSkillState
+    public class ThrowBottle : BaseSkillState
     {
         public static float damageCoefficient = 2f;
         public static float procCoefficient = 1f;
         public static float baseDuration = 1f;
         public static float throwForce = 50f;
-        public static SkillDef knife = Phoenix.primaryKnife;
 
         private float duration;
         private float fireTime;
@@ -25,15 +24,14 @@ namespace PhoenixWright.SkillStates
         public override void OnEnter()
         {
             base.OnEnter();
-            this.duration = ThrowVase.baseDuration / this.attackSpeedStat;
+            this.duration = ThrowBottle.baseDuration / this.attackSpeedStat;
             if (justSwitched)
             {
-                this.fireTime = 0.4f * this.duration;
+                this.fireTime = 0.5f * this.duration;
             }
             else this.fireTime = 0.2f * this.duration;
             base.characterBody.SetAimTimer(2f);
             this.animator = base.GetModelAnimator();
-            
 
             base.PlayAnimation("Gesture, Override", "ThrowBomb", "ThrowBomb.playbackRate", this.duration);
         }
@@ -54,16 +52,16 @@ namespace PhoenixWright.SkillStates
                 {
                     Ray aimRay = base.GetAimRay();
 
-                    ProjectileManager.instance.FireProjectile(Modules.Projectiles.vasePrefab, 
+                    ProjectileManager.instance.FireProjectile(Modules.Projectiles.bottlePrefab, 
                         aimRay.origin, 
                         Util.QuaternionSafeLookRotation(aimRay.direction), 
-                        base.gameObject, 
-                        ThrowVase.damageCoefficient * this.damageStat, 
+                        base.gameObject,
+                        ThrowBottle.damageCoefficient * this.damageStat, 
                         4000f, 
                         base.RollCrit(), 
                         DamageColorIndex.Default, 
-                        null, 
-                        ThrowVase.throwForce);
+                        null,
+                        ThrowBottle.throwForce);
                 }
             }
         }
@@ -76,18 +74,21 @@ namespace PhoenixWright.SkillStates
             {
                 this.Fire();
                 nextItem = Random.Range(0, 4);
-                switch (nextItem) 
+                switch (nextItem)
                 {
-                    case 0: 
-                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                    case 0:
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
                         break;
                     case 1:
-                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
                         break;
                     case 2:
-                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
                         break;
                     case 3:
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
                         base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
                         break;
                 }

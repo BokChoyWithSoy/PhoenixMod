@@ -11,6 +11,8 @@ namespace PhoenixWright.Modules
         internal static GameObject vasePrefab;
         internal static GameObject knifePrefab;
         internal static GameObject phonePrefab;
+        internal static GameObject bottlePrefab;
+        internal static GameObject servbotPrefab;
 
         internal static void RegisterProjectiles()
         {
@@ -18,10 +20,14 @@ namespace PhoenixWright.Modules
             Createvase();
             Createknife();
             Createphone();
+            Createbottle();
+            Createservbot();
 
             AddProjectile(vasePrefab);
             AddProjectile(knifePrefab);
             AddProjectile(phonePrefab);
+            AddProjectile(servbotPrefab);
+            AddProjectile(bottlePrefab);
         }
 
         internal static void AddProjectile(GameObject projectileToAdd)
@@ -86,6 +92,46 @@ namespace PhoenixWright.Modules
 
             ProjectileController bombController = phonePrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("PhoneGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("PhoneGhost");
+            bombController.startSound = "";
+        }
+
+        private static void Createbottle()
+        {
+            bottlePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+
+            ProjectileImpactExplosion bombImpactExplosion = bottlePrefab.GetComponent<ProjectileImpactExplosion>();
+            InitializeImpactExplosion(bombImpactExplosion);
+
+            bombImpactExplosion.blastRadius = 5f;
+            bombImpactExplosion.destroyOnEnemy = true;
+            bombImpactExplosion.lifetime = 12f;
+            bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
+            //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
+            bombImpactExplosion.timerAfterImpact = true;
+            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+
+            ProjectileController bombController = bottlePrefab.GetComponent<ProjectileController>();
+            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("BottleGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("BottleGhost");
+            bombController.startSound = "";
+        }
+
+        private static void Createservbot()
+        {
+            servbotPrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+
+            ProjectileImpactExplosion bombImpactExplosion = servbotPrefab.GetComponent<ProjectileImpactExplosion>();
+            InitializeImpactExplosion(bombImpactExplosion);
+
+            bombImpactExplosion.blastRadius = 5f;
+            bombImpactExplosion.destroyOnEnemy = true;
+            bombImpactExplosion.lifetime = 12f;
+            bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
+            //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
+            bombImpactExplosion.timerAfterImpact = true;
+            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+
+            ProjectileController bombController = servbotPrefab.GetComponent<ProjectileController>();
+            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("ServbotGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("ServbotGhost");
             bombController.startSound = "";
         }
 

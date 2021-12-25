@@ -9,9 +9,9 @@ namespace PhoenixWright.SkillStates
 {
     public class ThrowPhone : BaseSkillState
     {
-        public static float damageCoefficient = 16f;
+        public static float damageCoefficient = 6f;
         public static float procCoefficient = 1f;
-        public static float baseDuration = 1.65f;
+        public static float baseDuration = 1f;
         public static float throwForce = 50f;
 
         public static SkillDef primaryVase = Phoenix.primaryVase;
@@ -75,7 +75,7 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= this.fireTime && !hasFired)
             {
                 this.Fire();
-                nextItem = Random.Range(0, 2);
+                nextItem = Random.Range(0, 4);
                 switch (nextItem)
                 {
                     case 0:
@@ -84,6 +84,14 @@ namespace PhoenixWright.SkillStates
                     case 1:
                         base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
                         base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                        break;
+                    case 2:
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                        break;
+                    case 3:
+                        base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                        base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
                         break;
                 }
             }

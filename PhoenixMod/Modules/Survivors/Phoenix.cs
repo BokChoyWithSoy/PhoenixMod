@@ -14,6 +14,8 @@ namespace PhoenixWright.Modules.Survivors
         internal static SkillDef primaryVase;
         internal static SkillDef primaryKnife;
         internal static SkillDef primaryPhone;
+        internal static SkillDef primaryServbot;
+        internal static SkillDef primaryBottle;
 
         internal override GameObject bodyPrefab { get; set; }
         internal override GameObject displayPrefab { get; set; }
@@ -25,17 +27,17 @@ namespace PhoenixWright.Modules.Survivors
         internal override BodyInfo bodyInfo { get; set; } = new BodyInfo
         {
             armor = 20f,
-            armorGrowth = 0f,
+            armorGrowth = 1f,
             bodyName = "PhoenixBody",
             bodyNameToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME",
             bodyColor = Color.grey,
             characterPortrait = Modules.Assets.LoadCharacterIcon("Phoenix"),
             crosshair = Modules.Assets.LoadCrosshair("Standard"),
-            damage = 12f,
-            healthGrowth = 33f,
-            healthRegen = 1.5f,
+            damage = 30f,
+            healthGrowth = 40f,
+            healthRegen = 2f,
             jumpCount = 1,
-            maxHealth = 110f,
+            maxHealth = 140f,
             subtitleNameToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SUBTITLE",
             podPrefab = Resources.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod")
         };
@@ -94,9 +96,9 @@ namespace PhoenixWright.Modules.Survivors
             #region Secondary
             SkillDef shootSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_HENRY_BODY_SECONDARY_GUN_NAME",
-                skillNameToken = prefix + "_HENRY_BODY_SECONDARY_GUN_NAME",
-                skillDescriptionToken = prefix + "_HENRY_BODY_SECONDARY_GUN_DESCRIPTION",
+                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSecondaryIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Shoot)),
                 activationStateMachineName = "Slide",
@@ -151,9 +153,9 @@ namespace PhoenixWright.Modules.Survivors
             #region Special
             SkillDef bombSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
+                skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSpecialIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)),
                 activationStateMachineName = "Slide",
@@ -195,7 +197,7 @@ namespace PhoenixWright.Modules.Survivors
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = false,
-                cancelSprintingOnActivation = true,
+                cancelSprintingOnActivation = false,
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1
@@ -221,7 +223,7 @@ namespace PhoenixWright.Modules.Survivors
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = false,
-                cancelSprintingOnActivation = true,
+                cancelSprintingOnActivation = false,
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1
@@ -249,12 +251,65 @@ namespace PhoenixWright.Modules.Survivors
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = false,
-                cancelSprintingOnActivation = true,
+                cancelSprintingOnActivation = false,
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1
             });
             #endregion
+
+            #region PrimaryBottle
+            Phoenix.primaryBottle = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
+                skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
+                skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBottleIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowBottle)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1
+            });
+            #endregion
+
+            #region PrimaryPhone
+            Phoenix.primaryServbot = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texServbotIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowServbot)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1
+            });
+            #endregion
+
         }
 
         internal override void InitializeSkins()

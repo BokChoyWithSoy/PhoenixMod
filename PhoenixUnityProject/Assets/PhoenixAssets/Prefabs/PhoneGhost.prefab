@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1997161263203824806}
   - component: {fileID: 1997161263204824678}
   m_Layer: 0
-  m_Name: Phone
+  m_Name: PhoneGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997161263202625702}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.511, y: 0.025, z: -0}
   m_LocalScale: {x: 184.73999, y: 166.08781, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &1997161263203824806
 MeshFilter:
   m_ObjectHideFlags: 0
