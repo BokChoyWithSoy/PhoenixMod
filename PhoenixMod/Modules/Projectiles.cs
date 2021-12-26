@@ -48,7 +48,7 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
             //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
             bombImpactExplosion.timerAfterImpact = true;
-            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+            bombImpactExplosion.lifetimeAfterImpact = 0f;
 
             ProjectileController bombController = vasePrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("VaseGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("VaseGhost");
@@ -68,7 +68,7 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
             //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
             bombImpactExplosion.timerAfterImpact = true;
-            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+            bombImpactExplosion.lifetimeAfterImpact = 0f;
 
             ProjectileController bombController = knifePrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("KnifeGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("KnifeGhost");
@@ -88,7 +88,7 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
             //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
             bombImpactExplosion.timerAfterImpact = true;
-            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+            bombImpactExplosion.lifetimeAfterImpact = 0f;
 
             ProjectileController bombController = phonePrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("PhoneGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("PhoneGhost");
@@ -108,7 +108,7 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
             //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
             bombImpactExplosion.timerAfterImpact = true;
-            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+            bombImpactExplosion.lifetimeAfterImpact = 0f;
 
             ProjectileController bombController = bottlePrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("BottleGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("BottleGhost");
@@ -128,7 +128,7 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
             //bombImpactExplosion.lifetimeExpiredSound = Modules.Assets.CreateNetworkSoundEventDef("HenryBombExplosion");
             bombImpactExplosion.timerAfterImpact = true;
-            bombImpactExplosion.lifetimeAfterImpact = 0.1f;
+            bombImpactExplosion.lifetimeAfterImpact = 0f;
 
             ProjectileController bombController = servbotPrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("ServbotGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("ServbotGhost");
@@ -146,13 +146,11 @@ namespace PhoenixWright.Modules
             projectileImpactExplosion.childrenProjectilePrefab = null;
             projectileImpactExplosion.destroyOnEnemy = false;
             projectileImpactExplosion.destroyOnWorld = false;
-            projectileImpactExplosion.explosionSoundString = "";
             projectileImpactExplosion.falloffModel = RoR2.BlastAttack.FalloffModel.None;
             projectileImpactExplosion.fireChildren = false;
             projectileImpactExplosion.impactEffect = null;
             projectileImpactExplosion.lifetime = 0f;
             projectileImpactExplosion.lifetimeAfterImpact = 0f;
-            projectileImpactExplosion.lifetimeExpiredSoundString = "";
             projectileImpactExplosion.lifetimeRandomOffset = 0f;
             projectileImpactExplosion.offsetForLifetimeExpiredSound = 0f;
             projectileImpactExplosion.timerAfterImpact = false;

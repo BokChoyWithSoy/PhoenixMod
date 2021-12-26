@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 301951635
+CRC: 3960896242
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1f6ae263a90eb946e0f794ab3275f692
+    Hash: d5d9235f1f7a4ea9a1f1611fee74c559
   TypeTreeHash:
     serializedVersion: 2
     Hash: f77abaabb4e098071122f1f096056044
@@ -64,6 +64,8 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/PhoenixAssets/Resources/HoldIt!.prefab
+- Assets/PhoenixAssets/Icons/texPressIcon.png
 - Assets/PhoenixAssets/Textures/texHenry.png
 - Assets/PhoenixAssets/VFX/Materials/matPunchImpactShadow.mat
 - Assets/PhoenixAssets/Animations/FastFall.anim
@@ -81,6 +83,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Textures/texDust.png
 - Assets/PhoenixAssets/Materials/matRoy.mat
 - Assets/PhoenixAssets/Icons/texBazookaOutIcon.png
+- Assets/PhoenixAssets/Materials/New Material.mat
 - Assets/PhoenixAssets/Icons/texServbotIcon.png
 - Assets/PhoenixAssets/Mesh/meshUzi.mesh
 - Assets/PhoenixAssets/Icons/texScepterSpecialIcon.png
@@ -146,6 +149,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Materials/matTrail.mat
 - Assets/PhoenixAssets/VFX/Textures/texFire.tga
 - Assets/PhoenixAssets/Textures/texHenryVergil.png
+- Assets/PhoenixAssets/VFX/SecondaryEffect.prefab
 - Assets/PhoenixAssets/VFX/HenrySwordSwingEffect.prefab
 - Assets/PhoenixAssets/Materials/bot1.png
 - Assets/PhoenixAssets/VFX/Materials/matPunchEffect.mat
@@ -200,6 +204,7 @@ Assets:
 - Assets/PhoenixAssets/Icons/texKnifeIcon.png
 - Assets/PhoenixAssets/Materials/sennelier-blue-light-oil-paint-stick-series-1-365-500x500.jpg
 - Assets/PhoenixAssets/Animations/FallFlat.anim
+- Assets/PhoenixAssets/Materials/Holdit.png
 - Assets/PhoenixAssets/VFX/Textures/texHitSpark.png
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
 - Assets/PhoenixAssets/Icons/texHenryIcon.png
@@ -211,6 +216,7 @@ Assets:
 - Assets/PhoenixAssets/Icons/texPhoenixIcon.png
 - Assets/PhoenixAssets/Animations/animPhoenix.controller
 - Assets/PhoenixAssets/Materials/matHenryAlt.mat
+- Assets/PhoenixAssets/Prefabs/HoldIt!.prefab
 - Assets/PhoenixAssets/Textures/texHenryJediEmission.png
 - Assets/PhoenixAssets/Materials/matBazookaRocket.mat
 - Assets/PhoenixAssets/Animations/RunBack.anim

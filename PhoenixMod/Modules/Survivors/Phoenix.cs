@@ -16,6 +16,7 @@ namespace PhoenixWright.Modules.Survivors
         internal static SkillDef primaryPhone;
         internal static SkillDef primaryServbot;
         internal static SkillDef primaryBottle;
+        internal static SkillDef secondaryPress;
 
         internal override GameObject bodyPrefab { get; set; }
         internal override GameObject displayPrefab { get; set; }
@@ -84,6 +85,9 @@ namespace PhoenixWright.Modules.Survivors
 
             Transform hitboxTransform = childLocator.FindChild("FallHitbox");
             Modules.Prefabs.SetupHitbox(model, hitboxTransform, "fall");
+
+            Transform hitboxTransform1 = childLocator.FindChild("PressHitbox");
+            Modules.Prefabs.SetupHitbox(model, hitboxTransform1, "press");
         }
 
         internal override void InitializeSkills()
@@ -119,7 +123,36 @@ namespace PhoenixWright.Modules.Survivors
                 keywordTokens = new string[] { "KEYWORD_AGILE" }
             });
 
+            #region SecondaryALT
+            SkillDef secondaryPress = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPressIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Press)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 5f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE" }
+            });
+            #endregion
+
+            Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
             Modules.Skills.AddSecondarySkills(bodyPrefab, shootSkillDef);
+
             #endregion
 
             #region Utility

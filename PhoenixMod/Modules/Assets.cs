@@ -15,8 +15,7 @@ namespace PhoenixWright.Modules
         internal static AssetBundle mainAssetBundle;
 
         // particle effects
-        internal static GameObject swordSwingEffect;
-        internal static GameObject swordHitImpactEffect;
+        internal static GameObject pressEffect;
 
         internal static GameObject bombExplosionEffect;
 
@@ -37,12 +36,6 @@ namespace PhoenixWright.Modules
 
         internal static void Initialize()
         {
-            if (assetbundleName == "MyassetBundle")
-            {
-                Debug.LogError("AssetBundle name hasn't been changed- not loading any assets to avoid conflicts");
-                return;
-            }
-
             LoadAssetBundle();
             LoadSoundbank();
             PopulateAssets();
@@ -78,6 +71,8 @@ namespace PhoenixWright.Modules
                 Debug.LogError("There is no AssetBundle to load assets from.");
                 return;
             }
+
+            pressEffect = Assets.LoadEffect("SecondaryEffect");
         }
         
 
