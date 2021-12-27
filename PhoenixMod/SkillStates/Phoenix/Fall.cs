@@ -58,6 +58,8 @@ namespace PhoenixWright.SkillStates
             Vector3 b = base.characterMotor ? base.characterMotor.velocity : Vector3.zero;
             this.previousPosition = base.transform.position - b;
 
+
+            base.StartAimMode(duration, true);
             base.PlayAnimation("FullBody, Override", "FallFlat", "Roll.playbackRate", Fall.duration * 2);
             HitBoxGroup hitBoxGroup = null;
             Transform modelTransform = base.GetModelTransform();
@@ -114,7 +116,7 @@ namespace PhoenixWright.SkillStates
             this.previousPosition = base.transform.position;
 
             stopwatch += Time.fixedDeltaTime;
-            if (this.stopwatch >= attackStartTime && this.stopwatch <= attackEndTime )
+            if (this.stopwatch >= attackStartTime && this.stopwatch <= attackEndTime * 4 )
             {
                 FireAttack();
             }

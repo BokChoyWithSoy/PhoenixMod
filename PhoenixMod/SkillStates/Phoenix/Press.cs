@@ -31,6 +31,7 @@ namespace PhoenixWright.SkillStates
             Ray aimRay = base.GetAimRay();
             this.hasFired = false;
 
+            base.StartAimMode(duration, true);
             base.PlayAnimation("FullBody, Override", "Point", "ShootGun.playbackRate", (Press.duration  / Press.duration));
 
             rayPosition = aimRay.origin + 20 * aimRay.direction;
