@@ -16,11 +16,7 @@ namespace PhoenixWright.Modules
 
         // particle effects
         internal static GameObject pressEffect;
-
-        internal static GameObject bombExplosionEffect;
-
-        // networked hit sounds
-        internal static NetworkSoundEventDef swordHitSoundEvent;
+        internal static GameObject gavelEffect;
 
         // lists of assets to add to contentpack
         internal static List<NetworkSoundEventDef> networkSoundEventDefs = new List<NetworkSoundEventDef>();
@@ -73,6 +69,7 @@ namespace PhoenixWright.Modules
             }
 
             pressEffect = Assets.LoadEffect("SecondaryEffect");
+            gavelEffect = Assets.LoadEffect("SpecialEffect");
         }
         
 

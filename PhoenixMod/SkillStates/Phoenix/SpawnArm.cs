@@ -9,7 +9,7 @@ namespace PhoenixWright.SkillStates
 {
     public class SpawnArm : BaseSkillState
     {
-        public static float damageCoefficient = 10f;
+        public static float damageCoefficient = 6f;
         public static float procCoefficient = 1f;
         public static float baseDuration = 1f;
         public static float throwForce = 80f;
@@ -18,7 +18,6 @@ namespace PhoenixWright.SkillStates
         private float fireTime;
         private bool hasFired;
         private bool justSwitched = true;
-        private int nextItem;
         private Animator animator;
 
         public override void OnEnter()

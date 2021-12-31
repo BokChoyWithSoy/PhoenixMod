@@ -87,8 +87,8 @@ namespace PhoenixWright.Modules.Survivors
             Transform hitboxTransform = childLocator.FindChild("FallHitbox");
             Modules.Prefabs.SetupHitbox(model, hitboxTransform, "fall");
 
-            Transform hitboxTransform1 = childLocator.FindChild("PressHitbox");
-            Modules.Prefabs.SetupHitbox(model, hitboxTransform1, "press");
+            Transform hitboxTransform1 = childLocator.FindChild("GavelHitbox");
+            Modules.Prefabs.SetupHitbox(model, hitboxTransform1, "gavel");
         }
 
         internal override void InitializeSkills()
@@ -185,16 +185,16 @@ namespace PhoenixWright.Modules.Survivors
             #endregion
 
             #region Special
-            SkillDef bombSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            SkillDef gavelSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
                 skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSpecialIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texGavelIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Gavel)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
-                baseRechargeInterval = 0f,
+                baseRechargeInterval = 10f,
                 beginSkillCooldownOnSkillEnd = false,
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
@@ -202,14 +202,14 @@ namespace PhoenixWright.Modules.Survivors
                 interruptPriority = EntityStates.InterruptPriority.Skill,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
-                mustKeyPress = false,
+                mustKeyPress = true,
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1
             });
 
-            Modules.Skills.AddSpecialSkills(bodyPrefab, bombSkillDef);
+            Modules.Skills.AddSpecialSkills(bodyPrefab, gavelSkillDef);
             #endregion
 
             #region PrimaryKnife
@@ -350,7 +350,7 @@ namespace PhoenixWright.Modules.Survivors
                 skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
                 skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texServbotIcon"),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPrimaryUpgrade"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.SpawnArm)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
@@ -369,8 +369,6 @@ namespace PhoenixWright.Modules.Survivors
                 stockToConsume = 1
             });
             #endregion
-
-            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryArm);
 
         }
 
