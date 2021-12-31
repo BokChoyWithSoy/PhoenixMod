@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2761233427
+CRC: 3221340331
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2040feabdcc9d23d3e4897700ba5c121
+    Hash: 680953c47ff015b58fe20228acfb1b05
   TypeTreeHash:
     serializedVersion: 2
     Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
@@ -161,6 +161,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Textures/texLightning.tif
 - Assets/PhoenixAssets/Icons/texUziIcon.png
 - Assets/PhoenixAssets/Materials/matBoxingGlove.mat
+- Assets/PhoenixAssets/Icons/texGavelIcon.png
 - Assets/PhoenixAssets/Mesh/meshVergilCoat.mesh
 - Assets/PhoenixAssets/VFX/Textures/texRipple.png
 - Assets/PhoenixAssets/Materials/Holographic.png

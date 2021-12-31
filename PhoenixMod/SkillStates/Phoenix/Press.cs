@@ -10,7 +10,7 @@ namespace PhoenixWright.SkillStates
 {
     public class Press : BaseSkillState
     {
-        public static float damageCoefficient = 8f;
+        public static float damageCoefficient = 6f;
         public static float procCoefficient = 1f;
         public static float duration = 3f;
         public Vector3 rayPosition;

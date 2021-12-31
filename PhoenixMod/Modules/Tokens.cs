@@ -38,22 +38,22 @@ namespace PhoenixWright.Modules
 
             #region Primary
             LanguageAPI.Add(prefix + "PRIMARY_THROW_NAME", "Throw Evidence");
-            LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.agilePrefix + $"Throw a random piece of evidence, If the evidence is junk it will deal <style=cIsDamage>200% damage</style> and if it is decisive evidence it will deal <style=cIsDamage>600% damage</style>.");
+            LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.agilePrefix + $"Throw a random piece of evidence, If the evidence is junk it will deal <style=cIsDamage>200% damage</style> and if it is decisive evidence it will deal <style=cIsDamage>400% damage</style>.");
             #endregion
 
             #region Secondary
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS_NAME", "Press");
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", Helpers.agilePrefix + $"Fire a handgun for <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style>.");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS_NAME", "Press The Witness");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", $"Press the witness dealing <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style> and stunning all enemies hit.");
             #endregion
 
             #region Utility
             LanguageAPI.Add(prefix + "UTILITY_FALL_NAME", "Fall");
-            LanguageAPI.Add(prefix + "UTILITY_FALL_DESCRIPTION", "Fall forward on your face gaining <style=cIsUtility>300 armor</style> and dealing  <style=cIsDamage>200% damage</style> to all enemies hit. <style=cIsUtility>You cannot be hit during the fall.</style>");
+            LanguageAPI.Add(prefix + "UTILITY_FALL_DESCRIPTION", "Fall forward on your face gaining <style=cIsUtility>300 armor</style> and dealing  <style=cIsDamage>300% damage</style> and stunning all enemies hit. <style=cIsUtility>You cannot be hit during the fall.</style>");
             #endregion
 
             #region Special
-            LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME", "Bomb");
-            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", $"Throw a bomb for <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style>.");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME", "Order In The Court!");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style> and stunning all enemies hit.");
             #endregion
 
             #region Achievements

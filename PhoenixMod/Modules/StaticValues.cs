@@ -12,10 +12,10 @@ namespace PhoenixWright.Modules
 
         internal const float swordDamageCoefficient = 10f;
 
-        internal const float gunDamageCoefficient = 100f;
+        internal const float gunDamageCoefficient = 6f;
 
         internal const float fallDamageCoefficient = 2f;
 
-        internal const float bombDamageCoefficient = 16f;
+        internal const float bombDamageCoefficient = 10f;
     }
 }

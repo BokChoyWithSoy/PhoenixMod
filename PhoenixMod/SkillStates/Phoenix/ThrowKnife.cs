@@ -9,7 +9,7 @@ namespace PhoenixWright.SkillStates
 {
     public class ThrowKnife : BaseSkillState
     {
-        public static float damageCoefficient = 6f;
+        public static float damageCoefficient = 4f;
         public static float procCoefficient = 1f;
         public static float baseDuration = 1f;
         public static float throwForce = 80f;
