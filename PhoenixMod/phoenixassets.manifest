@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3960896242
+CRC: 2817117610
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d5d9235f1f7a4ea9a1f1611fee74c559
+    Hash: 3f50bbb300c4b5ec918a749e224b7a37
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f77abaabb4e098071122f1f096056044
+    Hash: 54a8aa29d9f6e7196353c36e37e36b11
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,10 +25,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
-- Class: 54
-  Script: {instanceID: 0}
-- Class: 65
-  Script: {instanceID: 0}
 - Class: 74
   Script: {instanceID: 0}
 - Class: 90
@@ -40,22 +36,12 @@ ClassTypes:
 - Class: 108
   Script: {instanceID: 0}
 - Class: 114
-  Script: {fileID: 11500000, guid: 9a68da65c907acb4eb4dbcd042f172e7, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: fc41cd48bee14034db80323ab44fbd3e, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 261c50d8a80898e4ebf2e8e415ea6766, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 751bd37d2e55f5f448dbb0d97812d9ba, type: 3}
 - Class: 115
-  Script: {instanceID: 0}
-- Class: 135
   Script: {instanceID: 0}
 - Class: 136
   Script: {instanceID: 0}
 - Class: 137
-  Script: {instanceID: 0}
-- Class: 144
   Script: {instanceID: 0}
 - Class: 198
   Script: {instanceID: 0}
@@ -103,6 +89,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Materials/matFire.mat
 - Assets/PhoenixAssets/Materials/matVase.png
 - Assets/PhoenixAssets/Textures/texHenryNeo.png
+- Assets/PhoenixAssets/Icons/texPrimaryUpgrade.png
 - Assets/PhoenixAssets/Materials/matKnife.png
 - Assets/PhoenixAssets/Icons/texPistolIcon.png
 - Assets/PhoenixAssets/Textures/texBoxingGlove.png
@@ -127,6 +114,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/lambert4.png
 - Assets/PhoenixAssets/Mesh/meshHenry.mesh
 - Assets/PhoenixAssets/Mesh/meshRebellion.mesh
+- Assets/PhoenixAssets/Materials/matWood.mat
 - Assets/PhoenixAssets/Icons/texGrandMasteryAchievement.png
 - Assets/PhoenixAssets/VFX/HenryBazookaExplosionEffect.prefab
 - Assets/PhoenixAssets/Icons/texMasteryAchievement.png
@@ -148,6 +136,7 @@ Assets:
 - Assets/PhoenixAssets/Animations/RunForward.anim
 - Assets/PhoenixAssets/VFX/Materials/matTrail.mat
 - Assets/PhoenixAssets/VFX/Textures/texFire.tga
+- Assets/PhoenixAssets/Mesh/Arm.mesh
 - Assets/PhoenixAssets/Textures/texHenryVergil.png
 - Assets/PhoenixAssets/VFX/SecondaryEffect.prefab
 - Assets/PhoenixAssets/VFX/HenrySwordSwingEffect.prefab
@@ -165,11 +154,13 @@ Assets:
 - Assets/PhoenixAssets/Icons/texSpecialIcon.png
 - Assets/PhoenixAssets/Animations/SlowFall.anim
 - Assets/PhoenixAssets/Icons/texHenryAchievement.png
+- Assets/PhoenixAssets/Materials/Materials/Holographic.mat
 - Assets/PhoenixAssets/Animations/WalkLeft.anim
 - Assets/PhoenixAssets/Materials/Material.002.mat
 - Assets/PhoenixAssets/Icons/texBazookaIconScepter.png
 - Assets/PhoenixAssets/Mesh/meshHenrySwordAlt.mesh
 - Assets/PhoenixAssets/VFX/Materials/matSwingEffect.mat
+- Assets/PhoenixAssets/Icons/texBuffIcon.jpg
 - Assets/PhoenixAssets/Icons/texPrimaryIcon.png
 - Assets/PhoenixAssets/VFX/Textures/texHenrySwing2.png
 - Assets/PhoenixAssets/Mesh/meshPistol.mesh
@@ -180,7 +171,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/HenryDustEffect.prefab
 - Assets/PhoenixAssets/Mesh/meshVergilCoat.mesh
 - Assets/PhoenixAssets/VFX/Textures/texRipple.png
-- Assets/PhoenixAssets/mdlHenry.prefab
+- Assets/PhoenixAssets/Materials/Holographic.png
 - Assets/PhoenixAssets/VFX/Materials/matAnimeShapes.mat
 - Assets/PhoenixAssets/Animations/GetUp.anim
 - Assets/PhoenixAssets/Animations/Point.anim
@@ -192,6 +183,7 @@ Assets:
 - Assets/PhoenixAssets/Icons/texUtilityIcon.png
 - Assets/PhoenixAssets/VFX/Mesh/meshBoxingGlove.mesh
 - Assets/PhoenixAssets/Icons/texPhoneIcon.png
+- Assets/PhoenixAssets/Prefabs/ArmGhost.prefab
 - Assets/PhoenixAssets/Materials/lambert4.mat
 - Assets/PhoenixAssets/Materials/matRebellion.mat
 - Assets/PhoenixAssets/Prefabs/KnifeGhost.prefab
@@ -201,6 +193,7 @@ Assets:
 - Assets/PhoenixAssets/Prefabs/VaseGhost.prefab
 - Assets/PhoenixAssets/Materials/matBazooka.mat
 - Assets/PhoenixAssets/Animations/WalkBackward.anim
+- Assets/PhoenixAssets/Mesh/Gavel.mesh
 - Assets/PhoenixAssets/Icons/texKnifeIcon.png
 - Assets/PhoenixAssets/Materials/sennelier-blue-light-oil-paint-stick-series-1-365-500x500.jpg
 - Assets/PhoenixAssets/Animations/FallFlat.anim
@@ -213,14 +206,15 @@ Assets:
 - Assets/PhoenixAssets/Materials/matVergil.mat
 - Assets/PhoenixAssets/Animations/RunRight.anim
 - Assets/PhoenixAssets/VFX/Materials/matSlash.mat
+- Assets/PhoenixAssets/Materials/seamless-wood3.jpg
 - Assets/PhoenixAssets/Icons/texPhoenixIcon.png
 - Assets/PhoenixAssets/Animations/animPhoenix.controller
 - Assets/PhoenixAssets/Materials/matHenryAlt.mat
-- Assets/PhoenixAssets/Prefabs/HoldIt!.prefab
 - Assets/PhoenixAssets/Textures/texHenryJediEmission.png
 - Assets/PhoenixAssets/Materials/matBazookaRocket.mat
 - Assets/PhoenixAssets/Animations/RunBack.anim
 - Assets/PhoenixAssets/VFX/Materials/matPunchImpact.mat
 - Assets/PhoenixAssets/Prefabs/ServbotGhost.prefab
+- Assets/PhoenixAssets/Materials/matArm.mat
 - Assets/PhoenixAssets/Mesh/meshPhoenix.mesh
 Dependencies: []

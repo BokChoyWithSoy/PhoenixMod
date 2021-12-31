@@ -13,6 +13,7 @@ namespace PhoenixWright.Modules
         internal static GameObject phonePrefab;
         internal static GameObject bottlePrefab;
         internal static GameObject servbotPrefab;
+        internal static GameObject armPrefab;
 
         internal static void RegisterProjectiles()
         {
@@ -22,12 +23,14 @@ namespace PhoenixWright.Modules
             Createphone();
             Createbottle();
             Createservbot();
+            CreateArm();
 
             AddProjectile(vasePrefab);
             AddProjectile(knifePrefab);
             AddProjectile(phonePrefab);
             AddProjectile(servbotPrefab);
             AddProjectile(bottlePrefab);
+            AddProjectile(armPrefab);
         }
 
         internal static void AddProjectile(GameObject projectileToAdd)
@@ -132,6 +135,25 @@ namespace PhoenixWright.Modules
 
             ProjectileController bombController = servbotPrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("ServbotGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("ServbotGhost");
+            bombController.startSound = "";
+        }
+
+        private static void CreateArm()
+        {
+            armPrefab = CloneProjectilePrefab("magefirebolt", "HenryBombProjectile");
+
+            ProjectileImpactExplosion bombImpactExplosion = armPrefab.GetComponent<ProjectileImpactExplosion>();
+            InitializeImpactExplosion(bombImpactExplosion);
+
+            bombImpactExplosion.blastRadius = 5f;
+            bombImpactExplosion.destroyOnEnemy = true;
+            bombImpactExplosion.lifetime = 12f;
+            bombImpactExplosion.impactEffect = Modules.Assets.bombExplosionEffect;
+            bombImpactExplosion.timerAfterImpact = true;
+            bombImpactExplosion.lifetimeAfterImpact = 0f;
+
+            ProjectileController bombController = armPrefab.GetComponent<ProjectileController>();
+            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("ArmGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("ArmGhost");
             bombController.startSound = "";
         }
 

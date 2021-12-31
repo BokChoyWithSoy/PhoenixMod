@@ -16,6 +16,7 @@ namespace PhoenixWright.Modules.Survivors
         internal static SkillDef primaryPhone;
         internal static SkillDef primaryServbot;
         internal static SkillDef primaryBottle;
+        internal static SkillDef primaryArm;
         internal static SkillDef secondaryPress;
 
         internal override GameObject bodyPrefab { get; set; }
@@ -342,6 +343,34 @@ namespace PhoenixWright.Modules.Survivors
                 stockToConsume = 1
             });
             #endregion
+
+            #region PrimaryArm
+            Phoenix.primaryArm = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texServbotIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.SpawnArm)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1
+            });
+            #endregion
+
+            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryArm);
 
         }
 
