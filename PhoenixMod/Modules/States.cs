@@ -13,8 +13,6 @@ namespace PhoenixWright.Modules
         {
             entityStates.Add(typeof(BaseMeleeAttack));
 
-            entityStates.Add(typeof(Shoot));
-
             entityStates.Add(typeof(Fall));
 
             entityStates.Add(typeof(ThrowVase));

@@ -79,7 +79,7 @@ namespace PhoenixWright.SkillStates
             {
                 this.hasFired = true;
                 blastAttack.Fire();
-                base.PlayAnimation("FullBody, Override", "Getup", "ShootGun.playbackRate", (Press.duration / Press.duration));
+                base.PlayAnimation("FullBody, Override", "Getup", "ShootGun.playbackRate", (Press.duration / Press.duration));  
             }
         }
     }

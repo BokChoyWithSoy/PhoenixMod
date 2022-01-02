@@ -16,6 +16,8 @@ namespace PhoenixWright.Modules
 
         // particle effects
         internal static GameObject pressEffect;
+        internal static GameObject pressobjectEffect;
+        internal static GameObject presstTakeEffect;
         internal static GameObject gavelEffect;
 
         // lists of assets to add to contentpack
@@ -70,6 +72,8 @@ namespace PhoenixWright.Modules
 
             pressEffect = Assets.LoadEffect("SecondaryEffect");
             gavelEffect = Assets.LoadEffect("SpecialEffect");
+            pressobjectEffect = Assets.LoadEffect("SecondaryObjectEffect");
+            presstTakeEffect = Assets.LoadEffect("SecondaryTakeEffect");
         }
         
 

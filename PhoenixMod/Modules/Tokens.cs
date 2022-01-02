@@ -32,8 +32,8 @@ namespace PhoenixWright.Modules
             #endregion
 
             #region Passive
-            LanguageAPI.Add(prefix + "PASSIVE_NAME", "Henry passive");
-            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION", "Sample text.");
+            LanguageAPI.Add(prefix + "PASSIVE_NAME", "Turnabout");
+            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION", "Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode, replacing Phoenix's primary and secondary abilities with empowered versions.");
             #endregion
 
             #region Primary
@@ -44,6 +44,9 @@ namespace PhoenixWright.Modules
             #region Secondary
             LanguageAPI.Add(prefix + "SECONDARY_PRESS_NAME", "Press The Witness");
             LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", $"Press the witness dealing <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style> and stunning all enemies hit.");
+
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_NAME", "Press The Witness");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", $"Press the witness dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style> and stunning all enemies hit.");
             #endregion
 
             #region Utility

@@ -35,8 +35,8 @@ namespace PhoenixWright.Modules.Survivors
             bodyColor = Color.grey,
             characterPortrait = Modules.Assets.LoadCharacterIcon("Phoenix"),
             crosshair = Modules.Assets.LoadCrosshair("Standard"),
-            damage = 30f,
-            healthGrowth = 40f,
+            damage = 20f,
+            healthGrowth = 20f,
             healthRegen = 2f,
             jumpCount = 1,
             maxHealth = 140f,
@@ -97,15 +97,22 @@ namespace PhoenixWright.Modules.Survivors
 
             string prefix = PhoenixPlugin.developerPrefix;
 
+            #region Passive
+            SkillLocator skillLoc = bodyPrefab.GetComponent<SkillLocator>();
+            skillLoc.passiveSkill.enabled = true;
+            skillLoc.passiveSkill.skillNameToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PASSIVE_NAME";
+            skillLoc.passiveSkill.skillDescriptionToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PASSIVE_DESCRIPTION";
+            skillLoc.passiveSkill.icon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBuffIcon");
+            #endregion
 
-            #region Secondary
-            SkillDef shootSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            #region PrimaryVase
+            Phoenix.primaryVase = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSecondaryIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Shoot)),
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texVaseIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
                 baseRechargeInterval = 0f,
@@ -124,7 +131,145 @@ namespace PhoenixWright.Modules.Survivors
                 keywordTokens = new string[] { "KEYWORD_AGILE" }
             });
 
-            #region SecondaryALT
+            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryVase);
+            #endregion
+
+            #region PrimaryKnife
+            Phoenix.primaryKnife = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texKnifeIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowKnife)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE" }
+            });
+            #endregion
+
+            #region PrimaryPhone
+            Phoenix.primaryPhone = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPhoneIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowPhone)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE" }
+            });
+            #endregion
+
+            #region PrimaryBottle
+            Phoenix.primaryBottle = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBottleIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowBottle)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE" }
+            });
+            #endregion
+
+            #region PrimaryPhone
+            Phoenix.primaryServbot = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texServbotIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowServbot)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE" }
+            });
+            #endregion
+
+            #region PrimaryArm
+            Phoenix.primaryArm = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPrimaryUpgrade"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.SpawnArm)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE" }
+            });
+            #endregion
+
+            #region Secondary
             SkillDef secondaryPress = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
@@ -146,15 +291,38 @@ namespace PhoenixWright.Modules.Survivors
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 1,
-                stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_AGILE" }
+                stockToConsume = 1
+            });
+            #endregion
+
+            #region Secondary
+            SkillDef secondaryPressStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPressIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.PressTurnabout)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 5f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1
             });
             #endregion
 
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
-            Modules.Skills.AddSecondarySkills(bodyPrefab, shootSkillDef);
-
-            #endregion
+            Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPressStrong);
 
             #region Utility
             SkillDef rollSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
@@ -210,164 +378,6 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddSpecialSkills(bodyPrefab, gavelSkillDef);
-            #endregion
-
-            #region PrimaryKnife
-            Phoenix.primaryKnife = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texKnifeIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowKnife)),
-                activationStateMachineName = "Slide",
-                baseMaxStock = 1,
-                baseRechargeInterval = 0f,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = false,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1
-            });
-            #endregion
-
-            #region PrimaryVase
-            Phoenix.primaryVase = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texVaseIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowVase)),
-                activationStateMachineName = "Slide",
-                baseMaxStock = 1,
-                baseRechargeInterval = 0f,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = false,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1
-            });
-
-            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryVase);
-            #endregion
-
-            #region PrimaryPhone
-            Phoenix.primaryPhone = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPhoneIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowPhone)),
-                activationStateMachineName = "Slide",
-                baseMaxStock = 1,
-                baseRechargeInterval = 0f,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = false,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1
-            });
-            #endregion
-
-            #region PrimaryBottle
-            Phoenix.primaryBottle = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillNameToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_NAME",
-                skillDescriptionToken = prefix + "_HENRY_BODY_SPECIAL_BOMB_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBottleIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowBottle)),
-                activationStateMachineName = "Slide",
-                baseMaxStock = 1,
-                baseRechargeInterval = 0f,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = false,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1
-            });
-            #endregion
-
-            #region PrimaryPhone
-            Phoenix.primaryServbot = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texServbotIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowServbot)),
-                activationStateMachineName = "Slide",
-                baseMaxStock = 1,
-                baseRechargeInterval = 0f,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = false,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1
-            });
-            #endregion
-
-            #region PrimaryArm
-            Phoenix.primaryArm = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPrimaryUpgrade"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.SpawnArm)),
-                activationStateMachineName = "Slide",
-                baseMaxStock = 1,
-                baseRechargeInterval = 0f,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = false,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1
-            });
             #endregion
 
         }

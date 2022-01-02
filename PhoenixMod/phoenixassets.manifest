@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3221340331
+CRC: 4221039165
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 680953c47ff015b58fe20228acfb1b05
+    Hash: fc122458b4f823755e3a66cf85a944a0
   TypeTreeHash:
     serializedVersion: 2
     Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
@@ -68,7 +68,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Textures/texDust.png
 - Assets/PhoenixAssets/Materials/matRoy.mat
 - Assets/PhoenixAssets/Icons/texBazookaOutIcon.png
-- Assets/PhoenixAssets/Materials/New Material.mat
+- Assets/PhoenixAssets/Materials/HoldIt.mat
 - Assets/PhoenixAssets/Icons/texServbotIcon.png
 - Assets/PhoenixAssets/Mesh/meshUzi.mesh
 - Assets/PhoenixAssets/Icons/texScepterSpecialIcon.png
@@ -83,7 +83,9 @@ Assets:
 - Assets/PhoenixAssets/Materials/matHenry.mat
 - Assets/PhoenixAssets/VFX/Materials/matFistSwing.mat
 - Assets/PhoenixAssets/Animations/MenuIdle.anim
+- Assets/PhoenixAssets/Materials/Objection.mat
 - Assets/PhoenixAssets/Mesh/meshDante.mesh
+- Assets/PhoenixAssets/VFX/SecondaryTakeEffect.prefab
 - Assets/PhoenixAssets/VFX/Materials/matFire.mat
 - Assets/PhoenixAssets/Materials/matVase.png
 - Assets/PhoenixAssets/Textures/texHenryNeo.png
@@ -97,6 +99,7 @@ Assets:
 - Assets/PhoenixAssets/Textures/texHenryDante.png
 - Assets/PhoenixAssets/Materials/matFloor.mat
 - Assets/PhoenixAssets/Animations/WalkRight.anim
+- Assets/PhoenixAssets/VFX/SecondaryObjectEffect.prefab
 - Assets/PhoenixAssets/Mesh/meshVergil.mesh
 - Assets/PhoenixAssets/Materials/matVase.mat
 - Assets/PhoenixAssets/Icons/texDanteAchievement.png
@@ -106,6 +109,7 @@ Assets:
 - Assets/PhoenixAssets/Mesh/meshNeoCoat.mesh
 - Assets/PhoenixAssets/Icons/texShotgunIcon.png
 - Assets/PhoenixAssets/Materials/matShotgun.mat
+- Assets/PhoenixAssets/Materials/Objection.png
 - Assets/PhoenixAssets/Materials/matPhoenix.mat
 - Assets/PhoenixAssets/Materials/lambert4.png
 - Assets/PhoenixAssets/Mesh/meshHenry.mesh
@@ -153,7 +157,7 @@ Assets:
 - Assets/PhoenixAssets/Icons/texBazookaIconScepter.png
 - Assets/PhoenixAssets/Mesh/meshHenrySwordAlt.mesh
 - Assets/PhoenixAssets/VFX/Materials/matSwingEffect.mat
-- Assets/PhoenixAssets/Icons/texBuffIcon.jpg
+- Assets/PhoenixAssets/Icons/texBuffIconNoBackground.png
 - Assets/PhoenixAssets/Icons/texPrimaryIcon.png
 - Assets/PhoenixAssets/VFX/Textures/texHenrySwing2.png
 - Assets/PhoenixAssets/Mesh/meshPistol.mesh
@@ -167,8 +171,10 @@ Assets:
 - Assets/PhoenixAssets/Materials/Holographic.png
 - Assets/PhoenixAssets/VFX/Materials/matAnimeShapes.mat
 - Assets/PhoenixAssets/Animations/GetUp.anim
+- Assets/PhoenixAssets/Materials/png-clipart-phoenix-wright-ace-attorney-symbol-computer-icons-ace-computer-network-angle.png
 - Assets/PhoenixAssets/Animations/Point.anim
 - Assets/PhoenixAssets/VFX/Materials/matHitSpark.mat
+- Assets/PhoenixAssets/Materials/TakeThat.png
 - Assets/PhoenixAssets/VFX/Textures/texPunchImpactShadow.png
 - Assets/PhoenixAssets/VFX/Textures/texSwingEffect.png
 - Assets/PhoenixAssets/Icons/texVergilAchievement.png
@@ -193,6 +199,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Textures/texHitSpark.png
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
 - Assets/PhoenixAssets/Icons/texHenryIcon.png
+- Assets/PhoenixAssets/Materials/TakeThat.mat
 - Assets/PhoenixAssets/Textures/texBazooka.png
 - Assets/PhoenixAssets/Mesh/meshDanteCoat.mesh
 - Assets/PhoenixAssets/Materials/matVergil.mat
