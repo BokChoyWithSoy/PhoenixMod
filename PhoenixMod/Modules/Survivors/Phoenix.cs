@@ -267,6 +267,8 @@ namespace PhoenixWright.Modules.Survivors
                 stockToConsume = 1,
                 keywordTokens = new string[] { "KEYWORD_AGILE" }
             });
+
+            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryArm);
             #endregion
 
             #region Secondary
@@ -301,7 +303,7 @@ namespace PhoenixWright.Modules.Survivors
                 skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
                 skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPressIcon"),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSecondaryUpgradeIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.PressTurnabout)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
