@@ -41,7 +41,7 @@ namespace PhoenixWright.SkillStates
             }, false) ;
 
             blastAttack = new BlastAttack();
-            blastAttack.radius = 10f;
+            blastAttack.radius = 15f;
             blastAttack.procCoefficient = 0.2f;
             blastAttack.position = rayPosition;
             blastAttack.attacker = base.gameObject;

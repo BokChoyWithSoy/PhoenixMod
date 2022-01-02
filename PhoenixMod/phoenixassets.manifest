@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4221039165
+CRC: 592478816
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fc122458b4f823755e3a66cf85a944a0
+    Hash: c8af6bbfa31889435cd0472a7b815083
   TypeTreeHash:
     serializedVersion: 2
     Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
@@ -59,22 +59,16 @@ Assets:
 - Assets/PhoenixAssets/VFX/Materials/matSwingShadow.mat
 - Assets/PhoenixAssets/VFX/Materials/matDust.mat
 - Assets/PhoenixAssets/Mesh/MeshHenryGun.mesh
-- Assets/PhoenixAssets/Icons/texBoxingGlovesIcon.png
-- Assets/PhoenixAssets/Icons/texPassiveIcon.png
 - Assets/PhoenixAssets/VFX/Textures/texPunchImpact.png
 - Assets/PhoenixAssets/Materials/Champagne_Bottle_Rap_DIFF.png
 - Assets/PhoenixAssets/Materials/Materials/Champagne_Bottle_Rap_DIFF.mat
 - Assets/PhoenixAssets/Animations/WalkForward.anim
 - Assets/PhoenixAssets/VFX/Textures/texDust.png
 - Assets/PhoenixAssets/Materials/matRoy.mat
-- Assets/PhoenixAssets/Icons/texBazookaOutIcon.png
 - Assets/PhoenixAssets/Materials/HoldIt.mat
 - Assets/PhoenixAssets/Icons/texServbotIcon.png
 - Assets/PhoenixAssets/Mesh/meshUzi.mesh
-- Assets/PhoenixAssets/Icons/texScepterSpecialIcon.png
-- Assets/PhoenixAssets/Icons/texStingerIcon.png
 - Assets/PhoenixAssets/VFX/Materials/matSmoke.mat
-- Assets/PhoenixAssets/Icons/texBazookaIcon.png
 - Assets/PhoenixAssets/Materials/matDante.mat
 - Assets/PhoenixAssets/Animations/Ascend.anim
 - Assets/PhoenixAssets/Textures/texHenryAlt.png
@@ -92,7 +86,6 @@ Assets:
 - Assets/PhoenixAssets/Icons/texPrimaryUpgrade.png
 - Assets/PhoenixAssets/Mesh/Gavel.mesh
 - Assets/PhoenixAssets/Materials/matKnife.png
-- Assets/PhoenixAssets/Icons/texPistolIcon.png
 - Assets/PhoenixAssets/Textures/texBoxingGlove.png
 - Assets/PhoenixAssets/Textures/texHenryDanteEmission.png
 - Assets/PhoenixAssets/Icons/texBottleIcon.png
@@ -102,12 +95,9 @@ Assets:
 - Assets/PhoenixAssets/VFX/SecondaryObjectEffect.prefab
 - Assets/PhoenixAssets/Mesh/meshVergil.mesh
 - Assets/PhoenixAssets/Materials/matVase.mat
-- Assets/PhoenixAssets/Icons/texDanteAchievement.png
 - Assets/PhoenixAssets/Materials/matHitboxPreview.mat
 - Assets/PhoenixAssets/VFX/Textures/texEmbers.png
-- Assets/PhoenixAssets/Icons/texBazookaFireIcon.png
 - Assets/PhoenixAssets/Mesh/meshNeoCoat.mesh
-- Assets/PhoenixAssets/Icons/texShotgunIcon.png
 - Assets/PhoenixAssets/Materials/matShotgun.mat
 - Assets/PhoenixAssets/Materials/Objection.png
 - Assets/PhoenixAssets/Materials/matPhoenix.mat
@@ -115,8 +105,6 @@ Assets:
 - Assets/PhoenixAssets/Mesh/meshHenry.mesh
 - Assets/PhoenixAssets/Mesh/meshRebellion.mesh
 - Assets/PhoenixAssets/Materials/matWood.mat
-- Assets/PhoenixAssets/Icons/texGrandMasteryAchievement.png
-- Assets/PhoenixAssets/Icons/texMasteryAchievement.png
 - Assets/PhoenixAssets/Textures/texHenryJedi.png
 - Assets/PhoenixAssets/Animations/Throw.anim
 - Assets/PhoenixAssets/Mesh/meshHenryNeo.mesh
@@ -141,29 +129,23 @@ Assets:
 - Assets/PhoenixAssets/VFX/Materials/matPunchEffect.mat
 - Assets/PhoenixAssets/VFX/Materials/matEmbers.mat
 - Assets/PhoenixAssets/Materials/matKnife.mat
-- Assets/PhoenixAssets/Icons/texSecondaryIcon.png
 - Assets/PhoenixAssets/Prefabs/mdlPhoenix.prefab
 - Assets/PhoenixAssets/Animations/RunBackwards.anim
 - Assets/PhoenixAssets/Prefabs/PhoneGhost.prefab
 - Assets/PhoenixAssets/VFX/Materials/matRipple.mat
 - Assets/PhoenixAssets/Materials/matHenryNeo.mat
 - Assets/PhoenixAssets/VFX/Textures/texSmoke.png
-- Assets/PhoenixAssets/Icons/texSpecialIcon.png
 - Assets/PhoenixAssets/Animations/SlowFall.anim
-- Assets/PhoenixAssets/Icons/texHenryAchievement.png
 - Assets/PhoenixAssets/Materials/Materials/Holographic.mat
 - Assets/PhoenixAssets/Animations/WalkLeft.anim
 - Assets/PhoenixAssets/Materials/Material.002.mat
-- Assets/PhoenixAssets/Icons/texBazookaIconScepter.png
 - Assets/PhoenixAssets/Mesh/meshHenrySwordAlt.mesh
 - Assets/PhoenixAssets/VFX/Materials/matSwingEffect.mat
 - Assets/PhoenixAssets/Icons/texBuffIconNoBackground.png
-- Assets/PhoenixAssets/Icons/texPrimaryIcon.png
 - Assets/PhoenixAssets/VFX/Textures/texHenrySwing2.png
 - Assets/PhoenixAssets/Mesh/meshPistol.mesh
 - Assets/PhoenixAssets/Icons/texVaseIcon.png
 - Assets/PhoenixAssets/VFX/Textures/texLightning.tif
-- Assets/PhoenixAssets/Icons/texUziIcon.png
 - Assets/PhoenixAssets/Materials/matBoxingGlove.mat
 - Assets/PhoenixAssets/Icons/texGavelIcon.png
 - Assets/PhoenixAssets/Mesh/meshVergilCoat.mesh
@@ -177,9 +159,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/TakeThat.png
 - Assets/PhoenixAssets/VFX/Textures/texPunchImpactShadow.png
 - Assets/PhoenixAssets/VFX/Textures/texSwingEffect.png
-- Assets/PhoenixAssets/Icons/texVergilAchievement.png
 - Assets/PhoenixAssets/Animations/MenuIdleIn.anim
-- Assets/PhoenixAssets/Icons/texUtilityIcon.png
 - Assets/PhoenixAssets/VFX/Mesh/meshBoxingGlove.mesh
 - Assets/PhoenixAssets/Icons/texPhoneIcon.png
 - Assets/PhoenixAssets/Prefabs/ArmGhost.prefab
@@ -198,7 +178,6 @@ Assets:
 - Assets/PhoenixAssets/Materials/Holdit.png
 - Assets/PhoenixAssets/VFX/Textures/texHitSpark.png
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
-- Assets/PhoenixAssets/Icons/texHenryIcon.png
 - Assets/PhoenixAssets/Materials/TakeThat.mat
 - Assets/PhoenixAssets/Textures/texBazooka.png
 - Assets/PhoenixAssets/Mesh/meshDanteCoat.mesh
@@ -215,5 +194,6 @@ Assets:
 - Assets/PhoenixAssets/VFX/Materials/matPunchImpact.mat
 - Assets/PhoenixAssets/Prefabs/ServbotGhost.prefab
 - Assets/PhoenixAssets/Materials/matArm.mat
+- Assets/PhoenixAssets/Icons/texSecondaryUpgradeIcon.png
 - Assets/PhoenixAssets/Mesh/meshPhoenix.mesh
 Dependencies: []
