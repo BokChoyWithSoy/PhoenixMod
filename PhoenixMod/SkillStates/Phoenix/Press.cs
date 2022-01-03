@@ -43,7 +43,7 @@ namespace PhoenixWright.SkillStates
                 scale = 1f,
                 rotation = Quaternion.LookRotation(aimRay.direction)
 
-            }, false);
+            }, true);
 
             blastAttack = new BlastAttack();
             blastAttack.radius = 10f;
@@ -105,8 +105,49 @@ namespace PhoenixWright.SkillStates
             {
                 base.characterBody.AddBuff(Modules.Buffs.turnaboutBuff);
                 PhoenixPlugin.currentStacks++;
+                ShufflePrimary();
                 hasDamaged = false;
             }
+        }
+
+        private void ShufflePrimary()
+        {
+            int random = UnityEngine.Random.Range(0, 5);
+            switch (random)
+            {
+                case 0:
+                    UnsetAll();
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+                case 1:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(true);
+                    break;
+                case 2:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+                case 3:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+                case 4:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(true);
+                    break;
+            }
+        }
+
+        private void UnsetAll()
+        {
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
         }
 
 

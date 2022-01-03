@@ -38,7 +38,7 @@ namespace PhoenixWright.SkillStates
                 origin = new Vector3(base.transform.position.x, base.transform.position.y + 10, base.transform.position.z),
                 scale = 1f,
 
-            }, false) ;
+            }, true) ;
 
             blastAttack = new BlastAttack();
             blastAttack.radius = 15f;

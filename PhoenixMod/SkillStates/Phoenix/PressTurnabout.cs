@@ -47,7 +47,7 @@ namespace PhoenixWright.SkillStates
                     scale = 1f,
                     rotation = Quaternion.LookRotation(aimRay.direction)
 
-                }, false);
+                }, true);
             }
             else
             {
@@ -57,7 +57,7 @@ namespace PhoenixWright.SkillStates
                     scale = 1f,
                     rotation = Quaternion.LookRotation(aimRay.direction)
 
-                }, false);
+                }, true);
             }
 
             blastAttack = new BlastAttack();

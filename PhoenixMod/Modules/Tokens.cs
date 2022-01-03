@@ -41,7 +41,7 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.agilePrefix + $"Throw a random piece of evidence, If the evidence is junk it will deal <style=cIsDamage>200% damage</style> and if it is decisive evidence it will deal <style=cIsDamage>400% damage</style>.");
 
             LanguageAPI.Add(prefix + "PRIMARY_THROW2_NAME", "Take That!");
-            LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>200% damage</style>.");
+            LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>600% damage</style>.");
             #endregion
 
             #region Secondary
@@ -49,7 +49,7 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", $"Press the witness dealing <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style> and stunning all enemies hit.");
 
             LanguageAPI.Add(prefix + "SECONDARY_PRESS2_NAME", "Objection!");
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", $"Press the witness dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style> and stunning all enemies hit.");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", $"Raise an objection dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style> and stunning all enemies hit.");
             #endregion
 
             #region Utility
