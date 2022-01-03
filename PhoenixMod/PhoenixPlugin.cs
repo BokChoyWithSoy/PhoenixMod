@@ -71,6 +71,7 @@ namespace PhoenixWright
         {
             // run hooks here, disabling one is as simple as commenting out the line
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+            On.RoR2.CharacterBody.FixedUpdate += CharacterBody_FixedUpdate;
         }
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
@@ -84,6 +85,18 @@ namespace PhoenixWright
                 {
                     self.armor += 300f;
                 }
+            }
+        }
+
+        private void CharacterBody_FixedUpdate(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
+        {
+
+            orig(self);
+
+            if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
+            {
+                PhoenixController phoenixcon = self.GetComponent<PhoenixController>();
+                self.SetBuffCount(Modules.Buffs.turnaboutBuff.buffIndex, phoenixcon.GetCurrentStacks());
             }
         }
     }

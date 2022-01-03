@@ -8,12 +8,14 @@ namespace PhoenixWright.Modules
     {
         // armor buff gained during roll
         internal static BuffDef armorBuff;
+        internal static BuffDef turnaboutBuff;
 
         internal static List<BuffDef> buffDefs = new List<BuffDef>();
 
         internal static void RegisterBuffs()
         {
             armorBuff = AddNewBuff("HenryArmorBuff", Resources.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), Color.white, false, false);
+            turnaboutBuff = AddNewBuff("HenryArmorBuff", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBuffIconNoBackground"), Color.white, true, false);
         }
 
         // simple helper method

@@ -83,6 +83,8 @@ namespace PhoenixWright.SkillStates
             {
                 this.hasFired = true;
                 blastAttack.Fire();
+                base.characterBody.AddBuff(Modules.Buffs.turnaboutBuff);
+                PhoenixController.currentStacks++;
             }
         }
     }

@@ -67,6 +67,7 @@ namespace PhoenixWright.Modules.Survivors
         internal override void InitializeCharacter()
         {
             base.InitializeCharacter();
+            bodyPrefab.AddComponent<PhoenixController>();
         }
 
         internal override void InitializeUnlockables()
