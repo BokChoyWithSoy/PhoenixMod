@@ -25,6 +25,7 @@ namespace PhoenixWright.SkillStates
         public override void OnEnter()
         {
             base.OnEnter();
+            PhoenixController.SetEvidenceType(false);
             this.duration = ThrowVase.baseDuration / this.attackSpeedStat;
             if (justSwitched)
             {
@@ -80,15 +81,19 @@ namespace PhoenixWright.SkillStates
                 {
                     case 0: 
                         base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                        PhoenixController.SetEvidenceType(true);
                         break;
                     case 1:
                         base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                        PhoenixController.SetEvidenceType(true);
                         break;
                     case 2:
                         base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                        PhoenixController.SetEvidenceType(false);
                         break;
                     case 3:
                         base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                        PhoenixController.SetEvidenceType(false);
                         break;
                 }
             }

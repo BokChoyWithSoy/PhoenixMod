@@ -18,6 +18,7 @@ namespace PhoenixWright.Modules.Survivors
         internal static SkillDef primaryBottle;
         internal static SkillDef primaryArm;
         internal static SkillDef secondaryPress;
+        internal static SkillDef secondaryPressStrong;
 
         internal override GameObject bodyPrefab { get; set; }
         internal override GameObject displayPrefab { get; set; }
@@ -269,7 +270,6 @@ namespace PhoenixWright.Modules.Survivors
                 keywordTokens = new string[] { "KEYWORD_AGILE" }
             });
 
-            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryArm);
             #endregion
 
             #region Secondary
@@ -299,7 +299,7 @@ namespace PhoenixWright.Modules.Survivors
             #endregion
 
             #region Secondary
-            SkillDef secondaryPressStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
+             Phoenix.secondaryPressStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
@@ -325,7 +325,6 @@ namespace PhoenixWright.Modules.Survivors
             #endregion
 
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
-            Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPressStrong);
 
             #region Utility
             SkillDef rollSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo

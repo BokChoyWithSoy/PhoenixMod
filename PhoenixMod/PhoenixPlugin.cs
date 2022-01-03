@@ -5,6 +5,7 @@ using RoR2;
 using System.Collections.Generic;
 using System.Security;
 using System.Security.Permissions;
+using UnityEngine;
 
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
@@ -23,6 +24,7 @@ namespace PhoenixWright
 
     public class PhoenixPlugin : BaseUnityPlugin
     {
+        public static int currentStacks;
         // if you don't change these you're giving permission to deprecate the mod-
         //  please change the names to your own stuff, thanks
         //   this shouldn't even have to be said
@@ -72,6 +74,7 @@ namespace PhoenixWright
             // run hooks here, disabling one is as simple as commenting out the line
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.CharacterBody.FixedUpdate += CharacterBody_FixedUpdate;
+            GlobalEventManager.onServerDamageDealt += GlobalEventManager_OnDamageDealt;
         }
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
@@ -95,9 +98,14 @@ namespace PhoenixWright
 
             if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
             {
-                PhoenixController phoenixcon = self.GetComponent<PhoenixController>();
-                self.SetBuffCount(Modules.Buffs.turnaboutBuff.buffIndex, phoenixcon.GetCurrentStacks());
+                self.SetBuffCount(Modules.Buffs.turnaboutBuff.buffIndex, currentStacks);    
             }
+
+        }
+
+        private void GlobalEventManager_OnDamageDealt(DamageReport report)
+        {
+            SkillStates.Press.hasDamaged = true;
         }
     }
 }

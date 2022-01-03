@@ -14,6 +14,7 @@ namespace PhoenixWright.SkillStates
         public static float procCoefficient = 1f;
         public static float duration = 3f;
         public Vector3 rayPosition;
+        public static bool hasDamaged;
 
 
         private bool hasFired;
@@ -69,6 +70,17 @@ namespace PhoenixWright.SkillStates
                 FireAttack();
             }
 
+            if(PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
+            {
+                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
+
+                base.skillLocator.secondary.SetSkillOverride(base.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
+            }
+
         }
 
         public override void OnExit()
@@ -83,9 +95,20 @@ namespace PhoenixWright.SkillStates
             {
                 this.hasFired = true;
                 blastAttack.Fire();
-                base.characterBody.AddBuff(Modules.Buffs.turnaboutBuff);
-                PhoenixController.currentStacks++;
+                OnHitEnemyAuthority();
             }
         }
+
+        protected virtual void OnHitEnemyAuthority()
+        {
+            if (PhoenixController.GetEvidenceType() && hasDamaged)
+            {
+                base.characterBody.AddBuff(Modules.Buffs.turnaboutBuff);
+                PhoenixPlugin.currentStacks++;
+                hasDamaged = false;
+            }
+        }
+
+
     }
 }
