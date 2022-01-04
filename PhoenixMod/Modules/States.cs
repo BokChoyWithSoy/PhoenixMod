@@ -18,17 +18,9 @@ namespace PhoenixWright.Modules
             entityStates.Add(typeof(ThrowServbot));
             entityStates.Add(typeof(ThrowPhone));
             entityStates.Add(typeof(ThrowBottle));
-            entityStates.Add(typeof(SpawnArm));
-
-            //Register Secondary Attacks
-            entityStates.Add(typeof(Press));
-            entityStates.Add(typeof(PressTurnabout));
 
             //Register Utility Attacks
             entityStates.Add(typeof(Fall));
-
-            //Register Special Attacks
-            entityStates.Add(typeof(Gavel));
 
         }
     }

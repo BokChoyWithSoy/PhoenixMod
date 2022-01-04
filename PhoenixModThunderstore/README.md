@@ -44,6 +44,10 @@ After a short delay, a giant gavel falls from the sky dealing 1000% damage and s
 
 ## Changelog
 
+- 1.0.1 - Bug fixes to the following:
+	- Fixed a bug where turnabout stacks were not working if you were not the host of the game.
+	- Fixed a bug where your primary attack did not shuffle to a new item if you were playing muliplayer.
+
 - 1.0.0 - Initial Release
  
 ## Future Plans
@@ -62,7 +66,6 @@ After a short delay, a giant gavel falls from the sky dealing 1000% damage and s
 - Damage is definitely too high, it will be lowered soonish.
 - If you are in turnabout mode, switching levels will reset your skills to the base skills until you use "Press the witness" again.
 - In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around.
-- Sometimes, turnabout does not stack if you are not the host of a lobby.
 - Stacks will stay even when you start a new game.
 
 ## Credits

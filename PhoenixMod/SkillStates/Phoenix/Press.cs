@@ -12,7 +12,7 @@ namespace PhoenixWright.SkillStates
     {
         public static float damageCoefficient = 6f;
         public static float procCoefficient = 1f;
-        public static float duration = 3f;
+        public static float duration = 0.025f;
         public Vector3 rayPosition;
         public static bool hasDamaged;
 
@@ -65,9 +65,13 @@ namespace PhoenixWright.SkillStates
             rayPosition = aimRay.origin + 20 * aimRay.direction;
 
             stopwatch += Time.fixedDeltaTime;
-            if (this.stopwatch >= attackStartTime && this.stopwatch <= attackEndTime )
+            if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime && !hasFired)
             {
-                FireAttack();
+                hasFired = true;
+                if (blastAttack.Fire().hitCount > 0)
+                {
+                    OnHitEnemyAuthority();
+                }
             }
 
             if(PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
@@ -89,24 +93,13 @@ namespace PhoenixWright.SkillStates
             base.characterMotor.disableAirControlUntilCollision = false;
         }
 
-        private void FireAttack()
-        {
-            if (!this.hasFired)
-            {
-                this.hasFired = true;
-                blastAttack.Fire();
-                OnHitEnemyAuthority();
-            }
-        }
-
         protected virtual void OnHitEnemyAuthority()
         {
-            if (PhoenixController.GetEvidenceType() && hasDamaged)
+            if (PhoenixController.GetEvidenceType())
             {
                 base.characterBody.AddBuff(Modules.Buffs.turnaboutBuff);
                 PhoenixPlugin.currentStacks++;
                 ShufflePrimary();
-                hasDamaged = false;
             }
         }
 
