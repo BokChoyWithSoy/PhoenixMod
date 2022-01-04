@@ -11,11 +11,25 @@ namespace PhoenixWright.Modules
 
         internal static void RegisterStates()
         {
+            //Register Primary Attacks
             entityStates.Add(typeof(BaseMeleeAttack));
+            entityStates.Add(typeof(ThrowVase));
+            entityStates.Add(typeof(ThrowKnife));
+            entityStates.Add(typeof(ThrowServbot));
+            entityStates.Add(typeof(ThrowPhone));
+            entityStates.Add(typeof(ThrowBottle));
+            entityStates.Add(typeof(SpawnArm));
 
+            //Register Secondary Attacks
+            entityStates.Add(typeof(Press));
+            entityStates.Add(typeof(PressTurnabout));
+
+            //Register Utility Attacks
             entityStates.Add(typeof(Fall));
 
-            entityStates.Add(typeof(ThrowVase));
+            //Register Special Attacks
+            entityStates.Add(typeof(Gavel));
+
         }
     }
 }
