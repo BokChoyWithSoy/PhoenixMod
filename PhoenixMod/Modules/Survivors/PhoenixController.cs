@@ -10,6 +10,7 @@ namespace PhoenixWright.Modules.Survivors
     public class PhoenixController : MonoBehaviour
     {
         public static int maxStacks;
+        public static bool dying;
         private static bool decisiveEvidence;
         private static bool scepterActive;
 
@@ -18,6 +19,7 @@ namespace PhoenixWright.Modules.Survivors
             maxStacks = 50;
             decisiveEvidence = false;
             scepterActive = false;
+            dying = false;
         }
 
         //Increment currentStacks on call

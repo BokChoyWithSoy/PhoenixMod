@@ -68,23 +68,12 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime && !hasFired)
             {
                 hasFired = true;
+                Util.PlaySound("HoldIt", base.gameObject);
                 if (blastAttack.Fire().hitCount > 0)
                 {
                     OnHitEnemyAuthority();
                 }
             }
-
-            if(PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
-            {
-                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
-                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
-                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
-                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
-                base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
-
-                base.skillLocator.secondary.SetSkillOverride(base.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
-            }
-
         }
 
         public override void OnExit()
@@ -98,6 +87,7 @@ namespace PhoenixWright.SkillStates
             if (PhoenixController.GetEvidenceType())
             {
                 base.characterBody.AddBuff(Modules.Buffs.turnaboutBuff);
+                Util.PlaySound("GainStack", base.gameObject);
                 PhoenixPlugin.currentStacks++;
                 ShufflePrimary();
             }

@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using PhoenixWright.Modules.Survivors;
+using PhoenixWright.SkillStates.BaseStates;
 using R2API.Utils;
 using RoR2;
 using System.Collections.Generic;
@@ -25,12 +26,14 @@ namespace PhoenixWright
     public class PhoenixPlugin : BaseUnityPlugin
     {
         public static int currentStacks;
+        public static bool turnaboutActive;
+        public bool turnaboutEnabled;
         // if you don't change these you're giving permission to deprecate the mod-
         //  please change the names to your own stuff, thanks
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "0.0.2";
+        public const string MODVERSION = "1.0.2";
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "BOK";
@@ -61,6 +64,8 @@ namespace PhoenixWright
             RoR2.ContentManagement.ContentManager.onContentPacksAssigned += LateSetup;
 
             Hook();
+
+            turnaboutActive = true;
         }
 
         private void LateSetup(HG.ReadOnlyArray<RoR2.ContentManagement.ReadOnlyContentPack> obj)
@@ -69,11 +74,15 @@ namespace PhoenixWright
             Modules.Survivors.Phoenix.instance.SetItemDisplays();
         }
 
+
         private void Hook()
         {
             // run hooks here, disabling one is as simple as commenting out the line
+            On.RoR2.CharacterModel.Awake += CharacterModel_Awake;
+            On.RoR2.Run.BeginStage += OnBeginStage;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.CharacterBody.FixedUpdate += CharacterBody_FixedUpdate;
+            On.RoR2.CharacterBody.OnDeathStart += CharacterBody_OnDeathStart;
             GlobalEventManager.onServerDamageDealt += GlobalEventManager_OnDamageDealt;
         }
 
@@ -98,7 +107,23 @@ namespace PhoenixWright
 
             if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
             {
-                self.SetBuffCount(Modules.Buffs.turnaboutBuff.buffIndex, currentStacks);    
+                self.SetBuffCount(Modules.Buffs.turnaboutBuff.buffIndex, currentStacks);
+                if (PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
+                {
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
+
+                    self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
+
+                    if(turnaboutActive)
+                    {
+                        Util.PlaySound("TurnaboutMusic", base.gameObject);
+                        turnaboutActive = false;
+                    }
+                }
             }
 
         }
@@ -106,6 +131,34 @@ namespace PhoenixWright
         private void GlobalEventManager_OnDamageDealt(DamageReport report)
         {
             SkillStates.Press.hasDamaged = true;
+        }
+
+        private void OnBeginStage(On.RoR2.Run.orig_BeginStage orig, Run self)
+        {
+            orig(self);
+
+            if(Run.instance.stageClearCount == 0)
+            {
+                currentStacks = 0;
+            }
+        }
+
+        private void CharacterBody_OnDeathStart(On.RoR2.CharacterBody.orig_OnDeathStart orig, CharacterBody self)
+        {
+            orig(self);
+            if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
+            {
+                Util.PlaySound("PhoenixDying", self.gameObject);
+            }
+        }
+
+        private void CharacterModel_Awake(On.RoR2.CharacterModel.orig_Awake orig, CharacterModel self)
+        {
+            orig(self);
+            if (self.gameObject.name.Contains("PhoenixDisplay"))
+            {
+                Util.PlaySound("MenuSound", self.gameObject);
+            }
         }
     }
 }

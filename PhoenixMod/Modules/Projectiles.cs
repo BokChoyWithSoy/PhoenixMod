@@ -40,25 +40,25 @@ namespace PhoenixWright.Modules
 
         private static void Createvase()
         {
-            vasePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+            vasePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "VaseProjectile");
 
-            ProjectileImpactExplosion bombImpactExplosion = vasePrefab.GetComponent<ProjectileImpactExplosion>();
-            InitializeImpactExplosion(bombImpactExplosion);
+            ProjectileImpactExplosion vaseAOE = vasePrefab.GetComponent<ProjectileImpactExplosion>();
+            InitializeImpactExplosion(vaseAOE);
 
-            bombImpactExplosion.blastRadius = 5f;
-            bombImpactExplosion.destroyOnEnemy = true;
-            bombImpactExplosion.lifetime = 12f;
-            bombImpactExplosion.timerAfterImpact = true;
-            bombImpactExplosion.lifetimeAfterImpact = 0f;
+            vaseAOE.blastRadius = 5f;
+            vaseAOE.destroyOnEnemy = true;
+            vaseAOE.lifetime = 12f;
+            vaseAOE.timerAfterImpact = true;
+            vaseAOE.lifetimeAfterImpact = 0f;
 
-            ProjectileController bombController = vasePrefab.GetComponent<ProjectileController>();
-            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("VaseGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("VaseGhost");
-            bombController.startSound = "";
+            ProjectileController vaseController = vasePrefab.GetComponent<ProjectileController>();
+            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("VaseGhost") != null) vaseController.ghostPrefab = CreateGhostPrefab("VaseGhost");
+            vaseController.startSound = "";
         }
 
         private static void Createknife()
         {
-            knifePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+            knifePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "KnifeProjectile");
 
             ProjectileImpactExplosion bombImpactExplosion = knifePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -70,6 +70,7 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.timerAfterImpact = true;
             bombImpactExplosion.lifetimeAfterImpact = 0f;
 
+
             ProjectileController bombController = knifePrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("KnifeGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("KnifeGhost");
             bombController.startSound = "";
@@ -77,7 +78,7 @@ namespace PhoenixWright.Modules
 
         private static void Createphone()
         {
-            phonePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+            phonePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "PhoneProjectile");
 
             ProjectileImpactExplosion bombImpactExplosion = phonePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -95,7 +96,7 @@ namespace PhoenixWright.Modules
 
         private static void Createbottle()
         {
-            bottlePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+            bottlePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "BottleProjectile");
 
             ProjectileImpactExplosion bombImpactExplosion = bottlePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -113,7 +114,7 @@ namespace PhoenixWright.Modules
 
         private static void Createservbot()
         {
-            servbotPrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "HenryBombProjectile");
+            servbotPrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "ServobotProjectile");
 
             ProjectileImpactExplosion bombImpactExplosion = servbotPrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -131,20 +132,20 @@ namespace PhoenixWright.Modules
 
         private static void CreateArm()
         {
-            armPrefab = CloneProjectilePrefab("magefirebolt", "HenryBombProjectile");
+            armPrefab = CloneProjectilePrefab("magefirebolt", "ArmProjectile");
 
-            ProjectileImpactExplosion bombImpactExplosion = armPrefab.GetComponent<ProjectileImpactExplosion>();
-            InitializeImpactExplosion(bombImpactExplosion);
+            ProjectileImpactExplosion armAOE = armPrefab.GetComponent<ProjectileImpactExplosion>();
+            InitializeImpactExplosion(armAOE);
 
-            bombImpactExplosion.blastRadius = 5f;
-            bombImpactExplosion.destroyOnEnemy = true;
-            bombImpactExplosion.lifetime = 12f;
-            bombImpactExplosion.timerAfterImpact = true;
-            bombImpactExplosion.lifetimeAfterImpact = 0f;
+            armAOE.blastRadius = 10f;
+            armAOE.destroyOnEnemy = true;
+            armAOE.lifetime = 12f;
+            armAOE.timerAfterImpact = true;
+            armAOE.lifetimeAfterImpact = 0f;
 
-            ProjectileController bombController = armPrefab.GetComponent<ProjectileController>();
-            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("ArmGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("ArmGhost");
-            bombController.startSound = "";
+            ProjectileController armController = armPrefab.GetComponent<ProjectileController>();
+            if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("ArmGhost") != null) armController.ghostPrefab = CreateGhostPrefab("ArmGhost");
+            armController.startSound = "";
         }
 
         private static void InitializeImpactExplosion(ProjectileImpactExplosion projectileImpactExplosion)

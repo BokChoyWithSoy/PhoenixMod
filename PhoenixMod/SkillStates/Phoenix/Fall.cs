@@ -3,6 +3,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 using System;
+using PhoenixWright.Modules.Survivors;
 
 namespace PhoenixWright.SkillStates
 {
@@ -64,7 +65,8 @@ namespace PhoenixWright.SkillStates
             HitBoxGroup hitBoxGroup = null;
             Transform modelTransform = base.GetModelTransform();
             base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Fall.duration * 2);
-            Util.PlaySound(Fall.dodgeSoundString, base.gameObject);
+            Util.PlaySound("Fall", base.gameObject);
+       
 
             if (modelTransform)
             {
@@ -126,6 +128,12 @@ namespace PhoenixWright.SkillStates
                 this.outer.SetNextStateToMain();
                 return;
             }
+
+            if(PhoenixController.dying)
+            {
+                PhoenixController.dying = false;
+                base.PlayAnimation("FullBody, Override", "Dying", "Roll.playbackRate", 3f);
+            }
         }
 
         public override void OnExit()
@@ -154,6 +162,7 @@ namespace PhoenixWright.SkillStates
             {
                 this.hasFired = true;
                 this.attack.Fire();
+                Util.PlaySound("FallVoice", base.gameObject);
             }
         }
     }

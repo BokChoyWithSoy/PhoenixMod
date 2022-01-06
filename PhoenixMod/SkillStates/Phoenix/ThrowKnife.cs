@@ -46,7 +46,7 @@ namespace PhoenixWright.SkillStates
             if (!this.hasFired)
             {
                 this.hasFired = true;
-                Util.PlaySound("HenryBombThrow", base.gameObject);
+                Util.PlaySound("ThrowVase", base.gameObject);
 
                 if (base.isAuthority)
                 {

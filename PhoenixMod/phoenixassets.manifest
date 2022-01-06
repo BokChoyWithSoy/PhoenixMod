@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 592478816
+CRC: 2088987333
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c8af6bbfa31889435cd0472a7b815083
+    Hash: 9c46a5b70100b26de3cc5066479634e4
   TypeTreeHash:
     serializedVersion: 2
     Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
@@ -48,7 +48,6 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/PhoenixAssets/Resources/HoldIt!.prefab
 - Assets/PhoenixAssets/Icons/texPressIcon.png
 - Assets/PhoenixAssets/Icons/texBuffIcon.png
 - Assets/PhoenixAssets/Textures/texHenry.png
@@ -65,6 +64,7 @@ Assets:
 - Assets/PhoenixAssets/Animations/WalkForward.anim
 - Assets/PhoenixAssets/VFX/Textures/texDust.png
 - Assets/PhoenixAssets/Materials/matRoy.mat
+- Assets/PhoenixAssets/Materials/matAltPhoenix.mat
 - Assets/PhoenixAssets/Materials/HoldIt.mat
 - Assets/PhoenixAssets/Icons/texServbotIcon.png
 - Assets/PhoenixAssets/Mesh/meshUzi.mesh
@@ -81,6 +81,7 @@ Assets:
 - Assets/PhoenixAssets/Mesh/meshDante.mesh
 - Assets/PhoenixAssets/VFX/SecondaryTakeEffect.prefab
 - Assets/PhoenixAssets/VFX/Materials/matFire.mat
+- Assets/PhoenixAssets/Materials/matAltPhoenix.png
 - Assets/PhoenixAssets/Materials/matVase.png
 - Assets/PhoenixAssets/Textures/texHenryNeo.png
 - Assets/PhoenixAssets/Icons/texPrimaryUpgrade.png
@@ -104,6 +105,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/lambert4.png
 - Assets/PhoenixAssets/Mesh/meshHenry.mesh
 - Assets/PhoenixAssets/Mesh/meshRebellion.mesh
+- Assets/PhoenixAssets/Animations/Dying.anim
 - Assets/PhoenixAssets/Materials/matWood.mat
 - Assets/PhoenixAssets/Textures/texHenryJedi.png
 - Assets/PhoenixAssets/Animations/Throw.anim
@@ -118,6 +120,7 @@ Assets:
 - Assets/PhoenixAssets/Icons/texTripIcon.png
 - Assets/PhoenixAssets/Mesh/meshYamato.mesh
 - Assets/PhoenixAssets/VFX/Materials/matHenrySwing2.mat
+- Assets/PhoenixAssets/Materials/Materials/matPhoenix.mat
 - Assets/PhoenixAssets/Materials/matPhoenix.png
 - Assets/PhoenixAssets/Animations/RunForward.anim
 - Assets/PhoenixAssets/VFX/Materials/matTrail.mat
@@ -191,6 +194,7 @@ Assets:
 - Assets/PhoenixAssets/Textures/texHenryJediEmission.png
 - Assets/PhoenixAssets/Materials/matBazookaRocket.mat
 - Assets/PhoenixAssets/Animations/RunBack.anim
+- Assets/PhoenixAssets/Materials/Materials/matAltPhoenix.mat
 - Assets/PhoenixAssets/VFX/Materials/matPunchImpact.mat
 - Assets/PhoenixAssets/Prefabs/ServbotGhost.prefab
 - Assets/PhoenixAssets/Materials/matArm.mat

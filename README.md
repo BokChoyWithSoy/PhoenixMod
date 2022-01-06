@@ -43,6 +43,14 @@ Fall forward on your face gaining 300 armour and dealing 300% damage and stunnin
 After a short delay, a giant gavel falls from the sky dealing 1000% damage and stunning all enemies hit.
 
 ## Changelog
+- 1.1.0 - Added the following:
+	- Added sounds all of Phoenix's skills.
+	- Added sounds when gaining turnabout stacks.
+	- Added music when you enter turnabout mode.
+
+- 1.0.2 - Bug fixes to the following:
+	- Fixed a bug where switching levels reset the empowered primary and secondary skill to the base states.
+	- Fixed a bug where turnabout stacks did not reset upon starting a new game.
 
 - 1.0.1 - Bug fixes to the following:
 	- Fixed a bug where turnabout stacks were not working if you were not the host of the game.
@@ -55,7 +63,6 @@ After a short delay, a giant gavel falls from the sky dealing 1000% damage and s
 - Fix some bugs (in Known issues)
 - Balance changes
 - Add stand alone scepter support
-- Add sound effects
 - Maybe add items displays
 - New skins
 - New achievements
@@ -63,10 +70,9 @@ After a short delay, a giant gavel falls from the sky dealing 1000% damage and s
 - Clean up the atrocity that I call code
 
 ## Known Issues
-- Damage is definitely too high, it will be lowered soonish.
-- If you are in turnabout mode, switching levels will reset your skills to the base skills until you use "Press the witness" again.
-- In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around.
-- Stacks will stay even when you start a new game.
+- Damage may be too high, testing in progress.
+- In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around, this problem only exists for clients.
+- The skill descriptions in the character select screen are too hard to read due to walls of text shrinking them. Will add keywords to make them more concise and easier to read.
 
 ## Credits
 - Rob's HenryMod -> prevented me from experiencing excruciating pain

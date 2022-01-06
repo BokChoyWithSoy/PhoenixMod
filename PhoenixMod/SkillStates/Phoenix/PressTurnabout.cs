@@ -11,8 +11,8 @@ namespace PhoenixWright.SkillStates
     public class PressTurnabout : BaseSkillState
     {
         public static float damageCoefficient = 8f;
-        public static float procCoefficient = 1f;
-        public static float duration = 3f;
+        public static float procCoefficient = 2f;
+        public static float duration = 1f;
         public Vector3 rayPosition;
 
 
@@ -48,6 +48,7 @@ namespace PhoenixWright.SkillStates
                     rotation = Quaternion.LookRotation(aimRay.direction)
 
                 }, true);
+                Util.PlaySound("Objection", base.gameObject);
             }
             else
             {
@@ -58,11 +59,12 @@ namespace PhoenixWright.SkillStates
                     rotation = Quaternion.LookRotation(aimRay.direction)
 
                 }, true);
+                Util.PlaySound("TakeThat", base.gameObject);
             }
 
             blastAttack = new BlastAttack();
             blastAttack.radius = 10f;
-            blastAttack.procCoefficient = 0.2f;
+            blastAttack.procCoefficient = procCoefficient;
             blastAttack.position = rayPosition;
             blastAttack.attacker = base.gameObject;
             blastAttack.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);

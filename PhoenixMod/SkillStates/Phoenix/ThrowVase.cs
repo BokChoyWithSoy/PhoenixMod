@@ -12,7 +12,7 @@ namespace PhoenixWright.SkillStates
         public static float damageCoefficient = 2f;
         public static float procCoefficient = 1f;
         public static float baseDuration = 1f;
-        public static float throwForce = 50f;
+        public static float throwForce = 80f;
         public static SkillDef knife = Phoenix.primaryKnife;
 
         private float duration;
@@ -49,7 +49,7 @@ namespace PhoenixWright.SkillStates
             if (!this.hasFired)
             {
                 this.hasFired = true;
-                Util.PlaySound("HenryBombThrow", base.gameObject);
+                Util.PlaySound("ThrowVase", base.gameObject);
 
                 if (base.isAuthority)
                 {

@@ -10,9 +10,9 @@ namespace PhoenixWright.SkillStates
     public class SpawnArm : BaseSkillState
     {
         public static float damageCoefficient = 6f;
-        public static float procCoefficient = 1f;
+        public static float procCoefficient = 2f;
         public static float baseDuration = 1f;
-        public static float throwForce = 80f;
+        public static float throwForce = 130f;
 
         private float duration;
         private float fireTime;
@@ -71,6 +71,7 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= this.fireTime && !hasFired)
             {
                 Fire();
+                Util.PlaySound("ArmSound", base.gameObject);
             }
 
             if (base.fixedAge >= this.duration && base.isAuthority)

@@ -39,6 +39,8 @@ namespace PhoenixWright.SkillStates
 
             }, true) ;
 
+            Util.PlaySound("SpecialSound", base.gameObject);
+
             blastAttack = new BlastAttack();
             blastAttack.radius = 15f;
             blastAttack.procCoefficient = 0.2f;
