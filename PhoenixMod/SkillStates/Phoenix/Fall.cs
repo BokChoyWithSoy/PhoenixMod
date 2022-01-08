@@ -85,8 +85,8 @@ namespace PhoenixWright.SkillStates
 
             if (NetworkServer.active)
             {
-                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 3f * Fall.duration);
-                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 0.5f * Fall.duration);
+                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 5f * Fall.duration);
+                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 1f * Fall.duration);
             }
 
 

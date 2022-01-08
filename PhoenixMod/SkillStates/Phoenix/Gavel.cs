@@ -81,6 +81,14 @@ namespace PhoenixWright.SkillStates
                 this.hasFired = true;
                 blastAttack.Fire();
                 base.PlayAnimation("FullBody, Override", "Getup", "ShootGun.playbackRate", (Press.duration / Press.duration));  
+                Wave wave = new Wave
+                {
+                    amplitude = 2f,
+                    frequency = 180f,
+                    cycleOffset = 0f
+                };
+                RoR2.ShakeEmitter.CreateSimpleShakeEmitter(rayPosition, wave, 0.5f , 20f , true);
+
             }
         }
     }

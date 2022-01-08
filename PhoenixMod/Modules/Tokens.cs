@@ -19,7 +19,7 @@ namespace PhoenixWright.Modules
             string outro = "..and so he left, searching for a new identity.";
             string outroFailure = "..and so he vanished, forever a blank slate.";
 
-            LanguageAPI.Add(prefix + "NAME", "Phoenix Wright");
+            LanguageAPI.Add(prefix + "NAME", "Attorney");
             LanguageAPI.Add(prefix + "DESCRIPTION", desc);
             LanguageAPI.Add(prefix + "SUBTITLE", "The Ace Attorney");
             LanguageAPI.Add(prefix + "LORE", "sample lore");
@@ -33,12 +33,12 @@ namespace PhoenixWright.Modules
 
             #region Passive
             LanguageAPI.Add(prefix + "PASSIVE_NAME", "Turnabout");
-            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION", "Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode, replacing Phoenix's primary and secondary abilities with empowered versions.");
+            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION","Use " + Helpers.decisivePrefix + "to passively gain " + Helpers.turnaboutPrefix +" If you have <style=cIsDamage>50 stacks</style>, enter <style=cIsUtility>turnabout mode</style>.");
             #endregion
 
             #region Primary
             LanguageAPI.Add(prefix + "PRIMARY_THROW_NAME", "Throw Evidence");
-            LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.agilePrefix + $"Throw a random piece of evidence, If the evidence is junk it will deal <style=cIsDamage>200% damage</style> and if it is decisive evidence it will deal <style=cIsDamage>400% damage</style>.");
+            LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.agilePrefix + $"Throw a random piece of evidence, Junk will deal <style=cIsDamage>200% damage</style> and decisive evidence will deal <style=cIsDamage>400% damage</style>.");
 
             LanguageAPI.Add(prefix + "PRIMARY_THROW2_NAME", "Take That!");
             LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>600% damage</style>.");
@@ -46,20 +46,20 @@ namespace PhoenixWright.Modules
 
             #region Secondary
             LanguageAPI.Add(prefix + "SECONDARY_PRESS_NAME", "Press The Witness");
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", $"Press the witness dealing <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style> and stunning all enemies hit.");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", Helpers.stunningPrefix + $"Press the witness dealing <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style>.");
 
             LanguageAPI.Add(prefix + "SECONDARY_PRESS2_NAME", "Objection!");
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", $"Raise an objection dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style> and stunning all enemies hit.");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", Helpers.stunningPrefix + $"Raise an objection dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style>.");
             #endregion
 
             #region Utility
             LanguageAPI.Add(prefix + "UTILITY_FALL_NAME", "Fall");
-            LanguageAPI.Add(prefix + "UTILITY_FALL_DESCRIPTION", "Fall forward on your face gaining <style=cIsUtility>300 armor</style> and dealing  <style=cIsDamage>300% damage</style> and stunning all enemies hit. <style=cIsUtility>You cannot be hit during the fall.</style>");
+            LanguageAPI.Add(prefix + "UTILITY_FALL_DESCRIPTION", Helpers.stunningPrefix +  $"<style=cIsUtility>Fall</style> on your face gaining <style=cIsUtility>300 armor</style> and dealing <style=cIsDamage>300% damage</style>. <style=cIsUtility>You cannot be hit during the fall.</style>");
             #endregion
 
             #region Special
             LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME", "Order In The Court!");
-            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style> and stunning all enemies hit.");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style>.");
             #endregion
 
             #region Achievements
@@ -68,6 +68,12 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: Mastery");
             #endregion
             #endregion
+
+            #region Keywords
+                LanguageAPI.Add("KEYWORD_TURNABOUT", "[ Decisive Evidence ]\nRed evidence is junk and green evidence is decisive evidence.\n\n[ Turnabout ]\nDealing damage with Attorney's secondary ability while having " + Helpers.decisivePrefix + "awards a stack of <style=cIsUtility>turnabout</style>.\n\n[ Turnabout Mode ]\nEntering <style=cIsUtility>turnabout mode</style> will <style=cIsUtility>replace</style> Attorney's primary and secondary attacks with <style=cIsDamage>empowered versions</style>.");
+
+            #endregion
         }
+
     }
 }

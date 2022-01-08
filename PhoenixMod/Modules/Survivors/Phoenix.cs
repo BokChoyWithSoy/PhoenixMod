@@ -105,6 +105,7 @@ namespace PhoenixWright.Modules.Survivors
             skillLoc.passiveSkill.skillNameToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PASSIVE_NAME";
             skillLoc.passiveSkill.skillDescriptionToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PASSIVE_DESCRIPTION";
             skillLoc.passiveSkill.icon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBuffIcon");
+            skillLoc.passiveSkill.keywordToken = "KEYWORD_TURNABOUT";
             #endregion
 
             #region PrimaryVase
@@ -294,7 +295,8 @@ namespace PhoenixWright.Modules.Survivors
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 1,
-                stockToConsume = 1
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_STUNNING" }
             });
             #endregion
 
@@ -320,8 +322,9 @@ namespace PhoenixWright.Modules.Survivors
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 1,
-                stockToConsume = 1
-            });
+                stockToConsume = 1,
+                 keywordTokens = new string[] { "KEYWORD_STUNNING" }
+             });
             #endregion
 
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
@@ -348,7 +351,8 @@ namespace PhoenixWright.Modules.Survivors
                 cancelSprintingOnActivation = false,
                 rechargeStock = 1,
                 requiredStock = 1,
-                stockToConsume = 1
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_STUNNING" }
             });
 
             Modules.Skills.AddUtilitySkills(bodyPrefab, rollSkillDef);
@@ -376,7 +380,8 @@ namespace PhoenixWright.Modules.Survivors
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 1,
-                stockToConsume = 1
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_STUNNING" }
             });
 
             Modules.Skills.AddSpecialSkills(bodyPrefab, gavelSkillDef);

@@ -6,6 +6,9 @@ namespace PhoenixWright.Modules
     internal static class Helpers
     {
         internal const string agilePrefix = "<style=cIsUtility>Agile.</style> ";
+        internal const string stunningPrefix = "<style=cIsDamage>Stunning.</style> ";
+        internal const string turnaboutPrefix = "<style=cIsUtility>turnabout.</style> ";
+        internal const string decisivePrefix = "<style=cIsUtility>decisive evidence</style> ";
 
         internal static string ScepterDescription(string desc)
         {

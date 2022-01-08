@@ -20,29 +20,39 @@ Whenever you hit an enemy with Press The Witness while holding a decisive piece 
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507746725715988/texVaseIcon.png">
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507211012411392/texKnifeIcon.png">
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507209640882176/texPhoneIcon.png"><br>
-Throw a random piece of evidence, If the evidence is junk it will deal 200% damage and if it is decisive evidence it will deal 400% damage.
+Agile. Throw a random piece of evidence, junk it will deal 200% damage and decisive evidence will deal 400% damage.
 
 ### Turnabout Primary: Take That!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509050730614815/texPrimaryUpgrade.png"><br>
-State your case, summoning a giant hand which travels in a line, dealing 600% damage.
+Agile. Summon a giant hand which travels in a line, dealing 600% damage.
 
 ### Secondary: Press The Witness
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509762449498112/texPressIcon.png"><br>
-Press the witness, dealing 600% and stunning all enemies hit.
+Stunning. Press the witness, dealing 600%..
 
 ### Turnabout Secondary: Objection!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510244827996180/texSecondaryUpgradeIcon.png"><br>
-Raise an objection, dealing 800% and stunning all enemies hit.
+Stunning. Raise an objection, dealing 800% damage.
 
 ### Utility: Fall
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510540060880996/texTripIcon.png"><br>
-Fall forward on your face gaining 300 armour and dealing 300% damage and stunning all enemies hit. You cannot be hit during the fall.
+Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. You cannot be hit during the fall.
 
 ### Special: Order In The Court!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927511214836314142/texGavelIcon.png"><br>
-After a short delay, a giant gavel falls from the sky dealing 1000% damage and stunning all enemies hit.
+Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage.
 
 ## Changelog
+- 1.1.1 - Changes to the following:
+	- Reduced the volume of all voice and sound effects.
+	- Reduced the range in which you hear voice and sound effects.
+	- Added keywords to skill descriptions to make them easier to read.
+	- Changed in game character name to "Attorney" to conform better with the naming scheme of the game.
+	- Gaining a stack of turnabout will automatically reroll into junk evidence so you may no longer roll into another decisive evidence.
+	- Increased projectile speed of "Take That!".
+	- "Order In The Court!" now screen shakes for effect.
+	- Increased duration of armour and invincibility for "Fall" to increase survivability.
+
 - 1.1.0 - Added the following:
 	- Added sounds all of Phoenix's skills.
 	- Added sounds when gaining turnabout stacks.
@@ -72,7 +82,8 @@ After a short delay, a giant gavel falls from the sky dealing 1000% damage and s
 ## Known Issues
 - Damage may be too high, testing in progress.
 - In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around, this problem only exists for clients.
-- The skill descriptions in the character select screen are too hard to read due to walls of text shrinking them. Will add keywords to make them more concise and easier to read.
+- Turnabout stacks do not reset in multiplayer.
+- Garbage survivability, may add some changes to increase survivability.
 
 ## Credits
 - Rob's HenryMod -> prevented me from experiencing excruciating pain
