@@ -29,7 +29,7 @@ namespace PhoenixWright.SkillStates
         protected string hitboxName = "fall";
         protected OverlapAttack attack;
         protected float attackStartTime = 0.58f * duration;
-        protected float attackEndTime = 1f *duration;
+        protected float attackEndTime = 8f *duration;
 
         public override void OnEnter()
         {
@@ -118,7 +118,7 @@ namespace PhoenixWright.SkillStates
             this.previousPosition = base.transform.position;
 
             stopwatch += Time.fixedDeltaTime;
-            if (this.stopwatch >= attackStartTime && this.stopwatch <= attackEndTime * 4 )
+            if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime)
             {
                 FireAttack();
             }

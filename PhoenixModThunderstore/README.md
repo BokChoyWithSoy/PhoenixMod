@@ -40,9 +40,15 @@ Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. 
 
 ### Special: Order In The Court!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927511214836314142/texGavelIcon.png"><br>
-Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage.
+Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds.
 
 ## Changelog
+- 1.1.2 - Changes to the following:
+	- Increased the projectile size of primary attack to improve hitbox consistency.
+	- Increased the projectile size of the turnabout primary attack to improve hitbox consistency.
+	- Turnabout stacks now reset in multiplayer when starting a new run.
+	- "Order In The Court!" now makes the character invincible for a short duration to enourage use of it without dying immediately. 
+	
 - 1.1.1 - Changes to the following:
 	- Reduced the volume of all voice and sound effects.
 	- Reduced the range in which you hear voice and sound effects.
@@ -82,7 +88,6 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 ## Known Issues
 - Damage may be too high, testing in progress.
 - In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around, this problem only exists for clients.
-- Turnabout stacks do not reset in multiplayer.
 - Garbage survivability, may add some changes to increase survivability.
 
 ## Credits

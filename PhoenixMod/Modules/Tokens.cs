@@ -59,7 +59,7 @@ namespace PhoenixWright.Modules
 
             #region Special
             LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME", "Order In The Court!");
-            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style>.");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style>. <style=cIsUtility>You cannot be hit for 2 seconds.</style>");
             #endregion
 
             #region Achievements

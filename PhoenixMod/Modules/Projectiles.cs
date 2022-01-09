@@ -14,6 +14,7 @@ namespace PhoenixWright.Modules
         internal static GameObject bottlePrefab;
         internal static GameObject servbotPrefab;
         internal static GameObject armPrefab;
+        private static Vector3 scaleUp = new Vector3(2f, 2f, 2f);
 
         internal static void RegisterProjectiles()
         {
@@ -41,6 +42,7 @@ namespace PhoenixWright.Modules
         private static void Createvase()
         {
             vasePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "VaseProjectile");
+            vasePrefab.transform.localScale = scaleUp;
 
             ProjectileImpactExplosion vaseAOE = vasePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(vaseAOE);
@@ -59,6 +61,7 @@ namespace PhoenixWright.Modules
         private static void Createknife()
         {
             knifePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "KnifeProjectile");
+            knifePrefab.transform.localScale = scaleUp;
 
             ProjectileImpactExplosion bombImpactExplosion = knifePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -79,6 +82,7 @@ namespace PhoenixWright.Modules
         private static void Createphone()
         {
             phonePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "PhoneProjectile");
+            phonePrefab.transform.localScale = scaleUp;
 
             ProjectileImpactExplosion bombImpactExplosion = phonePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -97,6 +101,7 @@ namespace PhoenixWright.Modules
         private static void Createbottle()
         {
             bottlePrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "BottleProjectile");
+            bottlePrefab.transform.localScale = scaleUp;
 
             ProjectileImpactExplosion bombImpactExplosion = bottlePrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -115,6 +120,7 @@ namespace PhoenixWright.Modules
         private static void Createservbot()
         {
             servbotPrefab = CloneProjectilePrefab("CommandoGrenadeProjectile", "ServobotProjectile");
+            servbotPrefab.transform.localScale = scaleUp;
 
             ProjectileImpactExplosion bombImpactExplosion = servbotPrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(bombImpactExplosion);
@@ -133,6 +139,7 @@ namespace PhoenixWright.Modules
         private static void CreateArm()
         {
             armPrefab = CloneProjectilePrefab("magefirebolt", "ArmProjectile");
+            armPrefab.transform.localScale = new Vector3(4, 4, 4);
 
             ProjectileImpactExplosion armAOE = armPrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(armAOE);

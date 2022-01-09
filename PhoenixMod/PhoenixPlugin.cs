@@ -33,7 +33,7 @@ namespace PhoenixWright
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "1.1.0";
+        public const string MODVERSION = "1.1.2";
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "BOK";
@@ -79,11 +79,9 @@ namespace PhoenixWright
         {
             // run hooks here, disabling one is as simple as commenting out the line
             On.RoR2.CharacterModel.Awake += CharacterModel_Awake;
-            On.RoR2.Run.BeginStage += OnBeginStage;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.CharacterBody.FixedUpdate += CharacterBody_FixedUpdate;
             On.RoR2.CharacterBody.OnDeathStart += CharacterBody_OnDeathStart;
-            GlobalEventManager.onServerDamageDealt += GlobalEventManager_OnDamageDealt;
         }
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
@@ -128,21 +126,6 @@ namespace PhoenixWright
 
         }
 
-        private void GlobalEventManager_OnDamageDealt(DamageReport report)
-        {
-            SkillStates.Press.hasDamaged = true;
-        }
-
-        private void OnBeginStage(On.RoR2.Run.orig_BeginStage orig, Run self)
-        {
-            orig(self);
-
-            if(Run.instance.stageClearCount == 0)
-            {
-                currentStacks = 0;
-            }
-        }
-
         private void CharacterBody_OnDeathStart(On.RoR2.CharacterBody.orig_OnDeathStart orig, CharacterBody self)
         {
             orig(self);
@@ -158,6 +141,7 @@ namespace PhoenixWright
             if (self.gameObject.name.Contains("PhoenixDisplay"))
             {
                 Util.PlaySound("MenuSound", self.gameObject);
+                currentStacks = 0;
             }
         }
     }

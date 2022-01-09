@@ -39,6 +39,7 @@ namespace PhoenixWright.SkillStates
 
             }, true) ;
 
+            base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 2f);
             Util.PlaySound("SpecialSound", base.gameObject);
 
             blastAttack = new BlastAttack();
