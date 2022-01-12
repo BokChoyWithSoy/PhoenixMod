@@ -33,7 +33,7 @@ namespace PhoenixWright.SkillStates
             base.characterBody.SetAimTimer(2f);
             this.animator = base.GetModelAnimator();
 
-            base.PlayAnimation("Gesture, Override", "ThrowBomb", "ThrowBomb.playbackRate", this.duration);
+            
         }
 
         public override void OnExit()
@@ -51,6 +51,8 @@ namespace PhoenixWright.SkillStates
                 if (base.isAuthority)
                 {
                     Ray aimRay = base.GetAimRay();
+
+                    base.PlayAnimation("RightArm, Override", "Throw", "ThrowBomb.playbackRate", this.duration);
 
                     ProjectileManager.instance.FireProjectile(Modules.Projectiles.servbotPrefab, 
                         aimRay.origin, 

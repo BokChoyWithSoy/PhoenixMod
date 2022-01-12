@@ -67,6 +67,13 @@ namespace PhoenixWright.SkillStates
             {
                 FireAttack();
             }
+
+
+            if (base.fixedAge >= duration && base.isAuthority)
+            {
+                this.outer.SetNextStateToMain();
+                return;
+            }
         }
 
         public override void OnExit()
@@ -92,5 +99,7 @@ namespace PhoenixWright.SkillStates
 
             }
         }
+
+
     }
 }

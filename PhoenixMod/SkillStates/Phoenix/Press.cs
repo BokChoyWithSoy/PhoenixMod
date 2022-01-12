@@ -74,6 +74,13 @@ namespace PhoenixWright.SkillStates
                     OnHitEnemyAuthority();
                 }
             }
+
+
+            if (base.fixedAge >= duration && base.isAuthority)
+            {
+                this.outer.SetNextStateToMain();
+                return;
+            }
         }
 
         public override void OnExit()

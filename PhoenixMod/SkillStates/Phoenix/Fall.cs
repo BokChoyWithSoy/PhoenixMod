@@ -129,11 +129,6 @@ namespace PhoenixWright.SkillStates
                 return;
             }
 
-            if(PhoenixController.dying)
-            {
-                PhoenixController.dying = false;
-                base.PlayAnimation("FullBody, Override", "Dying", "Roll.playbackRate", 3f);
-            }
         }
 
         public override void OnExit()
@@ -165,5 +160,7 @@ namespace PhoenixWright.SkillStates
                 Util.PlaySound("FallVoice", base.gameObject);
             }
         }
+
+
     }
 }

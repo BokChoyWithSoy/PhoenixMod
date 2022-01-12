@@ -20,7 +20,7 @@ Whenever you hit an enemy with Press The Witness while holding a decisive piece 
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507746725715988/texVaseIcon.png">
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507211012411392/texKnifeIcon.png">
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507209640882176/texPhoneIcon.png"><br>
-Agile. Throw a random piece of evidence, junk it will deal 200% damage and decisive evidence will deal 400% damage.
+Agile. Throw a random piece of evidence, junk will deal 200% damage and decisive evidence will deal 400% damage.
 
 ### Turnabout Primary: Take That!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509050730614815/texPrimaryUpgrade.png"><br>
@@ -28,7 +28,7 @@ Agile. Summon a giant hand which travels in a line, dealing 600% damage.
 
 ### Secondary: Press The Witness
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509762449498112/texPressIcon.png"><br>
-Stunning. Press the witness, dealing 600%..
+Stunning. Press the witness, dealing 600%.
 
 ### Turnabout Secondary: Objection!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510244827996180/texSecondaryUpgradeIcon.png"><br>
@@ -43,13 +43,17 @@ Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. 
 Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds.
 
 ## Changelog
-- 1.1.2 - Changes to the following:
+-1.1.2
 	- Increased the projectile size of primary attack to improve hitbox consistency.
 	- Increased the projectile size of the turnabout primary attack to improve hitbox consistency.
 	- Turnabout stacks now reset in multiplayer when starting a new run.
 	- "Order In The Court!" now makes the character invincible for a short duration to enourage use of it without dying immediately. 
+	- Added the ability to use "Press" while using your primary fire.
+	- Added symbols to primary icons to make them colourblind friendly.
+	- Improved the throwing animation to make it look a lot less scuffed.
+
 	
-- 1.1.1 - Changes to the following:
+-1.1.1
 	- Reduced the volume of all voice and sound effects.
 	- Reduced the range in which you hear voice and sound effects.
 	- Added keywords to skill descriptions to make them easier to read.
@@ -59,20 +63,21 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 	- "Order In The Court!" now screen shakes for effect.
 	- Increased duration of armour and invincibility for "Fall" to increase survivability.
 
-- 1.1.0 - Added the following:
+-1.1.0
 	- Added sounds all of Phoenix's skills.
 	- Added sounds when gaining turnabout stacks.
 	- Added music when you enter turnabout mode.
 
-- 1.0.2 - Bug fixes to the following:
+-1.0.2
 	- Fixed a bug where switching levels reset the empowered primary and secondary skill to the base states.
 	- Fixed a bug where turnabout stacks did not reset upon starting a new game.
 
-- 1.0.1 - Bug fixes to the following:
+-1.0.1
 	- Fixed a bug where turnabout stacks were not working if you were not the host of the game.
 	- Fixed a bug where your primary attack did not shuffle to a new item if you were playing muliplayer.
 
-- 1.0.0 - Initial Release
+-1.0.0
+	- Initial Release
  
 ## Future Plans
 - Implement new skills

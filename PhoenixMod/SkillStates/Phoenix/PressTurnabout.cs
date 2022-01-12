@@ -87,6 +87,12 @@ namespace PhoenixWright.SkillStates
                 FireAttack();
             }
 
+
+            if (base.isAuthority)
+            {
+                this.outer.SetNextStateToMain();
+                return;
+            }
         }
 
         public override void OnExit()
@@ -103,5 +109,7 @@ namespace PhoenixWright.SkillStates
                 blastAttack.Fire();
             }
         }
+
+
     }
 }
