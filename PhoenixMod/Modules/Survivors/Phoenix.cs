@@ -412,16 +412,6 @@ namespace PhoenixWright.Modules.Survivors
 
             defaultSkin.meshReplacements = new SkinDef.MeshReplacement[]
             {
-                /*new SkinDef.MeshReplacement
-                {
-                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshHenrySword"),
-                    renderer = defaultRenderers[0].renderer
-                },
-                new SkinDef.MeshReplacement
-                {
-                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshHenryGun"),
-                    renderer = defaultRenderers[1].renderer
-                },*/
                 new SkinDef.MeshReplacement
                 {
                     mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshPhoenix"),
@@ -432,8 +422,8 @@ namespace PhoenixWright.Modules.Survivors
             skins.Add(defaultSkin);
             #endregion
 
-            /*#region MasterySkin
-            Material masteryMat = Modules.Assets.CreateMaterial("matHenryAlt");
+            #region MasterySkin
+            Material masteryMat = Modules.Assets.CreateMaterial("matPhoenixMastery");
             CharacterModel.RendererInfo[] masteryRendererInfos = SkinRendererInfos(defaultRenderers, new Material[]
             {
                 masteryMat,
@@ -442,8 +432,8 @@ namespace PhoenixWright.Modules.Survivors
                 masteryMat
             });
 
-            SkinDef masterySkin = Modules.Skins.CreateSkinDef(PhoenixPlugin.developerPrefix + "_HENRY_BODY_MASTERY_SKIN_NAME",
-                Assets.mainAssetBundle.LoadAsset<Sprite>("texMasteryAchievement"),
+            SkinDef masterySkin = Modules.Skins.CreateSkinDef(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_MASTERY_SKIN_NAME",
+                Assets.mainAssetBundle.LoadAsset<Sprite>("texMasterySkin"),
                 masteryRendererInfos,
                 mainRenderer,
                 model,
@@ -453,19 +443,14 @@ namespace PhoenixWright.Modules.Survivors
             {
                 new SkinDef.MeshReplacement
                 {
-                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshHenrySwordAlt"),
-                    renderer = defaultRenderers[0].renderer
-                },
-                new SkinDef.MeshReplacement
-                {
-                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshHenryAlt"),
+                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshPhoenix"),
                     renderer = defaultRenderers[instance.mainRendererIndex].renderer
                 }
             };
 
             skins.Add(masterySkin);
             #endregion
-            */
+            
             skinController.skins = skins.ToArray();
         }
             
@@ -3096,11 +3081,10 @@ localScale = new Vector3(0.1233F, 0.1233F, 0.1233F),
         private static CharacterModel.RendererInfo[] SkinRendererInfos(CharacterModel.RendererInfo[] defaultRenderers, Material[] materials)
         {
             CharacterModel.RendererInfo[] newRendererInfos = new CharacterModel.RendererInfo[defaultRenderers.Length];
+
             defaultRenderers.CopyTo(newRendererInfos, 0);
 
             newRendererInfos[0].defaultMaterial = materials[0];
-            newRendererInfos[1].defaultMaterial = materials[1];
-            newRendererInfos[instance.mainRendererIndex].defaultMaterial = materials[2];
 
             return newRendererInfos;
         }

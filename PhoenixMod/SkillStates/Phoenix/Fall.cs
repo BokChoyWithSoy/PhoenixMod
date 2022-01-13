@@ -88,8 +88,6 @@ namespace PhoenixWright.SkillStates
                 base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 5f * Fall.duration);
                 base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 1f * Fall.duration);
             }
-
-
         }
 
         private void RecalculateRollSpeed()
@@ -161,6 +159,9 @@ namespace PhoenixWright.SkillStates
             }
         }
 
-
+        public void Die()
+        {
+            base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Fall.duration * 2);
+        }
     }
 }

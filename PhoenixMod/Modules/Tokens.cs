@@ -27,8 +27,8 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "OUTRO_FAILURE", outroFailure);
 
             #region Skins
-            LanguageAPI.Add(prefix + "DEFAULT_SKIN_NAME", "Default");
-            LanguageAPI.Add(prefix + "MASTERY_SKIN_NAME", "Alternate");
+            LanguageAPI.Add(prefix + "DEFAULT_SKIN_NAME", "Wright");
+            LanguageAPI.Add(prefix + "MASTERY_SKIN_NAME", "Edgeworth");
             #endregion
 
             #region Passive

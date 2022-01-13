@@ -43,6 +43,14 @@ Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. 
 Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds.
 
 ## Changelog
+
+-1.2.0
+	- Added mastery achievement.
+	- Added mastery skin (find out what it is.)
+	- Increased the range of "Order In The Court!"
+	- Increased the proc rate of "Order In The Court!"
+	- Increased the proc rate of "Press."
+
 -1.1.2
 	- Increased the projectile size of primary attack to improve hitbox consistency.
 	- Increased the projectile size of the turnabout primary attack to improve hitbox consistency.
@@ -82,18 +90,15 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 ## Future Plans
 - Implement new skills
 - Fix some bugs (in Known issues)
-- Balance changes
 - Add stand alone scepter support
 - Maybe add items displays
 - New skins
 - New achievements
-- Make primary icons colourblind friendly
 - Clean up the atrocity that I call code
 
 ## Known Issues
-- Damage may be too high, testing in progress.
 - In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around, this problem only exists for clients.
-- Garbage survivability, may add some changes to increase survivability.
+- If you have the Sett mod installed, it will replace his menu sounds with phoenix wright sounds. (How does this even happen)
 
 ## Credits
 - Rob's HenryMod -> prevented me from experiencing excruciating pain

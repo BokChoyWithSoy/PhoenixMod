@@ -47,7 +47,7 @@ namespace PhoenixWright.SkillStates
 
             blastAttack = new BlastAttack();
             blastAttack.radius = 10f;
-            blastAttack.procCoefficient = 0.2f;
+            blastAttack.procCoefficient = procCoefficient;
             blastAttack.position = rayPosition;
             blastAttack.attacker = base.gameObject;
             blastAttack.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);

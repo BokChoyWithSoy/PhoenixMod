@@ -11,7 +11,7 @@ namespace PhoenixWright.SkillStates
     public class Gavel : BaseSkillState
     {
         public static float damageCoefficient = 10f;
-        public static float procCoefficient = 1f;
+        public static float procCoefficient = 5f;
         public static float duration = 1f;
         public Vector3 rayPosition;
 
@@ -43,8 +43,8 @@ namespace PhoenixWright.SkillStates
             Util.PlaySound("SpecialSound", base.gameObject);
 
             blastAttack = new BlastAttack();
-            blastAttack.radius = 15f;
-            blastAttack.procCoefficient = 0.2f;
+            blastAttack.radius = 25f;
+            blastAttack.procCoefficient = procCoefficient;
             blastAttack.position = rayPosition;
             blastAttack.attacker = base.gameObject;
             blastAttack.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);

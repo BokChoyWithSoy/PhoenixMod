@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3308637641
+CRC: 3191299836
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 617a3b82fdc2760a5d31f70354d9e363
+    Hash: 03bd6f12cecb15ddfbfe1c464926fd4c
   TypeTreeHash:
     serializedVersion: 2
     Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
@@ -120,6 +120,7 @@ Assets:
 - Assets/PhoenixAssets/Icons/texTripIcon.png
 - Assets/PhoenixAssets/Mesh/meshYamato.mesh
 - Assets/PhoenixAssets/VFX/Materials/matHenrySwing2.mat
+- Assets/PhoenixAssets/Materials/matPhoenixMastery.png
 - Assets/PhoenixAssets/Materials/Materials/matPhoenix.mat
 - Assets/PhoenixAssets/Materials/matPhoenix.png
 - Assets/PhoenixAssets/Animations/RunForward.anim
@@ -175,11 +176,13 @@ Assets:
 - Assets/PhoenixAssets/Prefabs/VaseGhost.prefab
 - Assets/PhoenixAssets/Materials/matBazooka.mat
 - Assets/PhoenixAssets/Animations/WalkBackward.anim
+- Assets/PhoenixAssets/Icons/texMasterySkin.png
 - Assets/PhoenixAssets/Icons/texKnifeIcon.png
 - Assets/PhoenixAssets/Materials/sennelier-blue-light-oil-paint-stick-series-1-365-500x500.jpg
 - Assets/PhoenixAssets/Animations/FallFlat.anim
 - Assets/PhoenixAssets/Materials/Holdit.png
 - Assets/PhoenixAssets/VFX/Textures/texHitSpark.png
+- Assets/PhoenixAssets/Materials/matPhoenixMastery.mat
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
 - Assets/PhoenixAssets/Materials/TakeThat.mat
 - Assets/PhoenixAssets/Textures/texBazooka.png
@@ -188,6 +191,7 @@ Assets:
 - Assets/PhoenixAssets/Animations/RunRight.anim
 - Assets/PhoenixAssets/VFX/Materials/matSlash.mat
 - Assets/PhoenixAssets/Materials/seamless-wood3.jpg
+- Assets/PhoenixAssets/Materials/matPhoenixAlt.png
 - Assets/PhoenixAssets/Icons/texPhoenixIcon.png
 - Assets/PhoenixAssets/Animations/animPhoenix.controller
 - Assets/PhoenixAssets/Materials/matHenryAlt.mat
