@@ -44,12 +44,19 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Changelog
 
+- 1.2.1
+	- Added death animation.
+	- Fixed a bug where "Press The Witness" would fire multiple particles in multiplayer.
+	- Fixed a bug where "Order In The Cour!" would fire multiple times in multiplayer.
+	- Increased the size of the hitbox of "Fall"
+	- Increased the duration of "Fall" making more consistent to hit.
+
 - 1.2.0
 	- Added mastery achievement.
 	- Added mastery skin (find out what it is.)
 	- Increased the range of "Order In The Court!"
 	- Increased the proc rate of "Order In The Court!"
-	- Increased the proc rate of "Press."
+	- Increased the proc rate of "Press The Witness"
 
 - 1.1.2
 	- Increased the projectile size of primary attack to improve hitbox consistency.
