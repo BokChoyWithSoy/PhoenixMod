@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3191299836
+CRC: 926185894
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 03bd6f12cecb15ddfbfe1c464926fd4c
+    Hash: c57b3f993b9afda20aa01ab3efd39a23
   TypeTreeHash:
     serializedVersion: 2
     Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
@@ -146,6 +146,7 @@ Assets:
 - Assets/PhoenixAssets/Mesh/meshHenrySwordAlt.mesh
 - Assets/PhoenixAssets/VFX/Materials/matSwingEffect.mat
 - Assets/PhoenixAssets/Icons/texBuffIconNoBackground.png
+- Assets/PhoenixAssets/Animations/Dead.anim
 - Assets/PhoenixAssets/VFX/Textures/texHenrySwing2.png
 - Assets/PhoenixAssets/Mesh/meshPistol.mesh
 - Assets/PhoenixAssets/Icons/texVaseIcon.png

@@ -1,5 +1,8 @@
-﻿using R2API;
+﻿using EntityStates;
+using KinematicCharacterController;
+using R2API;
 using RoR2;
+using PhoenixWright.SkillStates.BaseStates;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -149,6 +152,9 @@ namespace PhoenixWright.Modules
             SetupFootstepController(model);
             SetupRagdoll(model);
             SetupAimAnimator(newPrefab, model);
+
+            CharacterDeathBehavior characterDeathBehavior = newPrefab.GetComponent<CharacterDeathBehavior>();
+            characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(Death));
 
             bodyPrefabs.Add(newPrefab);
 

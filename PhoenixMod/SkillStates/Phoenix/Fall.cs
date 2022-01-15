@@ -28,7 +28,7 @@ namespace PhoenixWright.SkillStates
 
         protected string hitboxName = "fall";
         protected OverlapAttack attack;
-        protected float attackStartTime = 0.58f * duration;
+        protected float attackStartTime = 0.001f * duration;
         protected float attackEndTime = 8f *duration;
 
         public override void OnEnter()
@@ -115,7 +115,6 @@ namespace PhoenixWright.SkillStates
             }
             this.previousPosition = base.transform.position;
 
-            stopwatch += Time.fixedDeltaTime;
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime)
             {
                 FireAttack();
@@ -151,17 +150,12 @@ namespace PhoenixWright.SkillStates
 
         private void FireAttack()
         {
-            if (!this.hasFired)
+            if(!hasFired)
             {
-                this.hasFired = true;
-                this.attack.Fire();
+                hasFired = true;
                 Util.PlaySound("FallVoice", base.gameObject);
             }
-        }
-
-        public void Die()
-        {
-            base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Fall.duration * 2);
+            this.attack.Fire();
         }
     }
 }

@@ -28,7 +28,7 @@ Agile. Summon a giant hand which travels in a line, dealing 600% damage.
 
 ### Secondary: Press The Witness
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509762449498112/texPressIcon.png"><br>
-Stunning. Press the witness, dealing 600%.
+Stunning. Press the witness, dealing 600% damage.
 
 ### Turnabout Secondary: Objection!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510244827996180/texSecondaryUpgradeIcon.png"><br>
@@ -44,14 +44,21 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Changelog
 
--1.2.0
+- 1.2.1
+	- Added death animation.
+	- Fixed a bug where "Press The Witness" would fire multiple particles in multiplayer.
+	- Fixed a bug where "Order In The Cour!" would fire multiple times in multiplayer.
+	- Increased the size of the hitbox of "Fall"
+	- Increased the duration of "Fall" making more consistent to hit.
+
+- 1.2.0
 	- Added mastery achievement.
 	- Added mastery skin (find out what it is.)
 	- Increased the range of "Order In The Court!"
 	- Increased the proc rate of "Order In The Court!"
-	- Increased the proc rate of "Press."
+	- Increased the proc rate of "Press The Witness"
 
--1.1.2
+- 1.1.2
 	- Increased the projectile size of primary attack to improve hitbox consistency.
 	- Increased the projectile size of the turnabout primary attack to improve hitbox consistency.
 	- Turnabout stacks now reset in multiplayer when starting a new run.
@@ -61,7 +68,7 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 	- Improved the throwing animation to make it look a lot less scuffed.
 
 	
--1.1.1
+- 1.1.1
 	- Reduced the volume of all voice and sound effects.
 	- Reduced the range in which you hear voice and sound effects.
 	- Added keywords to skill descriptions to make them easier to read.
@@ -71,20 +78,20 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 	- "Order In The Court!" now screen shakes for effect.
 	- Increased duration of armour and invincibility for "Fall" to increase survivability.
 
--1.1.0
+- 1.1.0
 	- Added sounds all of Phoenix's skills.
 	- Added sounds when gaining turnabout stacks.
 	- Added music when you enter turnabout mode.
 
--1.0.2
+- 1.0.2
 	- Fixed a bug where switching levels reset the empowered primary and secondary skill to the base states.
 	- Fixed a bug where turnabout stacks did not reset upon starting a new game.
 
--1.0.1
+- 1.0.1
 	- Fixed a bug where turnabout stacks were not working if you were not the host of the game.
 	- Fixed a bug where your primary attack did not shuffle to a new item if you were playing muliplayer.
 
--1.0.0
+- 1.0.0
 	- Initial Release
  
 ## Future Plans
