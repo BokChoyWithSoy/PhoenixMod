@@ -2,8 +2,8 @@ Event	ID	Name			Wwise Object Path	Notes
 	200242386	ArmSound			\Default Work Unit\ArmSound	
 	378180617	HoldIt			\Default Work Unit\HoldIt	
 	559438376	TurnaboutMusic			\Default Work Unit\TurnaboutMusic	
+	869971084	PhoenixMenuSound			\Default Work Unit\PhoenixMenuSound	
 	1008649463	EnterTurnabout			\Default Work Unit\EnterTurnabout	
-	1197727813	MenuSound			\Default Work Unit\MenuSound	
 	1396512807	TakeThat			\Default Work Unit\TakeThat	
 	1490546456	ThrowVase			\Default Work Unit\ThrowVase	
 	1852621951	SpecialSound			\Default Work Unit\SpecialSound	

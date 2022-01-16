@@ -45,6 +45,10 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 ## Changelog
 
 - 1.2.1
+	- Fixed an issue where Phoenix's voice lines would play in the menu when you picked Sett from the Sett mod (Thanks to Lemonlust for figuring it out)
+	- Turnabout music may now be heard by all players in the lobby.
+
+- 1.2.1
 	- Added death animation.
 	- Fixed a bug where "Press The Witness" would fire multiple particles in multiplayer.
 	- Fixed a bug where "Order In The Cour!" would fire multiple times in multiplayer.
@@ -105,12 +109,12 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Known Issues
 - In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around, this problem only exists for clients.
-- If you have the Sett mod installed, it will replace his menu sounds with phoenix wright sounds. (How does this even happen)
 
 ## Credits
 - Rob's HenryMod -> prevented me from experiencing excruciating pain
+- Lemonlust -> bug fixing and code from Sett mod.
 - Capcom -> Model & Texturing
 - Mixamo -> Animations
 - TheTimesweeper -> Hitbox viewer was extremely helpful
-- My friends, TeaL & Ethanol 10 who helped me troubleshoot in discord calls.
+- TeaL & Ethanol 10 -> Who helped me troubleshoot in discord calls.
 - The vast amount of Vtuber streams I watched while coding which kept me sane.

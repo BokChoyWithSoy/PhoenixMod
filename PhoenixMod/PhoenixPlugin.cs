@@ -33,7 +33,7 @@ namespace PhoenixWright
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "1.2.1";
+        public const string MODVERSION = "1.2.2";
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "BOK";
@@ -141,7 +141,7 @@ namespace PhoenixWright
             orig(self);
             if (self.gameObject.name.Contains("PhoenixDisplay"))
             {
-                Util.PlaySound("MenuSound", self.gameObject);
+                Util.PlaySound("PhoenixMenuSound", self.gameObject);
                 currentStacks = 0;
             }
         }
