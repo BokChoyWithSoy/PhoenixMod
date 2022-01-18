@@ -59,7 +59,7 @@ namespace PhoenixWright.SkillStates
                         Util.QuaternionSafeLookRotation(aimRay.direction), 
                         base.gameObject,
                         ThrowServbot.damageCoefficient * this.damageStat, 
-                        4000f, 
+                        0f, 
                         base.RollCrit(), 
                         DamageColorIndex.Default, 
                         null,
