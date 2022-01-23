@@ -149,6 +149,7 @@ namespace PhoenixWright.Modules
             armAOE.lifetime = 12f;
             armAOE.timerAfterImpact = true;
             armAOE.lifetimeAfterImpact = 0f;
+            armAOE.GetComponent<ProjectileDamage>().damageType = DamageType.Stun1s | DamageType.BypassArmor;
 
             ProjectileController armController = armPrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("ArmGhost") != null) armController.ghostPrefab = CreateGhostPrefab("ArmGhost");
@@ -175,7 +176,7 @@ namespace PhoenixWright.Modules
             projectileImpactExplosion.offsetForLifetimeExpiredSound = 0f;
             projectileImpactExplosion.timerAfterImpact = false;
 
-            projectileImpactExplosion.GetComponent<ProjectileDamage>().damageType = DamageType.Generic;
+            projectileImpactExplosion.GetComponent<ProjectileDamage>().damageType = DamageType.Stun1s;
         }
 
         private static GameObject CreateGhostPrefab(string ghostName)

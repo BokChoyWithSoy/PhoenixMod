@@ -71,7 +71,7 @@ namespace PhoenixWright.SkillStates
             blastAttack.baseDamage = this.damageStat * damageCoefficient;
             blastAttack.falloffModel = BlastAttack.FalloffModel.None;
             blastAttack.teamIndex = TeamComponent.GetObjectTeam(blastAttack.attacker);
-            blastAttack.damageType = DamageType.Stun1s;
+            blastAttack.damageType = DamageType.Stun1s | DamageType.Freeze2s | DamageType.BypassArmor;
             blastAttack.attackerFiltering = AttackerFiltering.Default;
         }
 

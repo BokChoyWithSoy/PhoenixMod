@@ -44,20 +44,28 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Changelog
 
-- 1.2.3
+- 1.2.5 
+	- Primary attack now stuns briefly.
+	- Empowered primary now bypasses armour.
+	- Empowered secondary now bypasses armour and freezes.
+	- Increased the sound effects again (People please stop playing ROR2 on full volume it's not healthy.)
 
-	-"Throw Evidence" no longer does absurd knockback.
-	-"Take That" no longer does absurd knockback.
-	-Turnabout music can now be heard omnidirectionally.
-	-Phoenix's death sound can be heard mapwide (Cause it's funny).
-	-Significantly reduced the range you can hear Phoenix's voice lines.
-	-Significantly reduced the volume of all sound effects.
+- 1.2.4 
+	- Forgot to revert decisive evidence needed for turnabout mode when testing.
 
-- 1.2.2
-	-Fixed an issue where Phoenix's voice lines would play in the menu when you picked Sett from the Sett mod (Thanks to Lemonlust for figuring it out)
-	-Turnabout music may now be heard by all players in the lobby.
+- 1.2.3 -
+	- "Throw Evidence" no longer does absurd knockback.
+	- "Take That" no longer does absurd knockback.
+	- Turnabout music can now be heard omnidirectionally.
+	- Phoenix's death sound can be heard mapwide (Cause it's funny).
+	- Significantly reduced the range you can hear Phoenix's voice lines.
+	- Significantly reduced the volume of all sound effects.
 
-- 1.2.1
+- 1.2.2 -
+	- Fixed an issue where Phoenix's voice lines would play in the menu when you picked Sett from the Sett mod (Thanks to Lemonlust for figuring it out)
+	- Turnabout music may now be heard by all players in the lobby.
+
+- 1.2.1 -
 	- Added death animation.
 	- Fixed a bug where "Press The Witness" would fire multiple particles in multiplayer.
 	- Fixed a bug where "Order In The Cour!" would fire multiple times in multiplayer.

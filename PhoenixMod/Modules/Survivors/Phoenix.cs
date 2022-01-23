@@ -131,7 +131,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_AGILE" }
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
             });
 
             Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryVase);
@@ -160,7 +160,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_AGILE" }
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
             });
             #endregion
 
@@ -187,7 +187,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_AGILE" }
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
             });
             #endregion
 
@@ -214,7 +214,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_AGILE" }
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
             });
             #endregion
 
@@ -241,7 +241,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_AGILE" }
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
             });
             #endregion
 
@@ -268,7 +268,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_AGILE" }
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
             });
 
             #endregion

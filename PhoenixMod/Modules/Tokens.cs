@@ -38,10 +38,10 @@ namespace PhoenixWright.Modules
 
             #region Primary
             LanguageAPI.Add(prefix + "PRIMARY_THROW_NAME", "Throw Evidence");
-            LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.agilePrefix + $"Throw a random piece of evidence, Junk will deal <style=cIsDamage>200% damage</style> and decisive evidence will deal <style=cIsDamage>400% damage</style>.");
+            LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.stunningPrefix + Helpers.agilePrefix + $"Throw a random piece of evidence, Junk will deal <style=cIsDamage>200% damage</style> and decisive evidence will deal <style=cIsDamage>400% damage</style>.");
 
             LanguageAPI.Add(prefix + "PRIMARY_THROW2_NAME", "Take That!");
-            LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>600% damage</style>.");
+            LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.stunningPrefix + Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>600% damage</style>.");
             #endregion
 
             #region Secondary
