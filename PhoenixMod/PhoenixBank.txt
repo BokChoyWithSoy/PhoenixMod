@@ -1,15 +1,28 @@
 Event	ID	Name			Wwise Object Path	Notes
+	128971238	FallQuiet			\Default Work Unit\Quiet\FallQuiet	
+	145917166	ArmSoundQuiet			\Default Work Unit\Quiet\ArmSoundQuiet	
 	200242386	ArmSound			\Default Work Unit\ArmSound	
+	362843572	PhoenixMenuSoundQuiet			\Default Work Unit\Quiet\PhoenixMenuSoundQuiet	
 	378180617	HoldIt			\Default Work Unit\HoldIt	
 	559438376	TurnaboutMusic			\Default Work Unit\TurnaboutMusic	
+	742595405	TakeThatQuiet			\Default Work Unit\Quiet\TakeThatQuiet	
 	869971084	PhoenixMenuSound			\Default Work Unit\PhoenixMenuSound	
 	1008649463	EnterTurnabout			\Default Work Unit\EnterTurnabout	
+	1369727562	ObjectionQuiet			\Default Work Unit\Quiet\ObjectionQuiet	
+	1375342264	GainStackQuiet			\Default Work Unit\Quiet\GainStackQuiet	
 	1396512807	TakeThat			\Default Work Unit\TakeThat	
+	1475008211	HoldItQuiet			\Default Work Unit\Quiet\HoldItQuiet	
 	1490546456	ThrowVase			\Default Work Unit\ThrowVase	
 	1852621951	SpecialSound			\Default Work Unit\SpecialSound	
 	2081594768	GainStack			\Default Work Unit\GainStack	
 	2483233616	FallVoice			\Default Work Unit\FallVoice	
 	2512384458	Fall			\Default Work Unit\Fall	
+	2568878237	EnterTurnaboutQuiet			\Default Work Unit\Quiet\EnterTurnaboutQuiet	
+	2767631077	SpecialSoundQuiet			\Default Work Unit\Quiet\SpecialSoundQuiet	
+	2845465024	ThrowVaseQuiet			\Default Work Unit\Quiet\ThrowVaseQuiet	
+	3291238672	TurnaboutMusicQuiet			\Default Work Unit\Quiet\TurnaboutMusicQuiet	
+	3569722719	PhoenixDyingQuiet			\Default Work Unit\Quiet\PhoenixDyingQuiet	
+	3791670136	FallVoiceQuiet			\Default Work Unit\Quiet\FallVoiceQuiet	
 	3882425966	Objection			\Default Work Unit\Objection	
 	4242188613	PhoenixDying			\Default Work Unit\PhoenixDying	
 
@@ -19,16 +32,16 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	90985944	ArmSound	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\ArmSound_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\ArmSound\ArmSound		8143
-	199427777	Special1	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Special1_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\SpecialSound\Special1		15669
+	199427777	Special1	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Special1_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\SpecialSoundQuiet\Special1		15669
 	220895610	GainStack9	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack9_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\GainStack\GainStack9		6623
 	290080851	GainStack5	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack5_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\GainStack\GainStack5		11667
 	304531364	GainStack6	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack6_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\GainStack\GainStack6		11576
 	348101739	GainStack4	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack4_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\GainStack\GainStack4		16547
 	355334556	GainStack2	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack2_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\GainStack\GainStack2		8360
-	383508926	EnterTurnabout	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\EnterTurnabout_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\EnterTurnabout\EnterTurnabout		16416
+	383508926	EnterTurnabout	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\EnterTurnabout_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\EnterTurnaboutQuiet\EnterTurnabout		16416
 	392755205	TakeThat	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\TakeThat_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\TakeThat\TakeThat		12577
 	417698459	GainStack8	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack8_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\GainStack\GainStack8		11258
-	460892584	Special2	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Special2_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\SpecialSound\Special2		24061
+	460892584	Special2	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Special2_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\SpecialSoundQuiet\Special2		24061
 	479138379	Fall	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Fall_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\Fall\Fall		6965
 	563420383	HoldIt	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\HoldIt_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\HoldIt\HoldIt		12477
 	564235931	GainStack7	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack7_A1793BE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\GainStack\GainStack7		7741

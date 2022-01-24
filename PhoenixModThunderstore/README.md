@@ -20,11 +20,11 @@ Whenever you hit an enemy with Press The Witness while holding a decisive piece 
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507746725715988/texVaseIcon.png">
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507211012411392/texKnifeIcon.png">
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507209640882176/texPhoneIcon.png"><br>
-Agile. Throw a random piece of evidence, junk will deal 200% damage and decisive evidence will deal 400% damage.
+Stunning. Agile. Throw a random piece of evidence, junk will deal 200% damage and decisive evidence will deal 400% damage.
 
 ### Turnabout Primary: Take That!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509050730614815/texPrimaryUpgrade.png"><br>
-Agile. Summon a giant hand which travels in a line, dealing 600% damage.
+Stunning. Agile. Summon a giant hand which travels in a line, dealing 600% damage.
 
 ### Secondary: Press The Witness
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509762449498112/texPressIcon.png"><br>
@@ -45,10 +45,14 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 ## Changelog
 
 - 1.2.5 
+	- Added config option to reduce SFX and Voice volume.
+	- increased the range you can hear SFX (lowered way too much last update.)
+
+- 1.2.5 
 	- Primary attack now stuns briefly.
 	- Empowered primary now bypasses armour.
 	- Empowered secondary now bypasses armour and freezes.
-	- Increased the sound effects again (People please stop playing ROR2 on full volume it's not healthy.)
+	- Increased the sound effects volume again (People please stop playing ROR2 on full volume it's not healthy.)
 
 - 1.2.4 
 	- Forgot to revert decisive evidence needed for turnabout mode when testing.

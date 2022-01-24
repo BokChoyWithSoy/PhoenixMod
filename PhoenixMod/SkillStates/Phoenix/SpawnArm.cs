@@ -71,7 +71,11 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= this.fireTime && !hasFired)
             {
                 Fire();
-                Util.PlaySound("ArmSound", base.gameObject);
+                if (Modules.Config.loweredVolume.Value)
+                {
+                    Util.PlaySound("ArmSoundQuiet", base.gameObject);
+                }
+                else Util.PlaySound("ArmSound", base.gameObject);
             }
 
             if (base.fixedAge >= this.duration && base.isAuthority)

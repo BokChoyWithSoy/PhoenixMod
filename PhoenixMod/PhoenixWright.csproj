@@ -16,6 +16,8 @@
     <None Remove="Modules\Survivors\Henry.cs~RF6221a098.TMP" />
     <None Remove="phoenixassets" />
     <None Remove="PhoenixBank.bnk" />
+    <None Remove="PhoenixBankQuiet.bnk" />
+    <None Remove="PhoenixBankQuiet.txt" />
   </ItemGroup>
 
   <ItemGroup>

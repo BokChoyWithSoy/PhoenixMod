@@ -68,7 +68,11 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime && !hasFired)
             {
                 hasFired = true;
-                Util.PlaySound("HoldIt", base.gameObject);
+                if (Modules.Config.loweredVolume.Value)
+                {
+                    Util.PlaySound("HoldItQuiet", base.gameObject);
+                }
+                else Util.PlaySound("HoldIt", base.gameObject);
                 if (blastAttack.Fire().hitCount > 0)
                 {
                     OnHitEnemyAuthority();
@@ -94,7 +98,11 @@ namespace PhoenixWright.SkillStates
             if (PhoenixController.GetEvidenceType())
             {
                 base.characterBody.AddBuff(Modules.Buffs.turnaboutBuff);
-                Util.PlaySound("GainStack", base.gameObject);
+                if (Modules.Config.loweredVolume.Value)
+                {
+                    Util.PlaySound("GainStackQuiet", base.gameObject);
+                }
+                else Util.PlaySound("GainStack", base.gameObject);
                 PhoenixPlugin.currentStacks++;
                 ShufflePrimary();
             }

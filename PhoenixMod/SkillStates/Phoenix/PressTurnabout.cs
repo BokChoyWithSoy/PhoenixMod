@@ -48,7 +48,11 @@ namespace PhoenixWright.SkillStates
                     rotation = Quaternion.LookRotation(aimRay.direction)
 
                 }, true);
-                Util.PlaySound("Objection", base.gameObject);
+                if (Modules.Config.loweredVolume.Value)
+                {
+                    Util.PlaySound("ObjectionQuiet", base.gameObject);
+                }
+                else Util.PlaySound("Objection", base.gameObject);
             }
             else
             {
@@ -59,7 +63,11 @@ namespace PhoenixWright.SkillStates
                     rotation = Quaternion.LookRotation(aimRay.direction)
 
                 }, true);
-                Util.PlaySound("TakeThat", base.gameObject);
+                if (Modules.Config.loweredVolume.Value)
+                {
+                    Util.PlaySound("TakeThatQuiet", base.gameObject);
+                }
+                else Util.PlaySound("TakeThat", base.gameObject);
             }
 
             blastAttack = new BlastAttack();

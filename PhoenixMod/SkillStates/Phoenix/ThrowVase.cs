@@ -49,7 +49,11 @@ namespace PhoenixWright.SkillStates
             if (!this.hasFired)
             {
                 this.hasFired = true;
-                Util.PlaySound("ThrowVase", base.gameObject);
+                if (Modules.Config.loweredVolume.Value)
+                {
+                    Util.PlaySound("ThrowVaseQuiet", base.gameObject);
+                }
+                else Util.PlaySound("ThrowVaseQuiet", base.gameObject);
 
                 if (base.isAuthority)
                 {

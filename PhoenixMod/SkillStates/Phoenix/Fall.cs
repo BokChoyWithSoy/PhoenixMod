@@ -65,8 +65,12 @@ namespace PhoenixWright.SkillStates
             HitBoxGroup hitBoxGroup = null;
             Transform modelTransform = base.GetModelTransform();
             base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Fall.duration * 2);
-            Util.PlaySound("Fall", base.gameObject);
-       
+            if(Modules.Config.loweredVolume.Value)
+            {
+                Util.PlaySound("FallQuiet", base.gameObject);
+            }
+            else Util.PlaySound("Fall", base.gameObject);
+
 
             if (modelTransform)
             {
@@ -153,7 +157,11 @@ namespace PhoenixWright.SkillStates
             if(!hasFired)
             {
                 hasFired = true;
-                Util.PlaySound("FallVoice", base.gameObject);
+                if (Modules.Config.loweredVolume.Value)
+                {
+                    Util.PlaySound("FallVoiceQuiet", base.gameObject);
+                }
+                else Util.PlaySound("FallVoice", base.gameObject);
             }
             this.attack.Fire();
         }
