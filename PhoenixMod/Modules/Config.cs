@@ -11,7 +11,7 @@ namespace PhoenixWright.Modules
         public static void ReadConfig()
         {
             loweredVolume = PhoenixPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Sound settings", "SFX"), false, new ConfigDescription("Set to true to lower SFX"));
-            gainTurnaboutOnHit = PhoenixPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Turnabout stacks", "Turnabout stacks"), false, new ConfigDescription("Set to true to enable gain turnabout on hit"));
+            gainTurnaboutOnHit = PhoenixPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Turnabout stacks", "Turnabout stacks"), true, new ConfigDescription("Set to true to enable gain turnabout on hit"));
         }
 
         // this helper automatically makes config entries for disabling survivors
