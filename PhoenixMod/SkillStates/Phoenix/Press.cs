@@ -103,7 +103,11 @@ namespace PhoenixWright.SkillStates
                     Util.PlaySound("GainStackQuiet", base.gameObject);
                 }
                 else Util.PlaySound("GainStack", base.gameObject);
-                PhoenixPlugin.currentStacks++;
+                if (Modules.Config.gainTurnaboutOnHit.Value)
+                {
+                    PhoenixPlugin.currentStacks += blastAttack.Fire().hitCount;
+                }
+                else PhoenixPlugin.currentStacks++;
                 ShufflePrimary();
             }
         }
