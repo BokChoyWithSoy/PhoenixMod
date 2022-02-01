@@ -44,7 +44,16 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Changelog
 
-- 1.2.5 
+- 1.3.0
+	- Knife primary now applies a bleed stack.
+	- Phone primary now applies a shock stack.
+	- Secondary will now grant multiple turnabout stacks depending on the amount of enemies hit. (Thanks to Slat on discord for implementation)
+	- Secondary config will allow for turnabout to only increment by one. (for people who want a harder challenge)
+	- Utility will now reset its cooldown if you have decisive evidence.
+	- Special will now have double range and damage and weaken enemies if you have decisive evidence.
+	- Updated skill descriptions to reflect skill changes.
+
+- 1.2.6 
 	- Added config option to reduce SFX and Voice volume.
 	- increased the range you can hear SFX (lowered way too much last update.)
 

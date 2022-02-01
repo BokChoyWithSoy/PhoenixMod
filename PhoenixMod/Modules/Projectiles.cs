@@ -69,9 +69,9 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.blastRadius = 5f;
             bombImpactExplosion.destroyOnEnemy = true;
             bombImpactExplosion.lifetime = 12f;
-
             bombImpactExplosion.timerAfterImpact = true;
             bombImpactExplosion.lifetimeAfterImpact = 0f;
+            bombImpactExplosion.GetComponent<ProjectileDamage>().damageType = DamageType.Stun1s | DamageType.BleedOnHit;
 
 
             ProjectileController bombController = knifePrefab.GetComponent<ProjectileController>();
@@ -92,6 +92,7 @@ namespace PhoenixWright.Modules
             bombImpactExplosion.lifetime = 12f;
             bombImpactExplosion.timerAfterImpact = true;
             bombImpactExplosion.lifetimeAfterImpact = 0f;
+            bombImpactExplosion.GetComponent<ProjectileDamage>().damageType = DamageType.Stun1s | DamageType.Shock5s;
 
             ProjectileController bombController = phonePrefab.GetComponent<ProjectileController>();
             if (Modules.Assets.mainAssetBundle.LoadAsset<GameObject>("PhoneGhost") != null) bombController.ghostPrefab = CreateGhostPrefab("PhoneGhost");

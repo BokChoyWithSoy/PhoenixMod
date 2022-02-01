@@ -33,7 +33,7 @@ namespace PhoenixWright.Modules.Survivors
             armorGrowth = 1f,
             bodyName = "PhoenixBody",
             bodyNameToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME",
-            bodyColor = Color.grey,
+            bodyColor = Color.gray,
             characterPortrait = Modules.Assets.LoadCharacterIcon("Phoenix"),
             crosshair = Modules.Assets.LoadCrosshair("Standard"),
             damage = 20f,
@@ -296,7 +296,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_STUNNING" }
+                keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SECONDARY" }
             });
             #endregion
 
@@ -352,7 +352,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_STUNNING" }
+                keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD UTILITY" }
             });
 
             Modules.Skills.AddUtilitySkills(bodyPrefab, rollSkillDef);
@@ -381,7 +381,7 @@ namespace PhoenixWright.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_STUNNING" }
+                keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SPECIAL" }
             });
 
             Modules.Skills.AddSpecialSkills(bodyPrefab, gavelSkillDef);

@@ -21,8 +21,9 @@ namespace PhoenixWright.SkillStates
         private Animator animator;
 
         protected BlastAttack blastAttack;
-        protected float attackStartTime = 0.01f * duration;
-        protected float attackEndTime = 1f *duration;
+        protected BlastAttack blastAttackStrong;
+        protected float attackStartTime = 0.01f * 1f;
+        protected float attackEndTime = 1f *1f;
 
         public override void OnEnter()
         {
@@ -32,12 +33,12 @@ namespace PhoenixWright.SkillStates
 
             rayPosition = aimRay.origin;
 
-            EffectManager.SpawnEffect(Modules.Assets.gavelEffect, new EffectData
-            {
-                origin = new Vector3(base.transform.position.x, base.transform.position.y + 10, base.transform.position.z),
-                scale = 1f,
+                EffectManager.SpawnEffect(Modules.Assets.gavelEffect, new EffectData
+                {
+                    origin = new Vector3(base.transform.position.x, base.transform.position.y + 10, base.transform.position.z),
+                    scale = 1f,
 
-            }, true) ;
+                }, true);
 
             base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 2f);
             if (Modules.Config.loweredVolume.Value)
@@ -58,6 +59,18 @@ namespace PhoenixWright.SkillStates
             blastAttack.damageType = DamageType.Stun1s;
             blastAttack.attackerFiltering = AttackerFiltering.Default;
 
+            blastAttackStrong = new BlastAttack();
+            blastAttackStrong.radius = 50f;
+            blastAttackStrong.procCoefficient = procCoefficient * 20;
+            blastAttackStrong.position = rayPosition;
+            blastAttackStrong.attacker = base.gameObject;
+            blastAttackStrong.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);
+            blastAttackStrong.baseDamage = this.damageStat * (damageCoefficient * 2);
+            blastAttackStrong.falloffModel = BlastAttack.FalloffModel.None;
+            blastAttackStrong.teamIndex = TeamComponent.GetObjectTeam(blastAttack.attacker);
+            blastAttackStrong.damageType = DamageType.Stun1s | DamageType.WeakOnHit;
+            blastAttackStrong.attackerFiltering = AttackerFiltering.Default;
+
         }
 
         public override void FixedUpdate()
@@ -67,7 +80,7 @@ namespace PhoenixWright.SkillStates
             rayPosition = aimRay.origin;
 
             stopwatch += Time.fixedDeltaTime;
-            if(stopwatch >= duration * 0.4)
+            if(stopwatch >= duration * 0.4f)
             {
                 FireAttack();
             }
@@ -91,7 +104,13 @@ namespace PhoenixWright.SkillStates
             if (!this.hasFired)
             {
                 this.hasFired = true;
-                blastAttack.Fire();
+                if(PhoenixController.GetEvidenceType())
+                {
+                    blastAttackStrong.Fire();
+                    ShufflePrimary();
+                }
+                else blastAttack.Fire();
+
                 base.PlayAnimation("FullBody, Override", "Getup", "ShootGun.playbackRate", (Press.duration / Press.duration));  
                 Wave wave = new Wave
                 {
@@ -102,6 +121,36 @@ namespace PhoenixWright.SkillStates
                 RoR2.ShakeEmitter.CreateSimpleShakeEmitter(rayPosition, wave, 0.5f , 20f , true);
 
             }
+        }
+
+        private void ShufflePrimary()
+        {
+            int random = UnityEngine.Random.Range(0, 3);
+            switch (random)
+            {
+                case 0:
+                    UnsetAll();
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+                case 1:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+                case 2:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+            }
+        }
+
+        private void UnsetAll()
+        {
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
         }
 
 

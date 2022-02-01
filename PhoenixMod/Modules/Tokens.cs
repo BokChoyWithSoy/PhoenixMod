@@ -16,7 +16,7 @@ namespace PhoenixWright.Modules
             desc = desc + "< ! > Fall deals damage on top of providing brief invulnerability." + Environment.NewLine + Environment.NewLine;
             desc = desc + "< ! > Order in the court! can be used to wipe crowds with ease." + Environment.NewLine + Environment.NewLine;
 
-            string outro = "..and so he left, searching for a new identity.";
+            string outro = "..and so he left, trying to find a way home.";
             string outroFailure = "..and so he vanished, forever a blank slate.";
 
             LanguageAPI.Add(prefix + "NAME", "Attorney");
@@ -70,7 +70,10 @@ namespace PhoenixWright.Modules
             #endregion
 
             #region Keywords
-                LanguageAPI.Add("KEYWORD_TURNABOUT", "[ Decisive Evidence ]\nRed evidence is junk and green evidence is decisive evidence.\n\n[ Turnabout ]\nDealing damage with Attorney's secondary ability while having " + Helpers.decisivePrefix + "awards a stack of <style=cIsUtility>turnabout</style>.\n\n[ Turnabout Mode ]\nEntering <style=cIsUtility>turnabout mode</style> will <style=cIsUtility>replace</style> Attorney's primary and secondary attacks with <style=cIsDamage>empowered versions</style>.");
+                LanguageAPI.Add("KEYWORD_TURNABOUT", "[ Decisive Evidence ]\nRed evidence is junk and green evidence is decisive evidence. Using other skills while having decisive evidence in your primary slot will grant bonus effects.\n\n[ Turnabout ]\nDealing damage with Attorney's secondary ability while having " + Helpers.decisivePrefix + "awards a stack of <style=cIsUtility>turnabout</style>.\n\n[ Turnabout Mode ]\nEntering <style=cIsUtility>turnabout mode</style> will <style=cIsUtility>empower</style> Attorney's primary and secondary skills.");
+                LanguageAPI.Add("KEYWORD SECONDARY", "[ Decisive Evidence ]\nGain Turnabout stacks equal to the amount of enemies hit.");
+                LanguageAPI.Add("KEYWORD UTILITY", "[ Decisive Evidence ]\nReset Cooldown on use.");
+                LanguageAPI.Add("KEYWORD SPECIAL", "[ Decisive Evidence ]\nDouble damage and range and weaken all enemies in range.");
 
             #endregion
         }

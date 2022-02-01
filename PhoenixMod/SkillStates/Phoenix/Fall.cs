@@ -122,6 +122,11 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime)
             {
                 FireAttack();
+                if(PhoenixController.GetEvidenceType())
+                {
+                    base.skillLocator.utility.Reset();
+                    ShufflePrimary();
+                }
             }
 
             if (base.isAuthority && base.fixedAge >= Fall.duration)
@@ -164,6 +169,36 @@ namespace PhoenixWright.SkillStates
                 else Util.PlaySound("FallVoice", base.gameObject);
             }
             this.attack.Fire();
+        }
+
+        private void ShufflePrimary()
+        {
+            int random = UnityEngine.Random.Range(0, 3);
+            switch (random)
+            {
+                case 0:
+                    UnsetAll();
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+                case 1:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+                case 2:
+                    UnsetAll();
+                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.SetEvidenceType(false);
+                    break;
+            }
+        }
+
+        private void UnsetAll()
+        {
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
         }
     }
 }
