@@ -14,7 +14,7 @@ namespace PhoenixWright.Modules
 
         internal static void RegisterBuffs()
         {
-            armorBuff = AddNewBuff("HenryArmorBuff", Resources.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), Color.white, false, false);
+            armorBuff = AddNewBuff("HenryArmorBuff", RoR2.LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), Color.white, false, false);
             turnaboutBuff = AddNewBuff("HenryArmorBuff", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBuffIconNoBackground"), Color.white, true, false);
         }
 

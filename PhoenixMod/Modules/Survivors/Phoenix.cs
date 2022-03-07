@@ -42,7 +42,7 @@ namespace PhoenixWright.Modules.Survivors
             jumpCount = 1,
             maxHealth = 140f,
             subtitleNameToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SUBTITLE",
-            podPrefab = Resources.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod")
+            podPrefab = RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod")
         };
 
         internal static Material phoenixMat = Modules.Assets.CreateMaterial("matPhoenix");
@@ -450,10 +450,10 @@ namespace PhoenixWright.Modules.Survivors
 
             skins.Add(masterySkin);
             #endregion
-            
+
             skinController.skins = skins.ToArray();
         }
-            
+
 
         internal override void SetItemDisplays()
         {
@@ -2016,27 +2016,6 @@ localScale = new Vector3(0.2845F, 0.2845F, 0.2845F),
 
             itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
             {
-                keyAsset = RoR2Content.Items.CooldownOnCrit,
-                displayRuleGroup = new DisplayRuleGroup
-                {
-                    rules = new ItemDisplayRule[]
-                    {
-                        new ItemDisplayRule
-                        {
-                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySkull"),
-childName = "Chest",
-localPos = new Vector3(0F, 0.3997F, 0F),
-localAngles = new Vector3(270F, 0F, 0F),
-localScale = new Vector3(0.2789F, 0.2789F, 0.2789F),
-                            limbMask = LimbFlags.None
-                        }
-                    }
-                }
-            });
-
-            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-            {
                 keyAsset = RoR2Content.Items.Phasing,
                 displayRuleGroup = new DisplayRuleGroup
                 {
@@ -2402,26 +2381,6 @@ localScale = new Vector3(0.1F, 0.1F, 0.1F),
                 }
             });
 
-            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-            {
-                keyAsset = RoR2Content.Items.Incubator,
-                displayRuleGroup = new DisplayRuleGroup
-                {
-                    rules = new ItemDisplayRule[]
-                    {
-                        new ItemDisplayRule
-                        {
-                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAncestralIncubator"),
-childName = "Chest",
-localPos = new Vector3(0F, 0.3453F, 0F),
-localAngles = new Vector3(353.0521F, 317.2421F, 69.6292F),
-localScale = new Vector3(0.0528F, 0.0528F, 0.0528F),
-                            limbMask = LimbFlags.None
-                        }
-                    }
-                }
-            });
 
             itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
             {
@@ -3081,12 +3040,11 @@ localScale = new Vector3(0.1233F, 0.1233F, 0.1233F),
         private static CharacterModel.RendererInfo[] SkinRendererInfos(CharacterModel.RendererInfo[] defaultRenderers, Material[] materials)
         {
             CharacterModel.RendererInfo[] newRendererInfos = new CharacterModel.RendererInfo[defaultRenderers.Length];
-
             defaultRenderers.CopyTo(newRendererInfos, 0);
 
             newRendererInfos[0].defaultMaterial = materials[0];
 
-            return newRendererInfos;
-        }
+          return newRendererInfos;
+        }   
     }
 }

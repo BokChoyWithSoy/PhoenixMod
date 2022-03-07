@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2892367712
+CRC: 3172589417
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: dfe97ce5cb2f574e170666889b18f4bd
+    Hash: 9a96f49fe974bea8873e49173be1e37a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
+    Hash: 999b4dc99b3521c069e9d85df1724e24
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,8 +27,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 74
   Script: {instanceID: 0}
-- Class: 90
-  Script: {instanceID: 0}
 - Class: 91
   Script: {instanceID: 0}
 - Class: 95
@@ -47,6 +45,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/PhoenixAssets/Icons/texPressIcon.png
 - Assets/PhoenixAssets/Icons/texBuffIcon.png
@@ -187,6 +186,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/matPhoenixMastery.mat
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
 - Assets/PhoenixAssets/Materials/TakeThat.mat
+- Assets/PhoenixAssets/Animations/DefaultDance.anim
 - Assets/PhoenixAssets/Textures/texBazooka.png
 - Assets/PhoenixAssets/Mesh/meshDanteCoat.mesh
 - Assets/PhoenixAssets/Materials/matVergil.mat
