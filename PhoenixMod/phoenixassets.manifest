@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 3172589417
+CRC: 132166405
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9a96f49fe974bea8873e49173be1e37a
+    Hash: 4b43f90cbf6d6f831b3b23657de211ed
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 999b4dc99b3521c069e9d85df1724e24
+    Hash: 3c95d1c8fe5176bf995de0046345c777
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
+  Script: {instanceID: 0}
+- Class: 20
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
@@ -27,9 +29,13 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 74
   Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
 - Class: 91
   Script: {instanceID: 0}
 - Class: 95
+  Script: {instanceID: 0}
+- Class: 108
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 261c50d8a80898e4ebf2e8e415ea6766, type: 3}
@@ -75,6 +81,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Materials/matHitSparkPunch.mat
 - Assets/PhoenixAssets/Materials/matHenry.mat
 - Assets/PhoenixAssets/VFX/Materials/matFistSwing.mat
+- Assets/FBX/Phoenix Wright.fbx
 - Assets/PhoenixAssets/Animations/MenuIdle.anim
 - Assets/PhoenixAssets/Materials/Objection.mat
 - Assets/PhoenixAssets/Mesh/meshDante.mesh
@@ -89,7 +96,6 @@ Assets:
 - Assets/PhoenixAssets/Textures/texBoxingGlove.png
 - Assets/PhoenixAssets/Textures/texHenryDanteEmission.png
 - Assets/PhoenixAssets/Icons/texBottleIcon.png
-- Assets/PhoenixAssets/Animations/DanceMoves.anim
 - Assets/PhoenixAssets/Textures/texHenryDante.png
 - Assets/PhoenixAssets/Materials/matFloor.mat
 - Assets/PhoenixAssets/Animations/WalkRight.anim
@@ -115,6 +121,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Mesh/meshPunchShockwave.mesh
 - Assets/PhoenixAssets/Prefabs/BottleGhost.prefab
 - Assets/PhoenixAssets/Prefabs/PhoenixDisplay.prefab
+- Assets/FBX/Bottle.fbx
 - Assets/PhoenixAssets/Animations/animPhoenixMenu.controller
 - Assets/PhoenixAssets/Materials/matHenryJedi.mat
 - Assets/PhoenixAssets/Icons/texTripIcon.png
@@ -152,7 +159,9 @@ Assets:
 - Assets/PhoenixAssets/Icons/texVaseIcon.png
 - Assets/PhoenixAssets/VFX/Textures/texLightning.tif
 - Assets/PhoenixAssets/Materials/matBoxingGlove.mat
+- Assets/FBX/Phone.fbx
 - Assets/PhoenixAssets/Icons/texGavelIcon.png
+- Assets/FBX/Knife.fbx
 - Assets/PhoenixAssets/Mesh/meshVergilCoat.mesh
 - Assets/PhoenixAssets/VFX/Textures/texRipple.png
 - Assets/PhoenixAssets/Materials/Holographic.png
@@ -165,6 +174,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Textures/texPunchImpactShadow.png
 - Assets/PhoenixAssets/VFX/Textures/texSwingEffect.png
 - Assets/PhoenixAssets/Animations/MenuIdleIn.anim
+- Assets/FBX/Hammer.fbx
 - Assets/PhoenixAssets/VFX/Mesh/meshBoxingGlove.mesh
 - Assets/PhoenixAssets/Icons/texPhoneIcon.png
 - Assets/PhoenixAssets/Prefabs/ArmGhost.prefab
@@ -173,6 +183,7 @@ Assets:
 - Assets/PhoenixAssets/Prefabs/KnifeGhost.prefab
 - Assets/PhoenixAssets/Mesh/meshHenrySword.mesh
 - Assets/PhoenixAssets/Icons/texMainSkin.png
+- Assets/FBX/Servbot.fbx
 - Assets/PhoenixAssets/VFX/SpecialEffect.prefab
 - Assets/PhoenixAssets/Prefabs/VaseGhost.prefab
 - Assets/PhoenixAssets/Materials/matBazooka.mat
@@ -186,7 +197,6 @@ Assets:
 - Assets/PhoenixAssets/Materials/matPhoenixMastery.mat
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
 - Assets/PhoenixAssets/Materials/TakeThat.mat
-- Assets/PhoenixAssets/Animations/DefaultDance.anim
 - Assets/PhoenixAssets/Textures/texBazooka.png
 - Assets/PhoenixAssets/Mesh/meshDanteCoat.mesh
 - Assets/PhoenixAssets/Materials/matVergil.mat
@@ -197,12 +207,14 @@ Assets:
 - Assets/PhoenixAssets/Icons/texPhoenixIcon.png
 - Assets/PhoenixAssets/Animations/animPhoenix.controller
 - Assets/PhoenixAssets/Materials/matHenryAlt.mat
+- Assets/FBX/Vase.fbx
 - Assets/PhoenixAssets/Textures/texHenryJediEmission.png
 - Assets/PhoenixAssets/Materials/matBazookaRocket.mat
 - Assets/PhoenixAssets/Animations/RunBack.anim
 - Assets/PhoenixAssets/Materials/Materials/matAltPhoenix.mat
 - Assets/PhoenixAssets/VFX/Materials/matPunchImpact.mat
 - Assets/PhoenixAssets/Prefabs/ServbotGhost.prefab
+- Assets/FBX/Arm.fbx
 - Assets/PhoenixAssets/Materials/matArm.mat
 - Assets/PhoenixAssets/Icons/texSecondaryUpgradeIcon.png
 - Assets/PhoenixAssets/Mesh/meshPhoenix.mesh

@@ -55,6 +55,8 @@ namespace PhoenixWright.Modules.Survivors
 
                 displayPrefab = Modules.Prefabs.CreateDisplayPrefab(bodyName + "Display", bodyPrefab, bodyInfo);
 
+                Debug.Log(displayPrefab);
+
                 Modules.Prefabs.RegisterNewSurvivor(bodyPrefab, displayPrefab, Color.grey, bodyName.ToUpper(), characterUnlockableDef, sortPosition);
 
                 InitializeHitboxes();

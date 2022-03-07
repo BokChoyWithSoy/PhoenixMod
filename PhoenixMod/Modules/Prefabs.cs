@@ -50,7 +50,7 @@ namespace PhoenixWright.Modules
 
         internal static GameObject CreateDisplayPrefab(string modelName, GameObject prefab, BodyInfo bodyInfo)
         {
-            if (RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/" + bodyInfo.bodyNameToClone + "Body"))
+            if (!RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/" + bodyInfo.bodyNameToClone + "Body"))
             {
                 Debug.LogError(bodyInfo.bodyNameToClone + "Body is not a valid body, character creation failed");
                 return null;

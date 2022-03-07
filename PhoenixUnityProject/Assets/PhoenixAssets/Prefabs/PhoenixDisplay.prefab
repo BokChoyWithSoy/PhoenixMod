@@ -9,11 +9,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -29,11 +24,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
-        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -45,6 +35,16 @@ PrefabInstance:
     - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
         type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3199239678704337824, guid: 9be94f68af0fda84a874789ec2e00015,
@@ -67,11 +67,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PhoenixDisplay
       objectReference: {fileID: 0}
-    - target: {fileID: 4092960139722785562, guid: 9be94f68af0fda84a874789ec2e00015,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 3293fab6ba1f4e9469edc9b43a4fc4b3, type: 2}
     - target: {fileID: 5427436104511366694, guid: 9be94f68af0fda84a874789ec2e00015,
         type: 3}
       propertyPath: m_Controller
