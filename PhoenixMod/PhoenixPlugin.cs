@@ -124,6 +124,13 @@ namespace PhoenixWright
                         else Util.PlaySound("TurnaboutMusic", self.gameObject);
                         turnaboutActive = false;
                     }
+
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {
+                        
+                    }
+
+                    PhoenixController.SetEvidenceType(true);
                 }
             }
 
@@ -154,6 +161,7 @@ namespace PhoenixWright
                 }
                 else Util.PlaySound("PhoenixMenuSound", self.gameObject);
                 currentStacks = 0;
+                turnaboutActive = true;
             }
         }
     }

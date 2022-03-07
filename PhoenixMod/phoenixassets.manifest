@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 926185894
+CRC: 2892367712
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c57b3f993b9afda20aa01ab3efd39a23
+    Hash: dfe97ce5cb2f574e170666889b18f4bd
   TypeTreeHash:
     serializedVersion: 2
     Hash: d58cd0a5b2ccd97b5e5d4a70b6c05607
@@ -90,6 +90,7 @@ Assets:
 - Assets/PhoenixAssets/Textures/texBoxingGlove.png
 - Assets/PhoenixAssets/Textures/texHenryDanteEmission.png
 - Assets/PhoenixAssets/Icons/texBottleIcon.png
+- Assets/PhoenixAssets/Animations/DanceMoves.anim
 - Assets/PhoenixAssets/Textures/texHenryDante.png
 - Assets/PhoenixAssets/Materials/matFloor.mat
 - Assets/PhoenixAssets/Animations/WalkRight.anim
