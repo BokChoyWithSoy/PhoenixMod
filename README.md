@@ -44,6 +44,12 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Changelog
 
+- 1.4.1
+	- Forgot to change stacks needed for turnabout mode back to 50.
+
+- 1.4.0
+	- Updated mod with work with Survivors of The Void DLC.
+
 - 1.3.0
 	- Knife primary now applies a bleed stack.
 	- Phone primary now applies a shock stack.

@@ -44,6 +44,9 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Changelog
 
+- 1.4.1
+	- Forgot to change stacks needed for turnabout mode back to 50.
+
 - 1.4.0
 	- Updated mod with work with Survivors of The Void DLC.
 
