@@ -16,7 +16,7 @@ namespace PhoenixWright.Modules.Survivors
 
         public void Awake()
         {
-            maxStacks = 50;
+            maxStacks = Modules.Config.necessaryStacksTurnabout.Value;;
             decisiveEvidence = false;
             scepterActive = false;
             dying = false;
