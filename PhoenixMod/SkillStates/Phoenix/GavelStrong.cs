@@ -40,7 +40,11 @@ namespace PhoenixWright.SkillStates
 
                 }, true);
 
-            base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 2f);
+            if (NetworkServer.active)
+            {
+                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 2f);
+            }
+
             if (Modules.Config.loweredVolume.Value)
             {
                 Util.PlaySound("SpecialSoundQuiet", base.gameObject);

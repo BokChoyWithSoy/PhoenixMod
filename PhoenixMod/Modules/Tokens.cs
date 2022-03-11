@@ -49,7 +49,7 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", Helpers.stunningPrefix + $"Press the witness dealing <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style>.");
 
             LanguageAPI.Add(prefix + "SECONDARY_PRESS2_NAME", "Objection!");
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", Helpers.stunningPrefix + $"Raise an objection dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style>.");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", Helpers.freezingPrefix + $"Raise an objection dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style>.");
             #endregion
 
             #region Utility
@@ -60,6 +60,8 @@ namespace PhoenixWright.Modules
             #region Special
             LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME", "Order In The Court!");
             LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style>. <style=cIsUtility>You cannot be hit for 2 seconds.</style>");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME2", "Objection Overruled!");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION2", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{200f * StaticValues.bombDamageCoefficient}% damage and weakening enemies</style>. <style=cIsUtility>You cannot be hit for 2 seconds.</style>");
             #endregion
 
             #region Achievements
@@ -70,7 +72,7 @@ namespace PhoenixWright.Modules
             #endregion
 
             #region Keywords
-                LanguageAPI.Add("KEYWORD_TURNABOUT", "[ Decisive Evidence ]\nRed evidence is junk and green evidence is decisive evidence. Using other skills while having decisive evidence in your primary slot will grant bonus effects.\n\n[ Turnabout ]\nDealing damage with Attorney's secondary ability while having " + Helpers.decisivePrefix + "awards a stack of <style=cIsUtility>turnabout</style>.\n\n[ Turnabout Mode ]\nEntering <style=cIsUtility>turnabout mode</style> will <style=cIsUtility>empower</style> Attorney's primary and secondary skills.");
+                LanguageAPI.Add("KEYWORD_TURNABOUT", "[ Decisive Evidence ]\nRed evidence is junk and green evidence is decisive evidence. Using other skills while having decisive evidence in your primary slot will grant bonus effects.\n\n[ Turnabout ]\nDealing damage with Attorney's secondary ability while having " + Helpers.decisivePrefix + "awards <style=cIsUtility>turnabout</style>.\n\n[ Turnabout Mode ]\nEntering <style=cIsUtility>turnabout mode</style> will <style=cIsUtility>permanently empower</style> all of Attorney's skills ");
                 LanguageAPI.Add("KEYWORD SECONDARY", "[ Decisive Evidence ]\nGain Turnabout stacks equal to the amount of enemies hit.");
                 LanguageAPI.Add("KEYWORD UTILITY", "[ Decisive Evidence ]\nReset Cooldown on use.");
                 LanguageAPI.Add("KEYWORD SPECIAL", "[ Decisive Evidence ]\nDouble damage and range and weaken all enemies in range.");

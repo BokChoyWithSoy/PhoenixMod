@@ -7,6 +7,8 @@ namespace PhoenixWright.Modules
     {
         internal const string agilePrefix = "<style=cIsUtility>Agile.</style> ";
         internal const string stunningPrefix = "<style=cIsDamage>Stunning.</style> ";
+        internal const string freezingPrefix = "<style=cIsDamage>Freezing.</style> ";
+        internal const string weakenPrefix = "<style=cIsDamage>Weaken.</style> ";
         internal const string turnaboutPrefix = "<style=cIsUtility>turnabout.</style> ";
         internal const string decisivePrefix = "<style=cIsUtility>decisive evidence</style> ";
 

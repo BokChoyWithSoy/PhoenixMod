@@ -12,7 +12,7 @@ Created by BokChoyWithSoy. Help me out for bugs and issues by contacting me on d
 
 ### Passive: Turnabout
 #### <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507829273817088/texBuffIcon.png">
-Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode, replacing Phoenix's primary and secondary abilities with empowered versions.
+Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode, permanently empowering Phoenix's skills.
 
 ### Primary: Throw Evidence
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507210026745956/texServbotIcon.png">
@@ -28,21 +28,29 @@ Stunning. Agile. Summon a giant hand which travels in a line, dealing 600% damag
 
 ### Secondary: Press The Witness
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509762449498112/texPressIcon.png"><br>
-Stunning. Press the witness, dealing 600% damage.
+Stunning. Press the witness, dealing 600% damage. Gain turnabout if you have decisive evidence.
 
 ### Turnabout Secondary: Objection!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510244827996180/texSecondaryUpgradeIcon.png"><br>
-Stunning. Raise an objection, dealing 800% damage.
+Freezing. Raise an objection, dealing 800% damage.
 
 ### Utility: Fall
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510540060880996/texTripIcon.png"><br>
-Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. You cannot be hit during the fall.
+Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. You cannot be hit during the fall. Gain an extra charge when In turnabout mode or reset the skill if you have decisive evidence.
 
 ### Special: Order In The Court!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927511214836314142/texGavelIcon.png"><br>
-Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds.
+Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds. Double the range and damage and weaken enemies if you are in turnabout mode or have decisive evidence.
 
 ## Changelog
+
+- 1.4.2
+	- MASTERY ACHIEVEMENT HAS BEEN TEMPORARILY DISABLE DUE TO HAVING ISSUES WITH THE LOGBOOK. (skin is still usable)
+	- Added a config which allows for the adjustments of stacks need for turnabout mode. (credits to AcCodo)
+	- Fixed network issue where Attorney's special was not applying the invincibility buff.
+	- Attorney's utility and special skill is now upgraded when entering turnabout mode.
+	- Turnabout skills now display the right name and description when hovering over them in game.
+	- Turnabout skills now slightly change in appearance.
 
 - 1.4.1
 	- Forgot to change stacks needed for turnabout mode back to 50.
@@ -72,7 +80,7 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 - 1.2.4 
 	- Forgot to revert decisive evidence needed for turnabout mode when testing.
 
-- 1.2.3 -
+- 1.2.3 
 	- "Throw Evidence" no longer does absurd knockback.
 	- "Take That" no longer does absurd knockback.
 	- Turnabout music can now be heard omnidirectionally.
@@ -80,11 +88,11 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 	- Significantly reduced the range you can hear Phoenix's voice lines.
 	- Significantly reduced the volume of all sound effects.
 
-- 1.2.2 -
+- 1.2.2 
 	- Fixed an issue where Phoenix's voice lines would play in the menu when you picked Sett from the Sett mod (Thanks to Lemonlust for figuring it out)
 	- Turnabout music may now be heard by all players in the lobby.
 
-- 1.2.1 -
+- 1.2.1 
 	- Added death animation.
 	- Fixed a bug where "Press The Witness" would fire multiple particles in multiplayer.
 	- Fixed a bug where "Order In The Cour!" would fire multiple times in multiplayer.

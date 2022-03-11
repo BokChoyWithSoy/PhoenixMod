@@ -250,9 +250,9 @@ namespace PhoenixWright.Modules.Survivors
             #region PrimaryArm
             Phoenix.primaryArm = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW_DESCRIPTION",
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_THROW2_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW2_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_THROW2_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPrimaryUpgrade"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.SpawnArm)),
                 activationStateMachineName = "Slide",
@@ -362,7 +362,7 @@ namespace PhoenixWright.Modules.Survivors
                 skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
                 skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTripIcon"),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTripIconStrong"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Fall)),
                 activationStateMachineName = "Body",
                 baseMaxStock = 2,
@@ -413,10 +413,10 @@ namespace PhoenixWright.Modules.Survivors
 
             Phoenix.gavelStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texGavelIcon"),
+                skillName = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME2",
+                skillNameToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_NAME2",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SPECIAL_ORDER_DESCRIPTION2",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texGavelIconStrong"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.GavelStrong)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
