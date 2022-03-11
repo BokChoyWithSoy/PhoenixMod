@@ -117,6 +117,10 @@ namespace PhoenixWright
 
                     self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
 
+                    self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.rollSkillDef2, GenericSkill.SkillOverridePriority.Contextual);
+
+                    self.skillLocator.special.SetSkillOverride(self.skillLocator.special, Phoenix.gavelStrong, GenericSkill.SkillOverridePriority.Contextual);
+
                     if(turnaboutActive)
                     {
                         if (Modules.Config.loweredVolume.Value)
