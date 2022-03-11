@@ -33,7 +33,7 @@ namespace PhoenixWright.Modules
 
             #region Passive
             LanguageAPI.Add(prefix + "PASSIVE_NAME", "Turnabout");
-            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION","Use " + Helpers.decisivePrefix + "to passively gain " + Helpers.turnaboutPrefix +" If you have <style=cIsDamage>50 stacks</style>, enter <style=cIsUtility>turnabout mode</style>.");
+            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION","Use " + Helpers.decisivePrefix + "to passively gain " + Helpers.turnaboutPrefix +" If you have <style=cIsDamage>" + Modules.Config.necessaryStacksTurnabout.Value + " stacks</style>, enter <style=cIsUtility>turnabout mode</style>.");
             #endregion
 
             #region Primary
