@@ -382,7 +382,33 @@ namespace PhoenixWright.Modules.Survivors
                 keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD UTILITY" }
             });
 
+            SkillDef tumbleSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTumbleIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Tumble)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 4f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = true,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = false,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+
             Modules.Skills.AddUtilitySkills(bodyPrefab, rollSkillDef);
+            //Modules.Skills.AddUtilitySkills(bodyPrefab, tumbleSkillDef);
             #endregion
 
             #region Special

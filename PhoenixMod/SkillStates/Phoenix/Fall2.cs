@@ -11,7 +11,7 @@ namespace PhoenixWright.SkillStates
     {
         
 
-        public static float damageCoefficient = 3f;
+        public static float damageCoefficient = 6f;
         public static float procCoefficient = 1f;
         public static float duration = 0.5f;
         public static float initialSpeedCoefficient = 5f;

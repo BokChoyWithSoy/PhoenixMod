@@ -1,6 +1,6 @@
 # Phoenix Wright, The Ace Attorney
 
-Adds Phoenix Wright to Risk of Rain 2, based of his moveset in Marvel vs Capcom 3.
+Adds Phoenix Wright to Risk of Rain 2, based off his moveset in Marvel vs Capcom 3.
 
 Network Compatible (Except for one issue that I need to fix)
 
@@ -42,7 +42,16 @@ Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. 
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927511214836314142/texGavelIcon.png"><br>
 Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds. Double the range and damage and weaken enemies if you are in turnabout mode or have decisive evidence.
 
+## Support me on Ko-fi
+If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
+<img src="https://media.discordapp.net/attachments/399901440023330816/952862894721208330/download.png"><br>
+
 ## Changelog
+- 1.4.4 
+	- Achievement issue has been fixed and mastery achievement has ben reenabled. 
+
+- 1.4.3
+	- Fixed an issue where the mod was infinitely loading in the loading screen.
 
 - 1.4.2
 	- MASTERY ACHIEVEMENT HAS BEEN TEMPORARILY DISABLE DUE TO HAVING ISSUES WITH THE LOGBOOK. (skin is still usable)
@@ -95,7 +104,7 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 - 1.2.1 
 	- Added death animation.
 	- Fixed a bug where "Press The Witness" would fire multiple particles in multiplayer.
-	- Fixed a bug where "Order In The Cour!" would fire multiple times in multiplayer.
+	- Fixed a bug where "Order In The Court!" would fire multiple times in multiplayer.
 	- Increased the size of the hitbox of "Fall"
 	- Increased the duration of "Fall" making more consistent to hit.
 

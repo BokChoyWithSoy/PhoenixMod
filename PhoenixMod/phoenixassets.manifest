@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1462912305
+CRC: 1273295858
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 736244dc781a02bbe32d022daeee7e19
+    Hash: 4bd3fa4510311046c2ab898b1f9f1f80
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3c95d1c8fe5176bf995de0046345c777
@@ -111,6 +111,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/Objection.png
 - Assets/PhoenixAssets/Materials/matPhoenix.mat
 - Assets/PhoenixAssets/Materials/lambert4.png
+- Assets/PhoenixAssets/Animations/Tumble.anim
 - Assets/PhoenixAssets/Mesh/meshHenry.mesh
 - Assets/PhoenixAssets/Mesh/meshRebellion.mesh
 - Assets/PhoenixAssets/Animations/Dying.anim
@@ -167,6 +168,7 @@ Assets:
 - Assets/PhoenixAssets/Mesh/meshVergilCoat.mesh
 - Assets/PhoenixAssets/VFX/Textures/texRipple.png
 - Assets/PhoenixAssets/Materials/Holographic.png
+- Assets/PhoenixAssets/Animations/SideGetUp.anim
 - Assets/PhoenixAssets/VFX/Materials/matAnimeShapes.mat
 - Assets/PhoenixAssets/Animations/GetUp.anim
 - Assets/PhoenixAssets/Materials/png-clipart-phoenix-wright-ace-attorney-symbol-computer-icons-ace-computer-network-angle.png
@@ -197,6 +199,8 @@ Assets:
 - Assets/PhoenixAssets/Materials/Holdit.png
 - Assets/PhoenixAssets/VFX/Textures/texHitSpark.png
 - Assets/PhoenixAssets/Materials/matPhoenixMastery.mat
+- Assets/PhoenixAssets/Icons/texTumbleIcon.png
+- Assets/PhoenixAssets/Animations/Soccer Trip.fbx
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
 - Assets/PhoenixAssets/Materials/TakeThat.mat
 - Assets/PhoenixAssets/Textures/texBazooka.png

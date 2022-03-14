@@ -43,6 +43,8 @@ Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. 
 Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds. Double the range and damage and weaken enemies if you are in turnabout mode or have decisive evidence.
 
 ## Changelog
+- 1.4.3
+	-Fixed an issue where the mod was infinitely loading in the loading screen.
 
 - 1.4.2
 	- MASTERY ACHIEVEMENT HAS BEEN TEMPORARILY DISABLE DUE TO HAVING ISSUES WITH THE LOGBOOK. (skin is still usable)

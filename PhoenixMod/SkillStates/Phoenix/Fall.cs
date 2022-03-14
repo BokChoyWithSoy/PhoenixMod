@@ -12,7 +12,7 @@ namespace PhoenixWright.SkillStates
         
 
         public static float damageCoefficient = 3f;
-        public static float procCoefficient = 1f;
+        public static float procCoefficient = 5f;
         public static float duration = 0.5f;
         public static float initialSpeedCoefficient = 5f;
         public static float finalSpeedCoefficient = 2.5f;
@@ -78,7 +78,7 @@ namespace PhoenixWright.SkillStates
             }
 
             this.attack = new OverlapAttack();
-            this.attack.damageType = DamageType.Stun1s;
+            this.attack.damageType = DamageType.BypassArmor;
             this.attack.attacker = base.gameObject;
             this.attack.inflictor = base.gameObject;
             this.attack.teamIndex = base.GetTeam();
@@ -87,11 +87,6 @@ namespace PhoenixWright.SkillStates
             this.attack.hitBoxGroup = hitBoxGroup;
             this.attack.isCrit = base.RollCrit();
 
-            if (NetworkServer.active)
-            {
-                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 5f * Fall.duration);
-                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 1f * Fall.duration);
-            }
         }
 
         private void RecalculateRollSpeed()
