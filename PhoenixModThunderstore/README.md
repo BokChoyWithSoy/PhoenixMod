@@ -44,9 +44,18 @@ Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% da
 
 ## Support me on Ko-fi
 If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
+<a href="https://ko-fi.com/bokchoywithsoy">
 <img src="https://media.discordapp.net/attachments/399901440023330816/952862894721208330/download.png"><br>
+</a>
 
 ## Changelog
+- 1.5.0
+	- Added new skin.
+	- Added new achievement.
+
+- 1.4.5
+	- Forgot to reset turnabout stacks to 50 like a dumbass.
+
 - 1.4.4 
 	- Achievement issue has been fixed and mastery achievement has ben reenabled. 
 

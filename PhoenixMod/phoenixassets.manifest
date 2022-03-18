@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1273295858
+CRC: 1891903981
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4bd3fa4510311046c2ab898b1f9f1f80
+    Hash: 5ca624beb456ad54df8370ea2f8e0750
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3c95d1c8fe5176bf995de0046345c777
@@ -136,6 +136,7 @@ Assets:
 - Assets/PhoenixAssets/Animations/RunForward.anim
 - Assets/PhoenixAssets/VFX/Materials/matTrail.mat
 - Assets/PhoenixAssets/VFX/Textures/texFire.tga
+- Assets/PhoenixAssets/Materials/matPhoenixNaruhodo.mat
 - Assets/PhoenixAssets/Mesh/Arm.mesh
 - Assets/PhoenixAssets/Textures/texHenryVergil.png
 - Assets/PhoenixAssets/VFX/SecondaryEffect.prefab
@@ -177,6 +178,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/TakeThat.png
 - Assets/PhoenixAssets/VFX/Textures/texPunchImpactShadow.png
 - Assets/PhoenixAssets/VFX/Textures/texSwingEffect.png
+- Assets/PhoenixAssets/Icons/texMasterySword.png
 - Assets/PhoenixAssets/Animations/MenuIdleIn.anim
 - Assets/FBX/Hammer.fbx
 - Assets/PhoenixAssets/VFX/Mesh/meshBoxingGlove.mesh
@@ -186,6 +188,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/matRebellion.mat
 - Assets/PhoenixAssets/Prefabs/KnifeGhost.prefab
 - Assets/PhoenixAssets/Mesh/meshHenrySword.mesh
+- Assets/PhoenixAssets/Materials/matPhoenixOther.png
 - Assets/PhoenixAssets/Icons/texMainSkin.png
 - Assets/FBX/Servbot.fbx
 - Assets/PhoenixAssets/VFX/SpecialEffect.prefab

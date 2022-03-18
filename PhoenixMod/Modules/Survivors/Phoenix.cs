@@ -66,6 +66,7 @@ namespace PhoenixWright.Modules.Survivors
 
         internal override UnlockableDef characterUnlockableDef { get; set; }
         private static UnlockableDef masterySkinUnlockableDef;
+        private static UnlockableDef swordSkinUnlockableDef;
 
         internal override void InitializeCharacter()
         {
@@ -76,6 +77,7 @@ namespace PhoenixWright.Modules.Survivors
         internal override void InitializeUnlockables()
         {
             masterySkinUnlockableDef = Modules.Unlockables.AddUnlockable<Achievements.MasteryAchievement>(true);
+            swordSkinUnlockableDef = Modules.Unlockables.AddUnlockable<Achievements.SwordAchievement>(true);
         }
 
         internal override void InitializeDoppelganger()
@@ -527,6 +529,35 @@ namespace PhoenixWright.Modules.Survivors
             };
 
             skins.Add(masterySkin);
+            #endregion
+
+            #region MasterySkin
+            Material swordMat = Modules.Assets.CreateMaterial("matPhoenixNaruhodo");
+            CharacterModel.RendererInfo[] swordRendererInfos = SkinRendererInfos(defaultRenderers, new Material[]
+            {
+                swordMat,
+                swordMat,
+                swordMat,
+                swordMat
+            });
+
+            SkinDef swordSkin = Modules.Skins.CreateSkinDef("Naruhodo",
+                Assets.mainAssetBundle.LoadAsset<Sprite>("texMasterySword"),
+                swordRendererInfos,
+                mainRenderer,
+                model,
+                swordSkinUnlockableDef);
+
+            swordSkin.meshReplacements = new SkinDef.MeshReplacement[]
+            {
+                new SkinDef.MeshReplacement
+                {
+                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshPhoenix"),
+                    renderer = defaultRenderers[instance.mainRendererIndex].renderer
+                }
+            };
+
+            skins.Add(swordSkin);
             #endregion
 
             skinController.skins = skins.ToArray();

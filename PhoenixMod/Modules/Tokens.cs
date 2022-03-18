@@ -68,11 +68,15 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: Mastery");
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESC", "As Phoenix, beat the game or obliterate on Monsoon.");
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: Mastery");
+
+            LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: A Dear Friend");
+            LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_DESC", "As Phoenix, collect a ceremonial dagger.");
+            LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: A Dear Friend");
             #endregion
             #endregion
 
             #region Keywords
-                LanguageAPI.Add("KEYWORD_TURNABOUT", "[ Decisive Evidence ]\nRed evidence is junk and green evidence is decisive evidence. Using other skills while having decisive evidence in your primary slot will grant bonus effects.\n\n[ Turnabout ]\nDealing damage with Attorney's secondary ability while having " + Helpers.decisivePrefix + "awards <style=cIsUtility>turnabout</style>.\n\n[ Turnabout Mode ]\nEntering <style=cIsUtility>turnabout mode</style> will <style=cIsUtility>permanently empower</style> all of Attorney's skills ");
+            LanguageAPI.Add("KEYWORD_TURNABOUT", "[ Decisive Evidence ]\nRed evidence is junk and green evidence is decisive evidence. Using other skills while having decisive evidence in your primary slot will grant bonus effects.\n\n[ Turnabout ]\nDealing damage with Attorney's secondary ability while having " + Helpers.decisivePrefix + "awards <style=cIsUtility>turnabout</style>.\n\n[ Turnabout Mode ]\nEntering <style=cIsUtility>turnabout mode</style> will <style=cIsUtility>permanently empower</style> all of Attorney's skills ");
                 LanguageAPI.Add("KEYWORD SECONDARY", "[ Decisive Evidence ]\nGain Turnabout stacks equal to the amount of enemies hit.");
                 LanguageAPI.Add("KEYWORD UTILITY", "[ Decisive Evidence ]\nReset Cooldown on use.");
                 LanguageAPI.Add("KEYWORD SPECIAL", "[ Decisive Evidence ]\nDouble damage and range and weaken all enemies in range.");
