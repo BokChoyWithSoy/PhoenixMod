@@ -21,6 +21,7 @@ namespace PhoenixWright.Modules.Survivors
         internal static SkillDef secondaryPressStrong;
         internal static SkillDef rollSkillDef2;
         internal static SkillDef gavelStrong;
+        internal static SkillDef tumbleStrongSkillDef;
 
         internal override GameObject bodyPrefab { get; set; }
         internal override GameObject displayPrefab { get; set; }
@@ -348,7 +349,7 @@ namespace PhoenixWright.Modules.Survivors
                 canceledFromSprinting = false,
                 forceSprintDuringState = true,
                 fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                interruptPriority = EntityStates.InterruptPriority.Pain,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = false,
                 mustKeyPress = false,
@@ -373,7 +374,7 @@ namespace PhoenixWright.Modules.Survivors
                 canceledFromSprinting = false,
                 forceSprintDuringState = true,
                 fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                interruptPriority = EntityStates.InterruptPriority.Pain,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = false,
                 mustKeyPress = false,
@@ -386,13 +387,38 @@ namespace PhoenixWright.Modules.Survivors
 
             SkillDef tumbleSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_NAME",
+                skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
                 skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTumbleIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Tumble)),
                 activationStateMachineName = "Body",
                 baseMaxStock = 1,
+                baseRechargeInterval = 4f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = true,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = false,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+
+            Phoenix.tumbleStrongSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTumbleIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Tumble)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 2,
                 baseRechargeInterval = 4f,
                 beginSkillCooldownOnSkillEnd = false,
                 canceledFromSprinting = false,
@@ -428,7 +454,7 @@ namespace PhoenixWright.Modules.Survivors
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
                 fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
+                interruptPriority = EntityStates.InterruptPriority.Pain,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = true,
@@ -453,7 +479,7 @@ namespace PhoenixWright.Modules.Survivors
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
                 fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
+                interruptPriority = EntityStates.InterruptPriority.Pain,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = true,

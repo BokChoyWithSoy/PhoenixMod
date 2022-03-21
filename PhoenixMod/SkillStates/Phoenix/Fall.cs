@@ -188,6 +188,11 @@ namespace PhoenixWright.SkillStates
             }
         }
 
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            return InterruptPriority.PrioritySkill;
+        }
+
         private void UnsetAll()
         {
             base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);

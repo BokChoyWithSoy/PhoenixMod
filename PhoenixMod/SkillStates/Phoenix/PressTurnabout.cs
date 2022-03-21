@@ -30,12 +30,22 @@ namespace PhoenixWright.SkillStates
         {
             base.OnEnter();
             Ray aimRay = base.GetAimRay();
+            Ray ray = new Ray(new Vector3(aimRay.origin.x, aimRay.origin.y + 0.2f, aimRay.origin.z), aimRay.direction);
             this.hasFired = false;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 20f))
+            {
+                rayPosition = hit.point;
+            }
+            else
+            {
+                rayPosition = aimRay.origin + 20 * aimRay.direction;
+            }
 
             base.StartAimMode(duration, true);
             base.PlayAnimation("FullBody, Override", "Point", "ShootGun.playbackRate", (PressTurnabout.duration  / PressTurnabout.duration));
-
-            rayPosition = aimRay.origin + 20 * aimRay.direction;
 
             random = UnityEngine.Random.Range(0, 2);
 
@@ -86,8 +96,6 @@ namespace PhoenixWright.SkillStates
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            Ray aimRay = base.GetAimRay();
-            rayPosition = aimRay.origin + 20 * aimRay.direction;
 
             stopwatch += Time.fixedDeltaTime;
             if (this.stopwatch >= attackStartTime && this.stopwatch <= attackEndTime )
@@ -107,6 +115,11 @@ namespace PhoenixWright.SkillStates
         {
             base.OnExit();
             base.characterMotor.disableAirControlUntilCollision = false;
+        }
+
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            return InterruptPriority.Pain;
         }
 
         private void FireAttack()

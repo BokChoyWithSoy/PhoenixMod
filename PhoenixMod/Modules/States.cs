@@ -19,6 +19,9 @@ namespace PhoenixWright.Modules
             entityStates.Add(typeof(ThrowBottle));
 
             entityStates.Add(typeof(Fall));
+            entityStates.Add(typeof(Tumble));
+
+            entityStates.Add(typeof(GavelStrong));
 
             entityStates.Add(typeof(Death));
 

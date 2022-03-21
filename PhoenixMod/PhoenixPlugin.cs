@@ -35,7 +35,7 @@ namespace PhoenixWright
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "1.5.0";
+        public const string MODVERSION = "1.5.2";
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "BOK";
@@ -115,9 +115,21 @@ namespace PhoenixWright
                     self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
                     self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
 
-                    self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
+                    if(self.skillLocator.secondary.skillNameToken.Equals(PhoenixPlugin.developerPrefix +"_PHOENIX_BODY_SECONDARY_PRESS_NAME"))
+                    {
+                        self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
+                    }
 
-                    self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.rollSkillDef2, GenericSkill.SkillOverridePriority.Contextual);
+                    #region secondary
+                    if (self.skillLocator.utility.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_UTILITY_FALL_NAME"))
+                    {
+                        self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.rollSkillDef2, GenericSkill.SkillOverridePriority.Contextual);
+                    }
+                    if (self.skillLocator.utility.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME"))
+                    {
+                        self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.tumbleStrongSkillDef, GenericSkill.SkillOverridePriority.Contextual);
+                    }
+                    #endregion
 
                     self.skillLocator.special.SetSkillOverride(self.skillLocator.special, Phoenix.gavelStrong, GenericSkill.SkillOverridePriority.Contextual);
 

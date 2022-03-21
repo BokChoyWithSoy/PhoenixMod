@@ -11,29 +11,30 @@ namespace PhoenixWright.SkillStates
     {
         
 
-        public static float damageCoefficient = 3f;
+        public static float damageCoefficient = 2f;
         public static float procCoefficient = 1f;
         public static float duration = 0.5f;
-        public static float initialSpeedCoefficient = 5f;
+        public static float initialSpeedCoefficient = 7f;
         public static float finalSpeedCoefficient = 2.5f;
 
         private bool hasFired;
         public static string dodgeSoundString = "HenryRoll";
         public static float dodgeFOV = EntityStates.Commando.DodgeState.dodgeFOV;
-        private float stopwatch;
         private float rollSpeed;
         private Vector3 forwardDirection;
         private Animator animator;
         private Vector3 previousPosition;
+        public Vector3 rayPosition;
 
         protected string hitboxName = "fall";
-        protected OverlapAttack attack;
+        protected BlastAttack blastAttack;
         protected float attackStartTime = 0.001f * duration;
         protected float attackEndTime = 8f *duration;
 
         public override void OnEnter()
         {
             base.OnEnter();
+            Ray aimRay = base.GetAimRay();
             this.hasFired = false;
             this.animator = base.GetModelAnimator();
 
@@ -61,7 +62,7 @@ namespace PhoenixWright.SkillStates
 
 
             base.StartAimMode(duration, true);
-            base.PlayAnimation("FullBody, Override", "Tumble", "Roll.playbackRate", duration);
+            base.PlayAnimation("FullBody, Override", "Tumble", "Roll.playbackRate", duration/2);
             HitBoxGroup hitBoxGroup = null;
             Transform modelTransform = base.GetModelTransform();
             if(Modules.Config.loweredVolume.Value)
@@ -76,15 +77,17 @@ namespace PhoenixWright.SkillStates
                 hitBoxGroup = Array.Find<HitBoxGroup>(modelTransform.GetComponents<HitBoxGroup>(), (HitBoxGroup element) => element.groupName == this.hitboxName);
             }
 
-            this.attack = new OverlapAttack();
-            this.attack.damageType = DamageType.Stun1s;
-            this.attack.attacker = base.gameObject;
-            this.attack.inflictor = base.gameObject;
-            this.attack.teamIndex = base.GetTeam();
-            this.attack.damage = damageCoefficient * this.damageStat;
-            this.attack.procCoefficient = procCoefficient;
-            this.attack.hitBoxGroup = hitBoxGroup;
-            this.attack.isCrit = base.RollCrit();
+            blastAttack = new BlastAttack();
+            blastAttack.radius = 10f;
+            blastAttack.procCoefficient = procCoefficient;
+            blastAttack.position = aimRay.origin;
+            blastAttack.attacker = base.gameObject;
+            blastAttack.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);
+            blastAttack.baseDamage = this.damageStat * damageCoefficient;
+            blastAttack.falloffModel = BlastAttack.FalloffModel.None;
+            blastAttack.teamIndex = TeamComponent.GetObjectTeam(blastAttack.attacker);
+            blastAttack.damageType = DamageType.Stun1s;
+            blastAttack.attackerFiltering = AttackerFiltering.Default;
 
             if (NetworkServer.active)
             {
@@ -121,7 +124,9 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime)
             {
                 FireAttack();
-                if(PhoenixController.GetEvidenceType())
+                FireAttack();
+                FireAttack();
+                if (PhoenixController.GetEvidenceType())
                 {
                     base.skillLocator.utility.Reset();
                     ShufflePrimary();
@@ -167,7 +172,7 @@ namespace PhoenixWright.SkillStates
                 }
                 else Util.PlaySound("FallVoice", base.gameObject);
             }
-            this.attack.Fire();
+            this.blastAttack.Fire();
         }
 
         private void ShufflePrimary()

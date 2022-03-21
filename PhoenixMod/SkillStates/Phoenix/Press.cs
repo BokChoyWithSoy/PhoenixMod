@@ -30,12 +30,22 @@ namespace PhoenixWright.SkillStates
         {
             base.OnEnter();
             Ray aimRay = base.GetAimRay();
+            Ray ray = new Ray(new Vector3(aimRay.origin.x,aimRay.origin.y,aimRay.origin.z + 0.1f), aimRay.direction);
             this.hasFired = false;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 20f))
+            {
+                rayPosition = hit.point;
+            }
+            else
+            {
+                rayPosition = aimRay.origin + 20 * aimRay.direction;
+            }
 
             base.StartAimMode(duration, true);
             base.PlayAnimation("FullBody, Override", "Point", "ShootGun.playbackRate", (Press.duration  / Press.duration));
-
-            rayPosition = aimRay.origin + 20 * aimRay.direction;
 
             EffectManager.SpawnEffect(Modules.Assets.pressEffect, new EffectData
             {
@@ -61,8 +71,6 @@ namespace PhoenixWright.SkillStates
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            Ray aimRay = base.GetAimRay();
-            rayPosition = aimRay.origin + 20 * aimRay.direction;
 
             stopwatch += Time.fixedDeltaTime;
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime && !hasFired)
@@ -132,6 +140,11 @@ namespace PhoenixWright.SkillStates
                     PhoenixController.SetEvidenceType(false);
                     break;
             }
+        }
+
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            return InterruptPriority.Pain;
         }
 
         private void UnsetAll()

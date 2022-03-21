@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1891903981
+CRC: 2662691793
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5ca624beb456ad54df8370ea2f8e0750
+    Hash: a0bf3014e1822b9d055762d466737f70
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3c95d1c8fe5176bf995de0046345c777
@@ -133,7 +133,6 @@ Assets:
 - Assets/PhoenixAssets/Materials/matPhoenixMastery.png
 - Assets/PhoenixAssets/Materials/Materials/matPhoenix.mat
 - Assets/PhoenixAssets/Materials/matPhoenix.png
-- Assets/PhoenixAssets/Animations/RunForward.anim
 - Assets/PhoenixAssets/VFX/Materials/matTrail.mat
 - Assets/PhoenixAssets/VFX/Textures/texFire.tga
 - Assets/PhoenixAssets/Materials/matPhoenixNaruhodo.mat
@@ -160,6 +159,7 @@ Assets:
 - Assets/PhoenixAssets/Animations/Dead.anim
 - Assets/PhoenixAssets/VFX/Textures/texHenrySwing2.png
 - Assets/PhoenixAssets/Mesh/meshPistol.mesh
+- Assets/PhoenixAssets/Animations/RunForward.anim
 - Assets/PhoenixAssets/Icons/texVaseIcon.png
 - Assets/PhoenixAssets/VFX/Textures/texLightning.tif
 - Assets/PhoenixAssets/Materials/matBoxingGlove.mat
@@ -198,6 +198,7 @@ Assets:
 - Assets/PhoenixAssets/Icons/texMasterySkin.png
 - Assets/PhoenixAssets/Icons/texKnifeIcon.png
 - Assets/PhoenixAssets/Materials/sennelier-blue-light-oil-paint-stick-series-1-365-500x500.jpg
+- Assets/PhoenixAssets/Animations/Sprint.anim
 - Assets/PhoenixAssets/Animations/FallFlat.anim
 - Assets/PhoenixAssets/Materials/Holdit.png
 - Assets/PhoenixAssets/VFX/Textures/texHitSpark.png

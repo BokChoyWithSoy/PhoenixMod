@@ -12,7 +12,7 @@ namespace PhoenixWright.SkillStates
     {
         public static float damageCoefficient = 10f;
         public static float procCoefficient = 5f;
-        public static float duration = 1f;
+        public static float duration = 0.7f;
         public Vector3 rayPosition;
 
 
@@ -65,7 +65,7 @@ namespace PhoenixWright.SkillStates
 
             blastAttackStrong = new BlastAttack();
             blastAttackStrong.radius = 50f;
-            blastAttackStrong.procCoefficient = procCoefficient * 20;
+            blastAttackStrong.procCoefficient = procCoefficient;
             blastAttackStrong.position = rayPosition;
             blastAttackStrong.attacker = base.gameObject;
             blastAttackStrong.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);
@@ -115,7 +115,7 @@ namespace PhoenixWright.SkillStates
                 }
                 else blastAttack.Fire();
 
-                base.PlayAnimation("FullBody, Override", "Getup", "ShootGun.playbackRate", (Press.duration / Press.duration));  
+                base.PlayAnimation("FullBody, Override", "Getup", "ShootGun.playbackRate", duration);  
                 Wave wave = new Wave
                 {
                     amplitude = 2f,
@@ -147,6 +147,11 @@ namespace PhoenixWright.SkillStates
                     PhoenixController.SetEvidenceType(false);
                     break;
             }
+        }
+
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            return InterruptPriority.Death;
         }
 
         private void UnsetAll()

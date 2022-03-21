@@ -17,7 +17,7 @@ namespace PhoenixWright.Modules
             desc = desc + "< ! > Order in the court! can be used to wipe crowds with ease." + Environment.NewLine + Environment.NewLine;
 
             string outro = "..and so he left, trying to find a way home.";
-            string outroFailure = "..and so he vanished, forever a blank slate.";
+            string outroFailure = "..and so he vanished, defended the innocent but not himself.";
 
             LanguageAPI.Add(prefix + "NAME", "Attorney");
             LanguageAPI.Add(prefix + "DESCRIPTION", desc);
@@ -55,6 +55,9 @@ namespace PhoenixWright.Modules
             #region Utility
             LanguageAPI.Add(prefix + "UTILITY_FALL_NAME", "Fall");
             LanguageAPI.Add(prefix + "UTILITY_FALL_DESCRIPTION", Helpers.stunningPrefix +  $"<style=cIsUtility>Fall</style> on your face gaining <style=cIsUtility>300 armor</style> and dealing <style=cIsDamage>300% damage</style>. <style=cIsUtility>You cannot be hit during the fall.</style>");
+
+            LanguageAPI.Add(prefix + "UTILITY_FALL2_NAME", "Tumble");
+            LanguageAPI.Add(prefix + "UTILITY_FALL2_DESCRIPTION", Helpers.stunningPrefix + $"<style=cIsUtility>Fall over and tumble</style>, dealing <style=cIsDamage>600% damage</style>.");
             #endregion
 
             #region Special

@@ -49,6 +49,15 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 </a>
 
 ## Changelog
+- 1.5.2
+	- Changed running animation maybe it's less jank?
+	- Fixed an issue where turnabout gavel would hit allies and self.
+	- Fixed an issue where secondary would collide with player character.
+
+- 1.5.1
+	- Secondary skill now will collide with the floor when aimed at the floor.
+	- Added the ability to cancel other skills into special skill.
+
 - 1.5.0
 	- Added new skin.
 	- Added new achievement.
