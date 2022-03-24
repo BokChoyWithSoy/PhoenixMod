@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2662691793
+CRC: 1429712404
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a0bf3014e1822b9d055762d466737f70
+    Hash: 28a335bb8a5f9ee1fef93c740c5ee4fa
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3c95d1c8fe5176bf995de0046345c777
@@ -68,6 +68,7 @@ Assets:
 - Assets/PhoenixAssets/Materials/Champagne_Bottle_Rap_DIFF.png
 - Assets/PhoenixAssets/Materials/Materials/Champagne_Bottle_Rap_DIFF.mat
 - Assets/PhoenixAssets/Animations/WalkForward.anim
+- Assets/PhoenixAssets/Materials/DRIP2.png
 - Assets/PhoenixAssets/VFX/Textures/texDust.png
 - Assets/PhoenixAssets/Materials/matRoy.mat
 - Assets/PhoenixAssets/Materials/matAltPhoenix.mat
@@ -75,7 +76,9 @@ Assets:
 - Assets/PhoenixAssets/Icons/texServbotIcon.png
 - Assets/PhoenixAssets/Icons/texTripIconStrong.png
 - Assets/PhoenixAssets/Mesh/meshUzi.mesh
+- Assets/PhoenixAssets/Mesh/DripBody.mesh
 - Assets/PhoenixAssets/VFX/Materials/matSmoke.mat
+- Assets/PhoenixAssets/Mesh/meshPhoenixDrip.mesh
 - Assets/PhoenixAssets/Materials/matDante.mat
 - Assets/PhoenixAssets/Animations/Ascend.anim
 - Assets/PhoenixAssets/Textures/texHenryAlt.png
@@ -206,6 +209,8 @@ Assets:
 - Assets/PhoenixAssets/Icons/texTumbleIcon.png
 - Assets/PhoenixAssets/Animations/Soccer Trip.fbx
 - Assets/PhoenixAssets/Mesh/meshHenryAlt.mesh
+- Assets/PhoenixAssets/Materials/matPhoenixDrip.mat
+- Assets/PhoenixAssets/Materials/Drip.png
 - Assets/PhoenixAssets/Materials/TakeThat.mat
 - Assets/PhoenixAssets/Textures/texBazooka.png
 - Assets/PhoenixAssets/Mesh/meshDanteCoat.mesh

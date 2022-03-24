@@ -50,9 +50,8 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 
 ## Changelog
 - 1.5.2
-	- Changed running animation maybe it's less jank?
+	- Changed running animation
 	- Fixed an issue where turnabout gavel would hit allies and self.
-	- Fixed an issue where secondary would collide with player character.
 
 - 1.5.1
 	- Secondary skill now will collide with the floor when aimed at the floor.

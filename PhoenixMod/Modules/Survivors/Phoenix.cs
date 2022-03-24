@@ -557,7 +557,7 @@ namespace PhoenixWright.Modules.Survivors
             skins.Add(masterySkin);
             #endregion
 
-            #region MasterySkin
+            #region SwordSkin
             Material swordMat = Modules.Assets.CreateMaterial("matPhoenixNaruhodo");
             CharacterModel.RendererInfo[] swordRendererInfos = SkinRendererInfos(defaultRenderers, new Material[]
             {
@@ -584,6 +584,35 @@ namespace PhoenixWright.Modules.Survivors
             };
 
             skins.Add(swordSkin);
+            #endregion
+
+            #region DripSkin
+            Material dripMat = Modules.Assets.CreateMaterial("matPhoenixDrip");
+            CharacterModel.RendererInfo[] dripRendererInfos = SkinRendererInfos(defaultRenderers, new Material[]
+            {
+                dripMat,
+                dripMat,
+                dripMat,
+                dripMat
+            });
+
+            SkinDef dripSkin = Modules.Skins.CreateSkinDef("Drip",
+                Assets.mainAssetBundle.LoadAsset<Sprite>("texMasterySword"),
+                dripRendererInfos,
+                mainRenderer,
+                model
+                );
+
+            dripSkin.meshReplacements = new SkinDef.MeshReplacement[]
+            {
+                new SkinDef.MeshReplacement
+                {
+                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("DripBody"),
+                    renderer = defaultRenderers[instance.mainRendererIndex].renderer
+                }
+            };
+
+            skins.Add(dripSkin);
             #endregion
 
             skinController.skins = skins.ToArray();

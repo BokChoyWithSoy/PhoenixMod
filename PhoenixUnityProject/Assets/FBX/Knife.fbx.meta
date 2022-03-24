@@ -26,7 +26,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mesh_0851.rip.001
-    second: {fileID: 2100000, guid: c0cbd8e16fbb9b74b933377a78c8bb43, type: 2}
+    second: {fileID: 2100000, guid: 7e638768ad6bd8a4e875fff84c5deaca, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
