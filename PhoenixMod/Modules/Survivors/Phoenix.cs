@@ -68,6 +68,7 @@ namespace PhoenixWright.Modules.Survivors
         internal override UnlockableDef characterUnlockableDef { get; set; }
         private static UnlockableDef masterySkinUnlockableDef;
         private static UnlockableDef swordSkinUnlockableDef;
+        private static UnlockableDef dripSkinUnlockableDef;
 
         internal override void InitializeCharacter()
         {
@@ -79,6 +80,7 @@ namespace PhoenixWright.Modules.Survivors
         {
             masterySkinUnlockableDef = Modules.Unlockables.AddUnlockable<Achievements.MasteryAchievement>(true);
             swordSkinUnlockableDef = Modules.Unlockables.AddUnlockable<Achievements.SwordAchievement>(true);
+            dripSkinUnlockableDef = Modules.Unlockables.AddUnlockable<Achievements.DripAchievement>(true);
         }
 
         internal override void InitializeDoppelganger()
@@ -597,17 +599,17 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             SkinDef dripSkin = Modules.Skins.CreateSkinDef("Drip",
-                Assets.mainAssetBundle.LoadAsset<Sprite>("texMasterySword"),
+                Assets.mainAssetBundle.LoadAsset<Sprite>("texDripSkin"),
                 dripRendererInfos,
                 mainRenderer,
-                model
-                );
+                model,
+                dripSkinUnlockableDef);
 
             dripSkin.meshReplacements = new SkinDef.MeshReplacement[]
             {
                 new SkinDef.MeshReplacement
                 {
-                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("DripBody"),
+                    mesh = Modules.Assets.mainAssetBundle.LoadAsset<Mesh>("meshPhoenix"),
                     renderer = defaultRenderers[instance.mainRendererIndex].renderer
                 }
             };

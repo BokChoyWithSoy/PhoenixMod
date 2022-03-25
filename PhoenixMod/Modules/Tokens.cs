@@ -75,6 +75,10 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: A Dear Friend");
             LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_DESC", "As Phoenix, collect a ceremonial dagger.");
             LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: A Dear Friend");
+
+            LanguageAPI.Add(prefix + "DRIPUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: Dripped Out");
+            LanguageAPI.Add(prefix + "DRIPUNLOCKABLE_ACHIEVEMENT_DESC", "As Phoenix, collect Kajaro's band, Runald's band, Paul's goat hoof and Monster Tooth.");
+            LanguageAPI.Add(prefix + "DRIPUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: Dripped Out");
             #endregion
             #endregion
 

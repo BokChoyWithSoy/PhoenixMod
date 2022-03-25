@@ -12,7 +12,7 @@ Created by BokChoyWithSoy. Help me out for bugs and issues by contacting me on d
 
 ### Passive: Turnabout
 #### <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507829273817088/texBuffIcon.png">
-Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode, permanently empowering Phoenix's skills.
+<b>Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence</b>, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode,<b> permanently</b> empowering Phoenix's skills.
 
 ### Primary: Throw Evidence
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507210026745956/texServbotIcon.png">
@@ -49,6 +49,12 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 </a>
 
 ## Changelog
+- 1.6.0
+	- Added new skin.
+	- Added new Achievement.
+	- Fixed running animation snapping to another point.
+	- Fixed jump animation snapping to another point.
+
 - 1.5.2
 	- Changed running animation
 	- Fixed an issue where turnabout gavel would hit allies and self.
