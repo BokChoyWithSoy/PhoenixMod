@@ -35,7 +35,10 @@ namespace PhoenixWright
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "1.5.3";
+        public const string MODVERSION = "1.7.3";
+
+        public static PhoenixController phoenixController;
+        public static Vector3 characterPos;
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "BOK";
@@ -46,6 +49,8 @@ namespace PhoenixWright
 
         private void Awake()
         {
+            phoenixController = null;
+
             instance = this;
 
             // load assets and read config
@@ -83,7 +88,7 @@ namespace PhoenixWright
             On.RoR2.CharacterModel.Awake += CharacterModel_Awake;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.CharacterBody.FixedUpdate += CharacterBody_FixedUpdate;
-
+            MusicTrackDef music = new MusicTrackDef();
         }
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
@@ -103,6 +108,8 @@ namespace PhoenixWright
         private void CharacterBody_FixedUpdate(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
         {
             orig(self);
+
+            characterPos = self.transform.position;
 
             if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
             {
@@ -133,20 +140,6 @@ namespace PhoenixWright
 
                     self.skillLocator.special.SetSkillOverride(self.skillLocator.special, Phoenix.gavelStrong, GenericSkill.SkillOverridePriority.Contextual);
 
-                    if(turnaboutActive)
-                    {
-                        if (Modules.Config.loweredVolume.Value)
-                        {
-                            Util.PlaySound("TurnaboutMusicQuiet", self.gameObject);
-                        }
-                        else Util.PlaySound("TurnaboutMusic", self.gameObject);
-                        turnaboutActive = false;
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.Alpha1))
-                    {
-                        
-                    }
                 }
             }
 
@@ -162,7 +155,6 @@ namespace PhoenixWright
                     Util.PlaySound("PhoenixDyingQuiet", self.gameObject);
                 }
                 else Util.PlaySound("PhoenixDying", self.gameObject);
-
             }
         }
 

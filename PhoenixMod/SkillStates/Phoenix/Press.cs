@@ -10,7 +10,7 @@ namespace PhoenixWright.SkillStates
 {
     public class Press : BaseSkillState
     {
-        public static float damageCoefficient = 6f;
+        public static float damageCoefficient = 4f;
         public static float procCoefficient = 1f;
         public static float duration = 0.025f;
         public Vector3 rayPosition;
@@ -18,10 +18,7 @@ namespace PhoenixWright.SkillStates
 
 
         private bool hasFired;
-        private float stopwatch;
-        private Animator animator;
 
-        protected string hitboxName = "press";
         protected BlastAttack blastAttack;
         protected float attackStartTime = 0.01f * duration;
         protected float attackEndTime = 1f *duration;
@@ -30,7 +27,7 @@ namespace PhoenixWright.SkillStates
         {
             base.OnEnter();
             Ray aimRay = base.GetAimRay();
-            Ray ray = new Ray(new Vector3(aimRay.origin.x,aimRay.origin.y,aimRay.origin.z + 0.1f), aimRay.direction);
+            Ray ray = new Ray(aimRay.origin + 1f * aimRay.direction, aimRay.direction);
             this.hasFired = false;
 
             RaycastHit hit;
@@ -47,13 +44,16 @@ namespace PhoenixWright.SkillStates
             base.StartAimMode(duration, true);
             base.PlayAnimation("FullBody, Override", "Point", "ShootGun.playbackRate", (Press.duration  / Press.duration));
 
-            EffectManager.SpawnEffect(Modules.Assets.pressEffect, new EffectData
+            if (base.isAuthority)
             {
-                origin = rayPosition,
-                scale = 1f,
-                rotation = Quaternion.LookRotation(aimRay.direction)
+                EffectManager.SpawnEffect(Modules.Assets.pressEffect, new EffectData
+                {
+                    origin = rayPosition,
+                    scale = 1f,
+                    rotation = Quaternion.LookRotation(aimRay.direction)
 
-            }, true);
+                }, true);
+            }
 
             blastAttack = new BlastAttack();
             blastAttack.radius = 10f;
@@ -72,19 +72,21 @@ namespace PhoenixWright.SkillStates
         {
             base.FixedUpdate();
 
-            stopwatch += Time.fixedDeltaTime;
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime && !hasFired)
             {
-                hasFired = true;
-                if (Modules.Config.loweredVolume.Value)
-                {
-                    Util.PlaySound("HoldItQuiet", base.gameObject);
-                }
-                else Util.PlaySound("HoldIt", base.gameObject);
-                if (blastAttack.Fire().hitCount > 0)
-                {
-                    OnHitEnemyAuthority();
-                }
+                    hasFired = true;
+                    if (Modules.Config.loweredVolume.Value)
+                    {
+                        Util.PlaySound("HoldItQuiet", base.gameObject);
+                    }
+                    else Util.PlaySound("HoldIt", base.gameObject);
+                    if (base.isAuthority)
+                    {
+                        if (blastAttack.Fire().hitCount > 0)
+                        {
+                            OnHitEnemyAuthority();
+                        }
+                    }
             }
 
 
@@ -116,7 +118,27 @@ namespace PhoenixWright.SkillStates
                     PhoenixPlugin.currentStacks += blastAttack.Fire().hitCount;
                 }
                 else PhoenixPlugin.currentStacks++;
-                ShufflePrimary();
+                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME") && PhoenixController.GetEvidenceType())
+                {
+                    ShufflePrimary();
+                }
+                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME") && PhoenixController.GetEvidenceType())
+                {
+                    base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.resetPaperAttackCount();
+                }
+                if (PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
+                { 
+                    if (PhoenixPlugin.turnaboutActive)
+                    {
+                        if (Modules.Config.loweredVolume.Value)
+                        {
+                            Util.PlaySound("TurnaboutMusicQuiet", base.gameObject);
+                        }
+                        else Util.PlaySound("TurnaboutMusic", base.gameObject);
+                        PhoenixPlugin.turnaboutActive = false;
+                    }
+                }
             }
         }
 

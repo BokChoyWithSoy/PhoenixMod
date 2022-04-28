@@ -17,11 +17,14 @@ namespace PhoenixWright.Modules.Survivors
         internal static SkillDef primaryServbot;
         internal static SkillDef primaryBottle;
         internal static SkillDef primaryArm;
+        internal static SkillDef primaryPaperRed;
+        internal static SkillDef primaryPaperGreen;
         internal static SkillDef secondaryPress;
         internal static SkillDef secondaryPressStrong;
         internal static SkillDef rollSkillDef2;
         internal static SkillDef gavelStrong;
         internal static SkillDef tumbleStrongSkillDef;
+
 
         internal override GameObject bodyPrefab { get; set; }
         internal override GameObject displayPrefab { get; set; }
@@ -73,7 +76,7 @@ namespace PhoenixWright.Modules.Survivors
         internal override void InitializeCharacter()
         {
             base.InitializeCharacter();
-            bodyPrefab.AddComponent<PhoenixController>();
+            PhoenixPlugin.phoenixController = bodyPrefab.AddComponent<PhoenixController>();
         }
 
         internal override void InitializeUnlockables()
@@ -95,9 +98,6 @@ namespace PhoenixWright.Modules.Survivors
 
             Transform hitboxTransform = childLocator.FindChild("FallHitbox");
             Modules.Prefabs.SetupHitbox(model, hitboxTransform, "fall");
-
-            Transform hitboxTransform1 = childLocator.FindChild("GavelHitbox");
-            Modules.Prefabs.SetupHitbox(model, hitboxTransform1, "gavel");
         }
 
         internal override void InitializeSkills()
@@ -113,6 +113,59 @@ namespace PhoenixWright.Modules.Survivors
             skillLoc.passiveSkill.skillDescriptionToken = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PASSIVE_DESCRIPTION";
             skillLoc.passiveSkill.icon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texBuffIcon");
             skillLoc.passiveSkill.keywordToken = "KEYWORD_TURNABOUT";
+            #endregion
+
+            #region primaryPaper
+            Phoenix.primaryPaperRed = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPaperIconRed"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowPaper)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
+            });
+
+            Phoenix.primaryPaperGreen = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPaperIconGreen"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowPaper)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
+            });
+
             #endregion
 
             #region PrimaryVase
@@ -142,6 +195,7 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryVase);
+            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryPaperRed);
             #endregion
 
             #region PrimaryKnife
@@ -305,10 +359,35 @@ namespace PhoenixWright.Modules.Survivors
                 stockToConsume = 1,
                 keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SECONDARY" }
             });
+
+            SkillDef secondaryLock = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPressIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LockSecondary)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 20f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SECONDARY" }
+            });
             #endregion
 
             #region Secondary
-             Phoenix.secondaryPressStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            Phoenix.secondaryPressStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
@@ -335,6 +414,7 @@ namespace PhoenixWright.Modules.Survivors
             #endregion
 
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
+            Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryLock);
 
             #region Utility
             SkillDef rollSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
@@ -438,7 +518,7 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddUtilitySkills(bodyPrefab, rollSkillDef);
-            //Modules.Skills.AddUtilitySkills(bodyPrefab, tumbleSkillDef);
+            Modules.Skills.AddUtilitySkills(bodyPrefab, tumbleSkillDef);
             #endregion
 
             #region Special
@@ -621,2587 +701,2607 @@ namespace PhoenixWright.Modules.Survivors
         }
 
 
-//        internal override void SetItemDisplays()
-//        {
-//            itemDisplayRules = new List<ItemDisplayRuleSet.KeyAssetRuleGroup>();
-
-//            // add item displays here
-//            //  HIGHLY recommend using KingEnderBrine's ItemDisplayPlacementHelper mod for this
-//            #region Item Displays
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Jetpack,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBugWings"),
-//                            childName = "Chest",
-//                            localPos = new Vector3(0.0009F, 0.2767F, -0.1F),
-//                            localAngles = new Vector3(21.4993F, 358.6616F, 358.3334F),
-//                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.GoldGat,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGoldGat"),
-//childName = "Chest",
-//localPos = new Vector3(0.1009F, 0.4728F, -0.1278F),
-//localAngles = new Vector3(22.6043F, 114.6042F, 299.1935F),
-//localScale = new Vector3(0.15F, 0.15F, 0.15F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.BFG,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBFG"),
-//childName = "Chest",
-//localPos = new Vector3(0.0782F, 0.4078F, 0F),
-//localAngles = new Vector3(0F, 0F, 313.6211F),
-//localScale = new Vector3(0.3F, 0.3F, 0.3F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.CritGlasses,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGlasses"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.1687F, 0.1558F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.3215F, 0.3034F, 0.3034F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Syringe,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySyringeCluster"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0534F, 0.0352F, 0F),
-//localAngles = new Vector3(0F, 0F, 83.2547F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Behemoth,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBehemoth"),
-//childName = "Gun",
-//localPos = new Vector3(0F, 0.2247F, -0.1174F),
-//localAngles = new Vector3(6.223F, 180F, 0F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Missile,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMissileLauncher"),
-//childName = "Chest",
-//localPos = new Vector3(-0.3075F, 0.5204F, -0.049F),
-//localAngles = new Vector3(0F, 0F, 51.9225F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Dagger,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDagger"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0553F, 0.2856F, 0.0945F),
-//localAngles = new Vector3(334.8839F, 31.5284F, 34.6784F),
-//localScale = new Vector3(1.2428F, 1.2428F, 1.2299F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Hoof,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHoof"),
-//childName = "CalfL",
-//localPos = new Vector3(-0.0071F, 0.3039F, -0.051F),
-//localAngles = new Vector3(76.5928F, 0F, 0F),
-//localScale = new Vector3(0.0846F, 0.0846F, 0.0758F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ChainLightning,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayUkulele"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0011F, 0.1031F, -0.0901F),
-//localAngles = new Vector3(0F, 180F, 89.3997F),
-//localScale = new Vector3(0.4749F, 0.4749F, 0.4749F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.GhostOnKill,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMask"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.1748F, 0.0937F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.6313F, 0.6313F, 0.6313F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Mushroom,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMushroom"),
-//childName = "UpperArmR",
-//localPos = new Vector3(-0.0139F, 0.1068F, 0F),
-//localAngles = new Vector3(0F, 0F, 89.4525F),
-//localScale = new Vector3(0.0501F, 0.0501F, 0.0501F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.AttackSpeedOnCrit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWolfPelt"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.2783F, -0.002F),
-//localAngles = new Vector3(358.4554F, 0F, 0F),
-//localScale = new Vector3(0.5666F, 0.5666F, 0.5666F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BleedOnHit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTriTip"),
-//childName = "Chest",
-//localPos = new Vector3(-0.1247F, 0.416F, 0.1225F),
-//localAngles = new Vector3(11.5211F, 128.5354F, 165.922F),
-//localScale = new Vector3(0.2615F, 0.2615F, 0.2615F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.WardOnLevel,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWarbanner"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0168F, 0.0817F, -0.0955F),
-//localAngles = new Vector3(0F, 0F, 90F),
-//localScale = new Vector3(0.3162F, 0.3162F, 0.3162F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.HealOnCrit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayScythe"),
-//childName = "Chest",
-//localPos = new Vector3(0.0278F, 0.2322F, -0.0877F),
-//localAngles = new Vector3(323.9545F, 90F, 270F),
-//localScale = new Vector3(0.1884F, 0.1884F, 0.1884F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.HealWhileSafe,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySnail"),
-//childName = "UpperArmL",
-//localPos = new Vector3(0F, 0.3267F, 0.046F),
-//localAngles = new Vector3(90F, 0F, 0F),
-//localScale = new Vector3(0.0289F, 0.0289F, 0.0289F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Clover,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayClover"),
-//childName = "Gun",
-//localPos = new Vector3(0.0004F, 0.1094F, -0.1329F),
-//localAngles = new Vector3(85.6192F, 0.0001F, 179.4897F),
-//localScale = new Vector3(0.2749F, 0.2749F, 0.2749F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BarrierOnOverHeal,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAegis"),
-//childName = "LowerArmL",
-//localPos = new Vector3(0F, 0.1396F, 0F),
-//localAngles = new Vector3(86.4709F, 180F, 180F),
-//localScale = new Vector3(0.2849F, 0.2849F, 0.2849F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.GoldOnHit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBoneCrown"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.1791F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(1.1754F, 1.1754F, 1.1754F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.WarCryOnMultiKill,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayPauldron"),
-//childName = "UpperArmL",
-//localPos = new Vector3(0.0435F, 0.0905F, 0.0118F),
-//localAngles = new Vector3(82.0839F, 160.9228F, 100.7722F),
-//localScale = new Vector3(0.7094F, 0.7094F, 0.7094F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.SprintArmor,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBuckler"),
-//childName = "LowerArmR",
-//localPos = new Vector3(-0.005F, 0.285F, 0.0074F),
-//localAngles = new Vector3(358.4802F, 192.347F, 88.4811F),
-//localScale = new Vector3(0.3351F, 0.3351F, 0.3351F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.IceRing,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayIceRing"),
-//childName = "Gun",
-//localPos = new Vector3(0.0334F, 0.2587F, -0.1223F),
-//localAngles = new Vector3(274.3965F, 90F, 270F),
-//localScale = new Vector3(0.3627F, 0.3627F, 0.3627F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.FireRing,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFireRing"),
-//childName = "Gun",
-//localPos = new Vector3(0.0352F, 0.282F, -0.1223F),
-//localAngles = new Vector3(274.3965F, 90F, 270F),
-//localScale = new Vector3(0.3627F, 0.3627F, 0.3627F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.UtilitySkillMagazine,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAfterburnerShoulderRing"),
-//                            childName = "UpperArmL",
-//                            localPos = new Vector3(0, 0, -0.002f),
-//                            localAngles = new Vector3(-90, 0, 0),
-//                            localScale = new Vector3(0.01f, 0.01f, 0.01f),
-//                            limbMask = LimbFlags.None
-//                        },
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAfterburnerShoulderRing"),
-//                            childName = "UpperArmR",
-//                            localPos = new Vector3(0, 0, -0.002f),
-//                            localAngles = new Vector3(-90, 0, 0),
-//                            localScale = new Vector3(0.01f, 0.01f, 0.01f),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.JumpBoost,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWaxBird"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.0529F, -0.1242F),
-//localAngles = new Vector3(24.419F, 0F, 0F),
-//localScale = new Vector3(0.5253F, 0.5253F, 0.5253F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ArmorReductionOnHit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWarhammer"),
-//childName = "Chest",
-//localPos = new Vector3(0.0513F, 0.0652F, -0.0792F),
-//localAngles = new Vector3(64.189F, 90F, 90F),
-//localScale = new Vector3(0.1722F, 0.1722F, 0.1722F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.NearbyDamageBonus,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDiamond"),
-//childName = "Sword",
-//localPos = new Vector3(-0.002F, 0.1828F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1236F, 0.1236F, 0.1236F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ArmorPlate,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRepulsionArmorPlate"),
-//childName = "ThighL",
-//localPos = new Vector3(0.0218F, 0.4276F, 0F),
-//localAngles = new Vector3(90F, 180F, 0F),
-//localScale = new Vector3(0.1971F, 0.1971F, 0.1971F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.CommandMissile,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMissileRack"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.2985F, -0.0663F),
-//localAngles = new Vector3(90F, 180F, 0F),
-//localScale = new Vector3(0.3362F, 0.3362F, 0.3362F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Feather,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFeather"),
-//childName = "LowerArmL",
-//localPos = new Vector3(0.001F, 0.2755F, 0.0454F),
-//localAngles = new Vector3(270F, 91.2661F, 0F),
-//localScale = new Vector3(0.0285F, 0.0285F, 0.0285F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Crowbar,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayCrowbar"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.1219F, -0.0764F),
-//localAngles = new Vector3(90F, 90F, 0F),
-//localScale = new Vector3(0.1936F, 0.1936F, 0.1936F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.FallBoots,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGravBoots"),
-//childName = "CalfL",
-//localPos = new Vector3(-0.0038F, 0.3729F, -0.0046F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1485F, 0.1485F, 0.1485F),
-//                            limbMask = LimbFlags.None
-//                        },
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGravBoots"),
-//childName = "CalfR",
-//localPos = new Vector3(-0.0038F, 0.3729F, -0.0046F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1485F, 0.1485F, 0.1485F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ExecuteLowHealthElite,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGuillotine"),
-//childName = "ThighR",
-//localPos = new Vector3(-0.0561F, 0.1607F, 0F),
-//localAngles = new Vector3(90F, 90F, 0F),
-//localScale = new Vector3(0.1843F, 0.1843F, 0.1843F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.EquipmentMagazine,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBattery"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.0791F, 0.0726F),
-//localAngles = new Vector3(0F, 270F, 292.8411F),
-//localScale = new Vector3(0.0773F, 0.0773F, 0.0773F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.NovaOnHeal,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDevilHorns"),
-//childName = "Head",
-//localPos = new Vector3(0.0949F, 0.0945F, 0.0654F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.5349F, 0.5349F, 0.5349F),
-//                            limbMask = LimbFlags.None
-//                        },
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDevilHorns"),
-//childName = "Head",
-//localPos = new Vector3(-0.0949F, 0.0945F, 0.0105F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(-0.5349F, 0.5349F, 0.5349F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Infusion,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayInfusion"),
-//childName = "Pelvis",
-//localPos = new Vector3(-0.0703F, 0.0238F, -0.0366F),
-//localAngles = new Vector3(0F, 45F, 0F),
-//localScale = new Vector3(0.5253F, 0.5253F, 0.5253F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Medkit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMedkit"),
-//childName = "Chest",
-//localPos = new Vector3(0.0039F, -0.0125F, -0.0546F),
-//localAngles = new Vector3(290F, 180F, 0F),
-//localScale = new Vector3(0.4907F, 0.4907F, 0.4907F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Bandolier,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBandolier"),
-//childName = "Chest",
-//localPos = new Vector3(0.0035F, 0F, 0F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(0.1684F, 0.242F, 0.242F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BounceNearby,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHook"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0922F, 0.4106F, -0.0015F),
-//localAngles = new Vector3(290.3197F, 89F, 0F),
-//localScale = new Vector3(0.214F, 0.214F, 0.214F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.IgniteOnKill,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGasoline"),
-//childName = "ThighL",
-//localPos = new Vector3(0.0494F, 0.0954F, 0.0015F),
-//localAngles = new Vector3(90F, 0F, 0F),
-//localScale = new Vector3(0.3165F, 0.3165F, 0.3165F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.StunChanceOnHit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayStunGrenade"),
-//childName = "ThighR",
-//localPos = new Vector3(0.001F, 0.3609F, 0.0523F),
-//localAngles = new Vector3(90F, 0F, 0F),
-//localScale = new Vector3(0.5672F, 0.5672F, 0.5672F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Firework,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFirework"),
-//childName = "Muzzle",
-//localPos = new Vector3(0.0086F, 0.0069F, 0.0565F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1194F, 0.1194F, 0.1194F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.LunarDagger,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLunarDagger"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0015F, 0.2234F, -0.0655F),
-//localAngles = new Vector3(277.637F, 358.2474F, 1.4903F),
-//localScale = new Vector3(0.3385F, 0.3385F, 0.3385F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Knurl,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayKnurl"),
-//childName = "LowerArmL",
-//localPos = new Vector3(-0.0186F, 0.0405F, -0.0049F),
-//localAngles = new Vector3(78.8707F, 36.6722F, 105.8275F),
-//localScale = new Vector3(0.0848F, 0.0848F, 0.0848F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BeetleGland,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBeetleGland"),
-//childName = "Chest",
-//localPos = new Vector3(0.0852F, 0.0577F, 0F),
-//localAngles = new Vector3(359.9584F, 0.1329F, 39.8304F),
-//localScale = new Vector3(0.0553F, 0.0553F, 0.0553F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.SprintBonus,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySoda"),
-//childName = "Pelvis",
-//localPos = new Vector3(-0.075F, 0.095F, 0F),
-//localAngles = new Vector3(270F, 251.0168F, 0F),
-//localScale = new Vector3(0.1655F, 0.1655F, 0.1655F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.SecondarySkillMagazine,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDoubleMag"),
-//childName = "Gun",
-//localPos = new Vector3(-0.0018F, 0.0002F, 0.097F),
-//localAngles = new Vector3(84.2709F, 200.5981F, 25.0139F),
-//localScale = new Vector3(0.0441F, 0.0441F, 0.0441F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.StickyBomb,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayStickyBomb"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0594F, 0.0811F, 0.0487F),
-//localAngles = new Vector3(8.4958F, 176.5473F, 162.7601F),
-//localScale = new Vector3(0.0736F, 0.0736F, 0.0736F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.TreasureCache,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayKey"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0589F, 0.1056F, -0.0174F),
-//localAngles = new Vector3(0.2454F, 195.0205F, 89.0854F),
-//localScale = new Vector3(0.4092F, 0.4092F, 0.4092F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BossDamageBonus,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAPRound"),
-//childName = "Pelvis",
-//localPos = new Vector3(-0.0371F, 0.0675F, -0.052F),
-//localAngles = new Vector3(90F, 41.5689F, 0F),
-//localScale = new Vector3(0.2279F, 0.2279F, 0.2279F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.SlowOnHit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBauble"),
-//childName = "Pelvis",
-//localPos = new Vector3(-0.0074F, 0.076F, -0.0864F),
-//localAngles = new Vector3(0F, 23.7651F, 0F),
-//localScale = new Vector3(0.0687F, 0.0687F, 0.0687F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ExtraLife,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHippo"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.3001F, 0.0555F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.2645F, 0.2645F, 0.2645F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.KillEliteFrenzy,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBrainstalk"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.1882F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.2638F, 0.2638F, 0.2638F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.RepeatHeal,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayCorpseFlower"),
-//childName = "UpperArmR",
-//localPos = new Vector3(-0.0393F, 0.1484F, 0F),
-//localAngles = new Vector3(270F, 90F, 0F),
-//localScale = new Vector3(0.1511F, 0.1511F, 0.1511F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.AutoCastEquipment,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFossil"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0722F, 0.0921F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.4208F, 0.4208F, 0.4208F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.IncreaseHealing,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAntler"),
-//childName = "Head",
-//localPos = new Vector3(0.1003F, 0.269F, 0F),
-//localAngles = new Vector3(0F, 90F, 0F),
-//localScale = new Vector3(0.3395F, 0.3395F, 0.3395F),
-//                            limbMask = LimbFlags.None
-//                        },
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAntler"),
-//childName = "Head",
-//localPos = new Vector3(-0.1003F, 0.269F, 0F),
-//localAngles = new Vector3(0F, 90F, 0F),
-//localScale = new Vector3(0.3395F, 0.3395F, -0.3395F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.TitanGoldDuringTP,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGoldHeart"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0571F, 0.3027F, 0.0755F),
-//localAngles = new Vector3(335.0033F, 343.2951F, 0F),
-//localScale = new Vector3(0.1191F, 0.1191F, 0.1191F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.SprintWisp,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBrokenMask"),
-//childName = "UpperArmR",
-//localPos = new Vector3(-0.0283F, 0.0452F, -0.0271F),
-//localAngles = new Vector3(0F, 270F, 0F),
-//localScale = new Vector3(0.1385F, 0.1385F, 0.1385F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BarrierOnKill,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBrooch"),
-//childName = "Gun",
-//localPos = new Vector3(-0.0097F, -0.0058F, -0.0847F),
-//localAngles = new Vector3(0F, 0F, 84.3456F),
-//localScale = new Vector3(0.1841F, 0.1841F, 0.1841F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.TPHealingNova,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGlowFlower"),
-//childName = "UpperArmL",
-//localPos = new Vector3(0.0399F, 0.1684F, 0.0121F),
-//localAngles = new Vector3(0F, 73.1449F, 0F),
-//localScale = new Vector3(0.2731F, 0.2731F, 0.0273F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.LunarUtilityReplacement,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBirdFoot"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.2387F, -0.199F),
-//localAngles = new Vector3(0F, 270F, 0F),
-//localScale = new Vector3(0.2833F, 0.2833F, 0.2833F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Thorns,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRazorwireLeft"),
-//childName = "UpperArmL",
-//localPos = new Vector3(0F, 0F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.4814F, 0.4814F, 0.4814F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.LunarPrimaryReplacement,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBirdEye"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.1738F, 0.1375F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(0.2866F, 0.2866F, 0.2866F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.NovaOnLowHealth,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayJellyGuts"),
-//childName = "Head",
-//localPos = new Vector3(-0.0484F, -0.0116F, 0.0283F),
-//localAngles = new Vector3(316.2306F, 45.1087F, 303.6165F),
-//localScale = new Vector3(0.1035F, 0.1035F, 0.1035F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.LunarTrinket,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBeads"),
-//childName = "LowerArmL",
-//localPos = new Vector3(0F, 0.3249F, 0.0381F),
-//localAngles = new Vector3(0F, 0F, 90F),
-//localScale = new Vector3(1F, 1F, 1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Plant,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayInterstellarDeskPlant"),
-//childName = "UpperArmR",
-//localPos = new Vector3(-0.0663F, 0.2266F, 0F),
-//localAngles = new Vector3(4.9717F, 270F, 54.4915F),
-//localScale = new Vector3(0.0429F, 0.0429F, 0.0429F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Bear,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBear"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.3014F, 0.0662F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.2034F, 0.2034F, 0.2034F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.DeathMark,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDeathMark"),
-//childName = "LowerArmR",
-//localPos = new Vector3(0F, 0.4099F, 0.0252F),
-//localAngles = new Vector3(277.5254F, 0F, 0F),
-//localScale = new Vector3(-0.0375F, -0.0341F, -0.0464F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ExplodeOnDeath,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWilloWisp"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0595F, 0.0696F, -0.0543F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.0283F, 0.0283F, 0.0283F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Seed,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySeed"),
-//childName = "Head",
-//localPos = new Vector3(-0.1702F, 0.1366F, -0.026F),
-//localAngles = new Vector3(344.0657F, 196.8238F, 275.5892F),
-//localScale = new Vector3(0.0275F, 0.0275F, 0.0275F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.SprintOutOfCombat,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWhip"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.1001F, -0.0132F, 0F),
-//localAngles = new Vector3(0F, 0F, 20.1526F),
-//localScale = new Vector3(0.2845F, 0.2845F, 0.2845F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Phasing,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayStealthkit"),
-//childName = "CalfL",
-//localPos = new Vector3(-0.0063F, 0.2032F, -0.0507F),
-//localAngles = new Vector3(90F, 0F, 0F),
-//localScale = new Vector3(0.1454F, 0.2399F, 0.16F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.PersonalShield,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShieldGenerator"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.2649F, 0.0689F),
-//localAngles = new Vector3(304.1204F, 90F, 270F),
-//localScale = new Vector3(0.1057F, 0.1057F, 0.1057F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ShockNearby,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTeslaCoil"),
-//childName = "Chest",
-//localPos = new Vector3(0.0008F, 0.3747F, -0.0423F),
-//localAngles = new Vector3(297.6866F, 1.3864F, 358.5596F),
-//localScale = new Vector3(0.3229F, 0.3229F, 0.3229F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ShieldOnly,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShieldBug"),
-//childName = "Head",
-//localPos = new Vector3(0.0868F, 0.3114F, 0F),
-//localAngles = new Vector3(348.1819F, 268.0985F, 0.3896F),
-//localScale = new Vector3(0.3521F, 0.3521F, 0.3521F),
-//                            limbMask = LimbFlags.None
-//                        },
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShieldBug"),
-//childName = "Head",
-//localPos = new Vector3(-0.0868F, 0.3114F, 0F),
-//localAngles = new Vector3(11.8181F, 268.0985F, 359.6104F),
-//localScale = new Vector3(0.3521F, 0.3521F, -0.3521F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.AlienHead,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAlienHead"),
-//childName = "Chest",
-//localPos = new Vector3(0.0417F, 0.2791F, -0.0493F),
-//localAngles = new Vector3(284.1172F, 243.7966F, 260.89F),
-//localScale = new Vector3(0.6701F, 0.6701F, 0.6701F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.HeadHunter,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySkullCrown"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.2556F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.4851F, 0.1617F, 0.1617F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.EnergizedOnEquipmentUse,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWarHorn"),
-//childName = "Pelvis",
-//localPos = new Vector3(-0.1509F, 0.0659F, 0F),
-//localAngles = new Vector3(0F, 0F, 69.9659F),
-//localScale = new Vector3(0.2732F, 0.2732F, 0.2732F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.FlatHealth,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySteakCurved"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.3429F, -0.0671F),
-//localAngles = new Vector3(294.98F, 180F, 180F),
-//localScale = new Vector3(0.1245F, 0.1155F, 0.1155F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Tooth,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayToothMeshLarge"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.0687F, 0.0998F),
-//localAngles = new Vector3(344.9017F, 0F, 0F),
-//localScale = new Vector3(7.5452F, 7.5452F, 7.5452F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Pearl,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayPearl"),
-//childName = "LowerArmR",
-//localPos = new Vector3(0F, 0F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.ShinyPearl,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShinyPearl"),
-//childName = "LowerArmL",
-//localPos = new Vector3(0F, 0F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BonusGoldPackOnKill,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTome"),
-//childName = "ThighR",
-//localPos = new Vector3(0.0155F, 0.2145F, 0.0615F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.0475F, 0.0475F, 0.0475F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Squid,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySquidTurret"),
-//childName = "Head",
-//localPos = new Vector3(-0.0164F, 0.1641F, -0.0005F),
-//localAngles = new Vector3(0F, 90F, 0F),
-//localScale = new Vector3(0.2235F, 0.3016F, 0.3528F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Icicle,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFrostRelic"),
-//childName = "Base",
-//localPos = new Vector3(-0.658F, -1.0806F, 0.015F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(1F, 1F, 1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.Talisman,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTalisman"),
-//childName = "Base",
-//localPos = new Vector3(0.8357F, -0.7042F, -0.2979F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(1F, 1F, 1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.LaserTurbine,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLaserTurbine"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.0622F, -0.0822F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.2159F, 0.2159F, 0.2159F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.FocusConvergence,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFocusedConvergence"),
-//childName = "Base",
-//localPos = new Vector3(-0.0554F, -1.6605F, -0.3314F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.FireballsOnHit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFireballsOnHit"),
-//childName = "LowerArmL",
-//localPos = new Vector3(0F, 0.3365F, -0.0878F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(0.0761F, 0.0761F, 0.0761F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.SiphonOnLowHealth,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySiphonOnLowHealth"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0542F, 0.0206F, -0.0019F),
-//localAngles = new Vector3(0F, 303.4368F, 0F),
-//localScale = new Vector3(0.0385F, 0.0385F, 0.0385F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.BleedOnHitAndExplode,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBleedOnHitAndExplode"),
-//childName = "ThighR",
-//localPos = new Vector3(0F, 0.0575F, -0.0178F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.0486F, 0.0486F, 0.0486F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.MonstersOnShrineUse,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMonstersOnShrineUse"),
-//childName = "ThighR",
-//localPos = new Vector3(0.0022F, 0.084F, 0.066F),
-//localAngles = new Vector3(352.4521F, 260.6884F, 341.5106F),
-//localScale = new Vector3(0.0246F, 0.0246F, 0.0246F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Items.RandomDamageZone,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRandomDamageZone"),
-//childName = "LowerArmL",
-//localPos = new Vector3(0.0709F, 0.4398F, 0.0587F),
-//localAngles = new Vector3(349.218F, 235.9453F, 0F),
-//localScale = new Vector3(0.0465F, 0.0465F, 0.0465F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Fruit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFruit"),
-//childName = "Chest",
-//localPos = new Vector3(-0.0513F, 0.2348F, -0.1839F),
-//localAngles = new Vector3(354.7403F, 305.3714F, 336.9526F),
-//localScale = new Vector3(0.2118F, 0.2118F, 0.2118F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.AffixRed,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteHorn"),
-//childName = "Head",
-//localPos = new Vector3(0.1201F, 0.2516F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1036F, 0.1036F, 0.1036F),
-//                            limbMask = LimbFlags.None
-//                        },
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteHorn"),
-//childName = "Head",
-//localPos = new Vector3(-0.1201F, 0.2516F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(-0.1036F, 0.1036F, 0.1036F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.AffixBlue,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteRhinoHorn"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.2648F, 0.1528F),
-//localAngles = new Vector3(315F, 0F, 0F),
-//localScale = new Vector3(0.2F, 0.2F, 0.2F),
-//                            limbMask = LimbFlags.None
-//                        },
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteRhinoHorn"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.3022F, 0.1055F),
-//localAngles = new Vector3(300F, 0F, 0F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.AffixWhite,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteIceCrown"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.2836F, 0F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(0.0265F, 0.0265F, 0.0265F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.AffixPoison,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteUrchinCrown"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.2679F, 0F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(0.0496F, 0.0496F, 0.0496F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.AffixHaunted,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteStealthCrown"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.2143F, 0F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(0.065F, 0.065F, 0.065F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.CritOnUse,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayNeuralImplant"),
-//childName = "Head",
-//localPos = new Vector3(0F, 0.1861F, 0.2328F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.2326F, 0.2326F, 0.2326F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.DroneBackup,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRadio"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0604F, 0.1269F, 0F),
-//localAngles = new Vector3(0F, 90F, 0F),
-//localScale = new Vector3(0.2641F, 0.2641F, 0.2641F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Lightning,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLightningArmRight"),
-//childName = "UpperArmR",
-//localPos = new Vector3(0F, 0F, 0F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.3413F, 0.3413F, 0.3413F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.BurnNearby,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayPotion"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.078F, 0.065F, 0F),
-//localAngles = new Vector3(359.1402F, 0.1068F, 331.8908F),
-//localScale = new Vector3(0.0307F, 0.0307F, 0.0307F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.CrippleWard,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEffigy"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0768F, -0.0002F, 0F),
-//localAngles = new Vector3(0F, 270F, 0F),
-//localScale = new Vector3(0.2812F, 0.2812F, 0.2812F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.QuestVolatileBattery,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBatteryArray"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.2584F, -0.0987F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.2188F, 0.2188F, 0.2188F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.GainArmor,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayElephantFigure"),
-//childName = "CalfR",
-//localPos = new Vector3(0F, 0.3011F, 0.0764F),
-//localAngles = new Vector3(77.5634F, 0F, 0F),
-//localScale = new Vector3(0.6279F, 0.6279F, 0.6279F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Recycle,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRecycler"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.1976F, -0.0993F),
-//localAngles = new Vector3(0F, 90F, 0F),
-//localScale = new Vector3(0.0802F, 0.0802F, 0.0802F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.FireBallDash,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEgg"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0727F, 0.0252F, 0F),
-//localAngles = new Vector3(270F, 0F, 0F),
-//localScale = new Vector3(0.1891F, 0.1891F, 0.1891F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Cleanse,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWaterPack"),
-//childName = "Chest",
-//localPos = new Vector3(0F, 0.1996F, -0.0489F),
-//localAngles = new Vector3(0F, 180F, 0F),
-//localScale = new Vector3(0.0821F, 0.0821F, 0.0821F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Tonic,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTonic"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.066F, 0.058F, 0F),
-//localAngles = new Vector3(0F, 90F, 0F),
-//localScale = new Vector3(0.1252F, 0.1252F, 0.1252F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Gateway,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayVase"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0807F, 0.0877F, 0F),
-//localAngles = new Vector3(0F, 90F, 0F),
-//localScale = new Vector3(0.0982F, 0.0982F, 0.0982F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Meteor,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMeteor"),
-//childName = "Base",
-//localPos = new Vector3(0F, -1.7606F, -0.9431F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(1F, 1F, 1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Saw,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySawmerang"),
-//childName = "Base",
-//localPos = new Vector3(0F, -1.7606F, -0.9431F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1F, 0.1F, 0.1F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Blackhole,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGravCube"),
-//childName = "Base",
-//localPos = new Vector3(0F, -1.7606F, -0.9431F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.5F, 0.5F, 0.5F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.Scanner,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayScanner"),
-//childName = "Pelvis",
-//localPos = new Vector3(0.0857F, 0.0472F, 0.0195F),
-//localAngles = new Vector3(270F, 154.175F, 0F),
-//localScale = new Vector3(0.0861F, 0.0861F, 0.0861F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.DeathProjectile,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDeathProjectile"),
-//childName = "Pelvis",
-//localPos = new Vector3(0F, 0.028F, -0.0977F),
-//localAngles = new Vector3(0F, 180F, 0F),
-//localScale = new Vector3(0.0596F, 0.0596F, 0.0596F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.LifestealOnHit,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLifestealOnHit"),
-//childName = "Head",
-//localPos = new Vector3(-0.2175F, 0.4404F, -0.141F),
-//localAngles = new Vector3(44.0939F, 33.5151F, 43.5058F),
-//localScale = new Vector3(0.1246F, 0.1246F, 0.1246F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-
-//            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-//            {
-//                keyAsset = RoR2Content.Equipment.TeamWarCry,
-//                displayRuleGroup = new DisplayRuleGroup
-//                {
-//                    rules = new ItemDisplayRule[]
-//                    {
-//                        new ItemDisplayRule
-//                        {
-//                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-//                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTeamWarCry"),
-//childName = "Pelvis",
-//localPos = new Vector3(0F, 0F, 0.1866F),
-//localAngles = new Vector3(0F, 0F, 0F),
-//localScale = new Vector3(0.1233F, 0.1233F, 0.1233F),
-//                            limbMask = LimbFlags.None
-//                        }
-//                    }
-//                }
-//            });
-//            #endregion
-
-//            itemDisplayRuleSet.keyAssetRuleGroups = itemDisplayRules.ToArray();
-//            itemDisplayRuleSet.GenerateRuntimeValues();
-//        }
+        internal override void SetItemDisplays()
+        {
+            itemDisplayRules = new List<ItemDisplayRuleSet.KeyAssetRuleGroup>();
+
+            // add item displays here
+            //  HIGHLY recommend using KingEnderBrine's ItemDisplayPlacementHelper mod for this
+            #region Item Displays
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Jetpack"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBugWings"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.00511F, 0.05807F, -0.09967F),
+                            localAngles = new Vector3(21.4993F, 358.6616F, 358.3334F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/GoldGat"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGoldGat"),
+                            childName = "Right Shoulder",
+                            localPos = new Vector3(0.13416F, 0.23563F, -0.32966F),
+                            localAngles = new Vector3(288.111F, 339.51F, 356.2275F),
+                            localScale = new Vector3(0.15F, 0.15F, 0.15F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/BFG"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBFG"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.04495F, 0.04455F, 0.00431F),
+                            localAngles = new Vector3(0F, 0F, 313.6211F),
+                            localScale = new Vector3(0.3F, 0.3F, 0.3F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/CritGlasses"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGlasses"),
+                            childName = "Head",
+                            localPos = new Vector3(0.00008F, 0.11955F, 0.15313F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Syringe"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySyringeCluster"),
+                            childName = "Left Leg",
+                            localPos = new Vector3(0.05131F, 0.0329F, 0.0165F),
+                            localAngles = new Vector3(345.0316F, 186.6701F, 90.10183F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySyringeCluster"),
+                            childName = "Left Leg",
+                            localPos = new Vector3(0.04972F, -0.03311F, 0.00881F),
+                            localAngles = new Vector3(345.0316F, 186.6701F, 90.10183F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Behemoth"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBehemoth"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.02931F, -0.0009F, -0.21935F),
+                            localAngles = new Vector3(6.223F, 180F, 0F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Missile"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMissileLauncher"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.45543F, 0.35285F, -0.06724F),
+                            localAngles = new Vector3(0F, 0F, 51.9225F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Dagger"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDagger"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.02887F, 0.09794F, -0.03726F),
+                            localAngles = new Vector3(334.8839F, 31.5284F, 34.67839F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Hoof"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHoof"),
+                            childName = "Left Leg",
+                            localPos = new Vector3(-0.00121F, 0.39142F, 0.06504F),
+                            localAngles = new Vector3(82.65324F, 182.0755F, 5.49788F),
+                            localScale = new Vector3(0.1F, 0.15F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ChainLightning"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayUkulele"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.03924F, -0.39091F, -0.14721F),
+                            localAngles = new Vector3(0F, 180F, 89.3997F),
+                            localScale = new Vector3(0.4749F, 0.4749F, 0.4749F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/GhostOnKill"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMask"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00011F, 0.11735F, 0.10443F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Mushroom"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMushroom"),
+                            childName = "Left Shoulder",
+                            localPos = new Vector3(0.04594F, 0.1408F, -0.05753F),
+                            localAngles = new Vector3(69.84948F, 163.9957F, 144.0787F),
+                            localScale = new Vector3(0.0501F, 0.0501F, 0.0501F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/AttackSpeedOnCrit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWolfPelt"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00688F, 0.17887F, 0.11809F),
+                            localAngles = new Vector3(358.4554F, 0F, 0F),
+                            localScale = new Vector3(0.5666F, 0.5666F, 0.5666F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BleedOnHit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTriTip"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.12992F, 0.24389F, 0.11903F),
+                            localAngles = new Vector3(11.5211F, 128.5354F, 165.922F),
+                            localScale = new Vector3(0.2615F, 0.2615F, 0.2615F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/WardOnLevel"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWarbanner"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.03597F, 0.21475F, -0.09037F),
+                            localAngles = new Vector3(0F, 0F, 90F),
+                            localScale = new Vector3(0.3162F, 0.3162F, 0.3162F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/HealOnCrit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayScythe"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.01922F, -0.09922F, -0.15849F),
+                            localAngles = new Vector3(323.9545F, 90F, 270F),
+                            localScale = new Vector3(0.1884F, 0.1884F, 0.1884F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/HealWhileSafe"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySnail"),
+                            childName = "Head",
+                            localPos = new Vector3(0.04469F, 0.07924F, 0.13367F),
+                            localAngles = new Vector3(90F, 0F, 0F),
+                            localScale = new Vector3(0.0289F, 0.0289F, 0.0289F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Clover"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayClover"),
+                            childName = "Left Shoulder",
+                            localPos = new Vector3(-0.00379F, 0.0774F, -0.0857F),
+                            localAngles = new Vector3(85.61921F, 0.0001F, 179.4897F),
+                            localScale = new Vector3(0.2749F, 0.2749F, 0.2749F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BarrierOnOverHeal"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAegis"),
+                            childName = "Right Arm Lower",
+                            localPos = new Vector3(-0.03753F, -0.03772F, -0.06834F),
+                            localAngles = new Vector3(89.25664F, 25.93928F, 28.03237F),
+                            localScale = new Vector3(0.2849F, 0.2849F, 0.2849F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/GoldOnHit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBoneCrown"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00235F, 0.11986F, 0.00528F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(1.1754F, 1.1754F, 1.1754F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/WarCryOnMultiKill"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayPauldron"),
+                            childName = "Left Arm Upper",
+                            localPos = new Vector3(0.00587F, 0.0456F, -0.05634F),
+                            localAngles = new Vector3(81.73647F, 205.3085F, 12.81184F),
+                            localScale = new Vector3(0.7094F, 0.7094F, 0.7094F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/SprintArmor"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBuckler"),
+                            childName = "Right Leg",
+                            localPos = new Vector3(0.02165F, 0.29162F, 0.07043F),
+                            localAngles = new Vector3(14.01751F, 357.4532F, 188.8993F),
+                            localScale = new Vector3(0.1971F, 0.1971F, 0.1971F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/IceRing"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayIceRing"),
+                            childName = "Right Arm Lower",
+                            localPos = new Vector3(0.04431F, 0.30457F, -0.0085F),
+                            localAngles = new Vector3(274.3965F, 90F, 270F),
+                            localScale = new Vector3(0.3627F, 0.3627F, 0.3627F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/FireRing"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFireRing"),
+                            childName = "Left Arm Lower",
+                            localPos = new Vector3(0.0196F, 0.30909F, -0.00882F),
+                            localAngles = new Vector3(274.3965F, 90F, 270F),
+                            localScale = new Vector3(0.3627F, 0.3627F, 0.3627F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/UtilitySkillMagazine"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAfterburnerShoulderRing"),
+                            childName = "Right Foot",
+                            localPos = new Vector3(0F, 0F, 0F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.6F, 0.6F, 0.6F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAfterburnerShoulderRing"),
+                            childName = "Left Foot",
+                            localPos = new Vector3(0F, 0F, 0F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.6F, 0.6F, 0.6F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/JumpBoost"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWaxBird"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00493F, -0.05193F, -0.08535F),
+                            localAngles = new Vector3(24.419F, 0F, 0F),
+                            localScale = new Vector3(0.5253F, 0.5253F, 0.5253F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ArmorReductionOnHit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWarhammer"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.02134F, -0.19953F, -0.16994F),
+                            localAngles = new Vector3(64.18901F, 90F, 90F),
+                            localScale = new Vector3(0.1722F, 0.1722F, 0.1722F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/NearbyDamageBonus"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDiamond"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.13503F, -0.2352F, 0.15925F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.1236F, 0.1236F, 0.1236F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ArmorPlate"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRepulsionArmorPlate"),
+                            childName = "Left Leg",
+                            localPos = new Vector3(0.02783F, 0.11808F, 0.05415F),
+                            localAngles = new Vector3(90F, 180F, 0F),
+                            localScale = new Vector3(0.1971F, 0.1971F, 0.1971F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/CommandMissile"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMissileRack"),
+                                childName = "Chest",
+                                localPos = new Vector3(-0.0101F, 0.06735F, -0.14687F),
+                                localAngles = new Vector3(90F, 180F, 0F),
+                                localScale = new Vector3(0.3362F, 0.3362F, 0.3362F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Feather"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFeather"),
+                            childName = "Left Arm Upper",
+                            localPos = new Vector3(0.0065F, 0.05863F, 0.03207F),
+                            localAngles = new Vector3(302.2662F, 244.1406F, 154.5072F),
+                            localScale = new Vector3(0.0285F, 0.0285F, 0.0285F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFeather"),
+                            childName = "Left Arm Upper",
+                            localPos = new Vector3(-0.03053F, 0.13951F, 0.03192F),
+                            localAngles = new Vector3(290.8631F, 257.5243F, 137.2719F),
+                            localScale = new Vector3(0.0285F, 0.0285F, 0.0285F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Crowbar"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayCrowbar"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.01991F, 0.10769F, -0.14058F),
+                            localAngles = new Vector3(90F, 90F, 0F),
+                            localScale = new Vector3(0.1936F, 0.1936F, 0.1936F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/FallBoots"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGravBoots"),
+                            childName = "Left Foot",
+                            localPos = new Vector3(0.00697F, 0.12576F, 0.00381F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.1485F, 0.1485F, 0.1485F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGravBoots"),
+                            childName = "Right Foot",
+                            localPos = new Vector3(0.01368F, 0.12732F, 0.00864F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.1485F, 0.1485F, 0.1485F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ExecuteLowHealthElite"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGuillotine"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(-0.10293F, 0.11881F, -0.18759F),
+                            localAngles = new Vector3(8.57194F, 201.4851F, 88.21832F),
+                            localScale = new Vector3(0.1843F, 0.1843F, 0.1843F),    
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/EquipmentMagazine"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBattery"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.12984F, 0.09352F, 0.13038F),
+                            localAngles = new Vector3(0F, 270F, 292.8411F),
+                            localScale = new Vector3(0.0773F, 0.0773F, 0.0773F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/NovaOnHeal"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDevilHorns"),
+                            childName = "Head",
+                            localPos = new Vector3(0.04966F, 0.18214F, 0.04931F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.5349F, 0.5349F, 0.5349F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDevilHorns"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.04336F, 0.16517F, 0.00733F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(-0.5349F, 0.5349F, 0.5349F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Infusion"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayInfusion"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.10411F, -0.05932F, 0.13562F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.5253F, 0.5253F, 0.5253F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Medkit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMedkit"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.0247F, -0.02118F, -0.15778F),
+                            localAngles = new Vector3(281.5152F, 22.21357F, 158.9374F),
+                            localScale = new Vector3(0.4907F, 0.4907F, 0.4907F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Bandolier"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBandolier"),
+                            childName = "Left Leg",
+                            localPos = new Vector3(0.0035F, 0F, 0F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(0.1684F, 0.242F, 0.242F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BounceNearby"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHook"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00789F, 0.12003F, -0.10451F),
+                            localAngles = new Vector3(301.7833F, 235.8446F, 22.23744F),
+                            localScale = new Vector3(0.214F, 0.214F, 0.214F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/IgniteOnKill"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGasoline"),
+                            childName = "Left Arm Lower",
+                            localPos = new Vector3(-0.00446F, 0.21735F, -0.0619F),
+                            localAngles = new Vector3(90F, 90F, 0F),
+                            localScale = new Vector3(0.3165F, 0.3165F, 0.3165F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/StunChanceOnHit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayStunGrenade"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.08823F, -0.01596F, 0.15026F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(0.5672F, 0.5672F, 0.5672F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Firework"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFirework"),
+                            childName = "Left Leg",
+                            localPos = new Vector3(0.09247F, -0.06814F, 0.00142F),
+                            localAngles = new Vector3(90F, 0F, 0F),
+                            localScale = new Vector3(0.1194F, 0.1194F, 0.1194F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/LunarDagger"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLunarDagger"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.03663F, 0.09482F, -0.19738F),
+                            localAngles = new Vector3(351.0772F, 4.81773F, 78.60245F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Knurl"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayKnurl"),
+                            childName = "Left Shoulder",
+                            localPos = new Vector3(0.0231F, 0.09327F, -0.09655F),
+                            localAngles = new Vector3(78.87074F, 36.6722F, 105.8275F),
+                            localScale = new Vector3(0.0848F, 0.0848F, 0.0848F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BeetleGland"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBeetleGland"),
+                            childName = "Left Foot",
+                            localPos = new Vector3(-0.00895F, 0.13059F, 0.07611F),
+                            localAngles = new Vector3(359.9584F, 0.1329F, 39.8304F),
+                            localScale = new Vector3(0.0553F, 0.0553F, 0.0553F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/SprintBonus"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySoda"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00277F, 0.03038F, 0.14772F),
+                            localAngles = new Vector3(-0.00001F, 270F, 0.00001F),
+                            localScale = new Vector3(0.1655F, 0.1655F, 0.1655F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/SecondarySkillMagazine"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDoubleMag"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.0018F, 0.0002F, 0.097F),
+                            localAngles = new Vector3(84.2709F, 200.5981F, 25.0139F),
+                            localScale = new Vector3(0.0441F, 0.0441F, 0.0441F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/StickyBomb"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayStickyBomb"),
+                            childName = "Right Arm Lower",
+                            localPos = new Vector3(-0.00483F, 0.13034F, -0.08934F),
+                            localAngles = new Vector3(303.257F, 139.7009F, 216.6799F),
+                            localScale = new Vector3(0.0736F, 0.0736F, 0.0736F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/TreasureCache"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayKey"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.16773F, -0.25853F, 0.11086F),
+                            localAngles = new Vector3(1.68028F, 157.0609F, 89.28107F),
+                            localScale = new Vector3(0.4092F, 0.4092F, 0.4092F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BossDamageBonus"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAPRound"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.14605F, -0.04777F, 0.14952F),
+                            localAngles = new Vector3(90F, 41.5689F, 0F),
+                            localScale = new Vector3(0.2279F, 0.2279F, 0.2279F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/SlowOnHit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBauble"),
+                            childName = "Right Hand",
+                            localPos = new Vector3(0.26274F, 0.41467F, 0.24462F),
+                            localAngles = new Vector3(330.8744F, 178.5556F, 178.3457F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ExtraLife"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHippo"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.07884F, 0.06188F, 0.18508F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2645F, 0.2645F, 0.2645F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/KillEliteFrenzy"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBrainstalk"),
+                            childName = "Head",
+                            localPos = new Vector3(0F, 0.1882F, 0F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2638F, 0.2638F, 0.2638F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/RepeatHeal"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayCorpseFlower"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.08303F, 0.11818F, 0.01636F),
+                            localAngles = new Vector3(270F, 90F, 0F),
+                            localScale = new Vector3(0.1511F, 0.1511F, 0.1511F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/AutoCastEquipment"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFossil"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.13963F, 0.10326F, 0.11421F),
+                            localAngles = new Vector3(354.3306F, 98.70874F, 342.6167F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/IncreaseHealing"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAntler"),
+                            childName = "Head",
+                            localPos = new Vector3(0.0896F, 0.1987F, 0.00443F),
+                            localAngles = new Vector3(0F, 90F, 0F),
+                            localScale = new Vector3(0.3395F, 0.3395F, 0.3395F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAntler"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.08451F, 0.2095F, 0.00505F),
+                            localAngles = new Vector3(0F, 90F, 0F),
+                            localScale = new Vector3(0.3395F, 0.3395F, -0.3395F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/TitanGoldDuringTP"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGoldHeart"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.09608F, 0.0815F, 0.15113F),
+                            localAngles = new Vector3(335.0033F, 343.2951F, 0F),
+                            localScale = new Vector3(0.1191F, 0.1191F, 0.1191F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/SprintWisp"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBrokenMask"),
+                            childName = "Left Hand",
+                            localPos = new Vector3(0.03224F, 0.09353F, -0.03892F),
+                            localAngles = new Vector3(0F, 180F, 0F),
+                            localScale = new Vector3(0.1385F, 0.1385F, 0.1385F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BarrierOnKill"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBrooch"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.00124F, 0.00144F, 0.1546F),
+                            localAngles = new Vector3(74.11434F, 345.4745F, 352.0098F),
+                            localScale = new Vector3(0.1841F, 0.1841F, 0.1841F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/TPHealingNova"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGlowFlower"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.09064F, 0.14942F, 0.11668F),
+                            localAngles = new Vector3(328.9383F, 3.18673F, 0.38337F),
+                            localScale = new Vector3(0.2731F, 0.2731F, 0.0273F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/LunarUtilityReplacement"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBirdFoot"),
+                            childName = "Hips",
+                            localPos = new Vector3(-0.0414F, -0.03764F, -0.19106F),
+                            localAngles = new Vector3(0F, 270F, 0F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Thorns"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRazorwireLeft"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(-0.03348F, 0.01582F, 0.02884F),
+                            localAngles = new Vector3(277.5331F, 227.8641F, 108.0806F),
+                            localScale = new Vector3(0.8F, 0.8F, 0.4F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/LunarPrimaryReplacement"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBirdEye"),
+                            childName = "Head",
+                            localPos = new Vector3(0F, 0.1738F, 0.1375F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(0.2866F, 0.2866F, 0.2866F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/NovaOnLowHealth"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayJellyGuts"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.04569F, -0.0583F, 0.01711F),
+                            localAngles = new Vector3(323.315F, 13.30625F, 347.5849F),
+                            localScale = new Vector3(0.15F, 0.1035F, 0.1035F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/LunarTrinket"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBeads"),
+                            childName = "Right Leg",
+                            localPos = new Vector3(-0.01661F, 0.08033F, 0.05544F),
+                            localAngles = new Vector3(14.71353F, 358.1346F, 124.9263F),
+                            localScale = new Vector3(2F, 2F, 2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Plant"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayInterstellarDeskPlant"),
+                            childName = "Right Shoulder",
+                            localPos = new Vector3(0.01553F, 0.05798F, -0.1214F),
+                            localAngles = new Vector3(0F, 180F, 0F),
+                            localScale = new Vector3(0.0429F, 0.0429F, 0.0429F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Bear"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBear"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.09486F, -0.00042F, 0.17129F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2034F, 0.2034F, 0.2034F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/DeathMark"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDeathMark"),
+                            childName = "Hips",
+                            localPos = new Vector3(-0.19085F, -0.16532F, -0.13452F),
+                            localAngles = new Vector3(90F, 180F, 0F),
+                            localScale = new Vector3(-0.0375F, -0.0341F, -0.0464F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ExplodeOnDeath"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWilloWisp"),
+                            childName = "Hips",
+                            localPos = new Vector3(-0.19991F, -0.08686F, 0.11345F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.0283F, 0.0283F, 0.0283F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Seed"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySeed"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.06678F, 0.08396F, 0.12996F),
+                            localAngles = new Vector3(324.4779F, 117.6807F, 324.6905F),
+                            localScale = new Vector3(0.01F, 0.01F, 0.01F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/SprintOutOfCombat"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWhip"),
+                            childName = "Right Leg",
+                            localPos = new Vector3(-0.08634F, -0.09948F, 0.00375F),
+                            localAngles = new Vector3(356.2555F, 359.7118F, 2.87476F),
+                            localScale = new Vector3(0.2845F, 0.2845F, 0.2845F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Phasing"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayStealthkit"),
+                            childName = "Right Leg",
+                            localPos = new Vector3(0.00218F, -0.17353F, 0.06859F),
+                            localAngles = new Vector3(90F, 180F, 0F),
+                            localScale = new Vector3(0.19058F, 0.2399F, 0.21498F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/PersonalShield"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShieldGenerator"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.01242F, -0.09935F, 0.16888F),
+                            localAngles = new Vector3(304.1204F, 90F, 270F),
+                            localScale = new Vector3(0.1057F, 0.1057F, 0.1057F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ShockNearby"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTeslaCoil"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.0216F, 0.1257F, -0.13219F),
+                            localAngles = new Vector3(297.6866F, 1.3864F, 358.5596F),
+                            localScale = new Vector3(0.3229F, 0.3229F, 0.3229F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ShieldOnly"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShieldBug"),
+                            childName = "Head",
+                            localPos = new Vector3(0.08606F, 0.25265F, 0.0087F),
+                            localAngles = new Vector3(348.1819F, 268.0985F, 0.3896F),
+                            localScale = new Vector3(0.3521F, 0.3521F, 0.3521F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShieldBug"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.08763F, 0.24565F, 0.00974F),
+                            localAngles = new Vector3(11.8181F, 268.0985F, 359.6104F),
+                            localScale = new Vector3(0.3521F, 0.3521F, -0.3521F),   
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/AlienHead"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAlienHead"),
+                            childName = "Head",
+                            localPos = new Vector3(0.01651F, 0.35434F, -0.10006F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(2F, 2F, 2F),
+                            limbMask = LimbFlags.None   
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/HeadHunter"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySkullCrown"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.0028F, 0.18483F, 0.00631F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.38037F, 0.14175F, 0.1546F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/EnergizedOnEquipmentUse"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWarHorn"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.05064F, 0.06858F, 0.16446F),
+                            localAngles = new Vector3(16.84178F, 258.5842F, 42.69091F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/FlatHealth"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySteakCurved"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00271F, 0.24239F, -0.09331F),
+                            localAngles = new Vector3(319.4152F, 183.6783F, 186.0788F),
+                            localScale = new Vector3(0.1245F, 0.1155F, 0.1155F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Tooth"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayToothMeshLarge"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00446F, 0.02273F, 0.14747F),
+                            localAngles = new Vector3(344.9017F, 0F, 0F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Pearl"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayPearl"),
+                            childName = "Chest",
+                            localPos = new Vector3(0F, 0F, 0F),
+                            localAngles = new Vector3(90F, 0F, 0F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/ShinyPearl"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShinyPearl"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.03951F, -0.3283F, 0.00238F),
+                            localAngles = new Vector3(90F, 0F, 0F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BonusGoldPackOnKill"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTome"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.02862F, -0.28473F, 0.15297F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.0475F, 0.0475F, 0.0475F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Squid"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySquidTurret"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.01262F, 0.2572F, 0.00161F),
+                            localAngles = new Vector3(0F, 90F, 0F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Icicle"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFrostRelic"),
+                            childName = "Head",
+                            localPos = new Vector3(0.02003F, 0.37496F, 0.11125F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/Talisman"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTalisman"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.8942F, -0.06959F, -0.30334F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/LaserTurbine"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLaserTurbine"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.02098F, 0.01822F, 0.14412F),
+                            localAngles = new Vector3(341.9818F, 0.75081F, 359.2094F),
+                            localScale = new Vector3(0.2159F, 0.2159F, 0.2159F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/FocusConvergence"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFocusedConvergence"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.59788F, 0.61425F, -0.0637F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/FireballsOnHit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFireballsOnHit"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.01163F, 0.16095F, -0.14337F),
+                            localAngles = new Vector3(325.188F, 171.7754F, 192.8122F),
+                            localScale = new Vector3(0.0761F, 0.0761F, 0.0761F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/SiphonOnLowHealth"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySiphonOnLowHealth"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(-0.04825F, 0.13126F, -0.07715F),
+                            localAngles = new Vector3(0F, 303.4368F, 0F),
+                            localScale = new Vector3(0.0385F, 0.0385F, 0.0385F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/BleedOnHitAndExplode"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBleedOnHitAndExplode"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.16036F, -0.16303F, -0.10576F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.0486F, 0.0486F, 0.0486F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/MonstersOnShrineUse"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMonstersOnShrineUse"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.11751F, 0.078F, 0.1363F),
+                            localAngles = new Vector3(0.66624F, 291.2867F, 29.90962F),
+                            localScale = new Vector3(0.0246F, 0.0246F, 0.0246F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<ItemDef>("ItemDefs/RandomDamageZone"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRandomDamageZone"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(-0.02388F, 0.01735F, -0.1126F),
+                            localAngles = new Vector3(328.3619F, 356.4809F, 8.21707F),
+                            localScale = new Vector3(0.0465F, 0.0465F, 0.0465F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Fruit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFruit"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(0.20576F, 0.1442F, 0.07384F),
+                            localAngles = new Vector3(1.36894F, 319.8027F, 170.8728F),
+                            localScale = new Vector3(0.2118F, 0.2118F, 0.2118F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/AffixRed"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteHorn"),
+                            childName = "Head",
+                            localPos = new Vector3(0.07658F, 0.19903F, 0.05725F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.1036F, 0.1036F, 0.1036F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteHorn"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.07844F, 0.20858F, 0.04059F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(-0.1036F, 0.1036F, 0.1036F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/AffixBlue"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteRhinoHorn"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00275F, 0.18601F, 0.16221F),
+                            localAngles = new Vector3(315F, 0F, 0F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteRhinoHorn"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00014F, 0.23012F, 0.14643F),
+                            localAngles = new Vector3(300F, 0F, 0F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/AffixWhite"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteIceCrown"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00582F, 0.25185F, 0.03086F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(0.02F, 0.02F, 0.02F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/AffixPoison"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteUrchinCrown"),
+                            childName = "Head",
+                            localPos = new Vector3(0.00032F, 0.20361F, 0.00592F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(0.0496F, 0.0496F, 0.0496F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/AffixHaunted"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEliteStealthCrown"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00108F, 0.19782F, 0.04735F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(0.03468F, 0.03F, 0.0392F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/CritOnUse"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayNeuralImplant"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00191F, 0.13451F, 0.23858F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2326F, 0.2326F, 0.2326F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/DroneBackup"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRadio"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.1334F, 0.11309F, 0.11981F),
+                            localAngles = new Vector3(340.2856F, 1.22042F, 359.3574F),
+                            localScale = new Vector3(0.2641F, 0.2641F, 0.2641F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Lightning"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLightningArmRight"),
+                            childName = "Left Shoulder",
+                            localPos = new Vector3(0.05778F, 0.18172F, -0.07366F),
+                            localAngles = new Vector3(277.6853F, 78.85683F, 291.4521F),
+                            localScale = new Vector3(0.3413F, 0.3413F, 0.3413F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/BurnNearby"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayPotion"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.16863F, -0.29585F, 0.14104F),
+                            localAngles = new Vector3(359.1402F, 0.1068F, 331.8908F),
+                            localScale = new Vector3(0.0307F, 0.0307F, 0.0307F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/CrippleWard"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEffigy"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.13518F, -0.15361F, 0.17434F),
+                            localAngles = new Vector3(0F, 180F, 0F),
+                            localScale = new Vector3(0.2812F, 0.2812F, 0.2812F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/QuestVolatileBattery"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBatteryArray"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.00496F, -0.03855F, -0.19404F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2188F, 0.2188F, 0.2188F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/GainArmor"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayElephantFigure"),
+                            childName = "Right Shoulder",
+                            localPos = new Vector3(0.01201F, 0.02871F, -0.16037F),
+                            localAngles = new Vector3(270F, 0.00001F, 0F),
+                            localScale = new Vector3(0.6279F, 0.6279F, 0.6279F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Recycle"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRecycler"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.02751F, -0.0253F, -0.19446F),
+                            localAngles = new Vector3(0F, 90F, 0F),
+                            localScale = new Vector3(0.0802F, 0.0802F, 0.0802F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/FireBallDash"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayEgg"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.07441F, -0.03098F, 0.16384F),
+                            localAngles = new Vector3(270F, 0F, 0F),
+                            localScale = new Vector3(0.1891F, 0.1891F, 0.1891F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Cleanse"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWaterPack"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.0014F, -0.09706F, -0.13153F),
+                            localAngles = new Vector3(0F, 180F, 0F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Tonic"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTonic"),
+                            childName = "Left Hand",
+                            localPos = new Vector3(0.00981F, 0.09236F, -0.03525F),
+                            localAngles = new Vector3(13.83449F, 356.5916F, 354.6006F),
+                            localScale = new Vector3(0.1252F, 0.1252F, 0.1252F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Gateway"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayVase"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.12238F, 0.11426F, -0.14207F),
+                            localAngles = new Vector3(0F, 90F, 0F),
+                            localScale = new Vector3(0.0982F, 0.0982F, 0.0982F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Meteor"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMeteor"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.65854F, 0.79489F, -0.05648F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Saw"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySawmerang"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.67559F, 0.55616F, -0.00934F),
+                            localAngles = new Vector3(90F, 0F, 0F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Blackhole"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGravCube"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.55903F, 0.03074F, -0.01245F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Scanner"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayScanner"),
+                            childName = "Right Shoulder",
+                            localPos = new Vector3(0.03333F, 0.00003F, -0.001F),
+                            localAngles = new Vector3(355.6282F, 199.0192F, 72.95554F),
+                            localScale = new Vector3(0.1884F, 0.1884F, 0.1884F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/DeathProjectile"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDeathProjectile"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.00395F, 0.02198F, 0.19145F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.0596F, 0.0596F, 0.0596F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/LifestealOnHit"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLifestealOnHit"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.16103F, 0.3673F, -0.00358F),
+                            localAngles = new Vector3(44.0939F, 33.5151F, 43.5058F),
+                            localScale = new Vector3(0.1246F, 0.1246F, 0.1246F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/TeamWarCry"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTeamWarCry"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.01345F, -0.34087F, 0.16481F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.05F, 0.05F, 0.05F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+            #endregion
+
+            itemDisplayRuleSet.keyAssetRuleGroups = itemDisplayRules.ToArray();
+            itemDisplayRuleSet.GenerateRuntimeValues();
+        }
 
         private static CharacterModel.RendererInfo[] SkinRendererInfos(CharacterModel.RendererInfo[] defaultRenderers, Material[] materials)
         {

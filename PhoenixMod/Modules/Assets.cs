@@ -19,6 +19,8 @@ namespace PhoenixWright.Modules
         internal static GameObject pressobjectEffect;
         internal static GameObject presstTakeEffect;
         internal static GameObject gavelEffect;
+        internal static GameObject paperEffect;
+        internal static GameObject dustEffect;
 
         // lists of assets to add to contentpack
         internal static List<NetworkSoundEventDef> networkSoundEventDefs = new List<NetworkSoundEventDef>();
@@ -74,6 +76,8 @@ namespace PhoenixWright.Modules
             gavelEffect = Assets.LoadEffect("SpecialEffect");
             pressobjectEffect = Assets.LoadEffect("SecondaryObjectEffect");
             presstTakeEffect = Assets.LoadEffect("SecondaryTakeEffect");
+            paperEffect = Assets.LoadEffect("PaperParticle");
+            dustEffect = Assets.LoadEffect("DustEffect");
         }
         
 

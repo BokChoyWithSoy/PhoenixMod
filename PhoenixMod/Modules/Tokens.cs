@@ -41,30 +41,33 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "PRIMARY_THROW_DESCRIPTION", Helpers.stunningPrefix + Helpers.agilePrefix + $"Throw a random piece of evidence, Junk will deal <style=cIsDamage>200% damage</style> and decisive evidence will deal <style=cIsDamage>400% damage</style>.");
 
             LanguageAPI.Add(prefix + "PRIMARY_THROW2_NAME", "Take That!");
-            LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.stunningPrefix + Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>600% damage</style>.");
+            LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.stunningPrefix + Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>400% damage</style>.");
+
+            LanguageAPI.Add(prefix + "PRIMARY_PAPER_NAME", "Outdated Autopsy");
+            LanguageAPI.Add(prefix + "PRIMARY_PAPER_DESCRIPTION", Helpers.agilePrefix + $"Throw out your outdated autopsy report, dealing <style=cIsDamage>100% damage</style> and <style=cIsUtility>300 armor</style> while using this skill. Every 5th attack, this skill will become decisive evidence.");
             #endregion
 
             #region Secondary
             LanguageAPI.Add(prefix + "SECONDARY_PRESS_NAME", "Press The Witness");
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", Helpers.stunningPrefix + $"Press the witness dealing <style=cIsDamage>{100f * StaticValues.gunDamageCoefficient}% damage</style>.");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS_DESCRIPTION", Helpers.stunningPrefix + $"Press the witness dealing <style=cIsDamage>{100f * 4}% damage</style>.");
 
             LanguageAPI.Add(prefix + "SECONDARY_PRESS2_NAME", "Objection!");
-            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", Helpers.freezingPrefix + $"Raise an objection dealing <style=cIsDamage>{100f * (StaticValues.gunDamageCoefficient + 2)}% damage</style>.");
+            LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", Helpers.freezingPrefix + $"Raise an objection dealing <style=cIsDamage>{100f * (6)}% damage</style>.");
             #endregion
 
             #region Utility
             LanguageAPI.Add(prefix + "UTILITY_FALL_NAME", "Fall");
-            LanguageAPI.Add(prefix + "UTILITY_FALL_DESCRIPTION", Helpers.stunningPrefix +  $"<style=cIsUtility>Fall</style> on your face gaining <style=cIsUtility>300 armor</style> and dealing <style=cIsDamage>300% damage</style>. <style=cIsUtility>You cannot be hit during the fall.</style>");
+            LanguageAPI.Add(prefix + "UTILITY_FALL_DESCRIPTION", Helpers.stunningPrefix +  $"<style=cIsUtility>Fall</style> on your face gaining <style=cIsUtility>300 armor</style> and dealing <style=cIsDamage>200% damage</style>. <style=cIsUtility>You cannot be hit during the fall.</style>");
 
             LanguageAPI.Add(prefix + "UTILITY_FALL2_NAME", "Tumble");
-            LanguageAPI.Add(prefix + "UTILITY_FALL2_DESCRIPTION", Helpers.stunningPrefix + $"<style=cIsUtility>Fall over and tumble</style>, dealing <style=cIsDamage>600% damage</style>.");
+            LanguageAPI.Add(prefix + "UTILITY_FALL2_DESCRIPTION", Helpers.stunningPrefix + $"<style=cIsUtility>Fall over while flailing your arms and legs</style>, dealing <style=cIsDamage>400% damage</style> and <style=cIsUtility>ignoring armour.");
             #endregion
 
             #region Special
             LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME", "Order In The Court!");
-            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style>. <style=cIsUtility>You cannot be hit for 2 seconds.</style>");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{100f * StaticValues.bombDamageCoefficient}% damage</style>. <style=cIsUtility>You cannot be hit for 1 second.</style>");
             LanguageAPI.Add(prefix + "SPECIAL_ORDER_NAME2", "Objection Overruled!");
-            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION2", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{200f * StaticValues.bombDamageCoefficient}% damage and weakening enemies</style>. <style=cIsUtility>You cannot be hit for 2 seconds.</style>");
+            LanguageAPI.Add(prefix + "SPECIAL_ORDER_DESCRIPTION2", Helpers.stunningPrefix + $"After a short delay, a giant gavel falls from the sky dealing <style=cIsDamage>{200f * StaticValues.bombDamageCoefficient}% damage and weakening enemies</style>. <style=cIsUtility>You cannot be hit for 1 second.</style>");
             #endregion
 
             #region Achievements

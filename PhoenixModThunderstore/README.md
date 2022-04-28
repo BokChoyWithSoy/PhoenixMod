@@ -24,23 +24,23 @@ Stunning. Agile. Throw a random piece of evidence, junk will deal 200% damage an
 
 ### Turnabout Primary: Take That!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509050730614815/texPrimaryUpgrade.png"><br>
-Stunning. Agile. Summon a giant hand which travels in a line, dealing 600% damage.
+Stunning. Agile. Summon a giant hand which travels in a line, dealing 400% damage.
 
 ### Secondary: Press The Witness
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509762449498112/texPressIcon.png"><br>
-Stunning. Press the witness, dealing 600% damage. Gain turnabout if you have decisive evidence.
+Stunning. Press the witness, dealing 400% damage. Gain turnabout if you have decisive evidence.
 
 ### Turnabout Secondary: Objection!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510244827996180/texSecondaryUpgradeIcon.png"><br>
-Freezing. Raise an objection, dealing 800% damage.
+Freezing. Raise an objection, dealing 600% damage.
 
 ### Utility: Fall
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510540060880996/texTripIcon.png"><br>
-Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. You cannot be hit during the fall. Gain an extra charge when In turnabout mode or reset the skill if you have decisive evidence.
+Stunning. Fall forward on your face gaining 300 armour and dealing 200% damage. You cannot be hit during the fall. Gain an extra charge when In turnabout mode or reset the skill if you have decisive evidence.
 
 ### Special: Order In The Court!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927511214836314142/texGavelIcon.png"><br>
-Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds. Double the range and damage and weaken enemies if you are in turnabout mode or have decisive evidence.
+Stunning. After a short delay, a giant gavel falls from the sky dealing 700% damage. You cannot be hit for 2 seconds. Double the range and damage and weaken enemies if you are in turnabout mode or have decisive evidence.
 
 ## Support me on Ko-fi
 If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
@@ -48,7 +48,73 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 <img src="https://media.discordapp.net/attachments/399901440023330816/952862894721208330/download.png"><br>
 </a>
 
+## Popcorn Factory
+<b>Check out other mods from the Popcorn Factory team!</b>
+<div>
+	<a href="https://thunderstore.io/package/Ethanol10/Ganondorf_Mod/">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/960043613428011079/Ethanol10-Ganondorf_Mod-2.1.5.png.128x128_q95.png"><br>
+		<p>Ganondorf Mod (Ethanol 10)</p>
+	</a>
+</div>
+<div>
+	<a href="https://thunderstore.io/package/TeaL/DekuMod/">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/960043614036168784/TeaL-DekuMod-3.1.1.png.128x128_q95.png"><br>
+		<p>Deku Mod (TeaL)</p>
+	</a>
+</div>
+<div>
+	<a href="https://thunderstore.io/package/PopcornFactory/Wisp_WarframeSurvivorMod/?utm_source=discord">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/960043613692239942/PopcornFactory-Wisp_WarframeSurvivorMod-1.0.2.png.128x128_q95.png"><br>
+		<p>Wisp Mod (Popcorn Factory Team)</p>
+	</a>
+</div>
+
 ## Changelog
+
+<details open>
+  <summary>Click to expand patch notes</summary>
+
+- 1.7.3
+	- Turnabout music is now centred on the player.
+	- Order In The Court! now generates dust particles.
+
+- 1.7.2
+	- Turnabout music should be heard by all players now.
+	- Fixed an issue where turnabout music would play upon getting a stack of turnabout.
+
+- 1.7.1
+	- Fixed an issue where you could not hear some sound effects.
+	- Fixed an issue where you could not see some animations.
+	- Fixed an issue where jumping and using your secondary would collide with yourself.
+	
+- 1.7.0
+	- Added item displays for the base game.
+	- Reduced the proc rates of "Objection In The Court!"
+	- Fixed an issue where Fall did not give player invincibility or armour.
+	- Fixed an issue where you could earn achievements on any character.
+	- Fixed an issue where the turnabout music was not centered on player character.
+
+	<b> BALANCE CHANGES </b>
+	- <b>Turnabout Order In The Court!</b> proc rate 5 > proc rate 2
+	- <b>Turnabout Order In The Court!</b> Invincibility buff 2 sec > 1 sec
+
+- 1.6.2
+	- Fixed an issue where the achievement was lagging out the game.
+
+- 1.6.1
+	- Fixed an issue where you could earn achievements on any character.
+	- Fixed an issue where secondary skill would collide with the player model.
+	
+	<b> BALANCE CHANGES </b>
+	- <b>Throw Evidence</b> duration 1s > duration 0.75
+	- <b>Take That!</b> 600% dmg > 400% dmg
+	- <b>Press</b> 600% dmg > 400% dmg
+	- <b>Turnabout Press</b> 800% dmg > 600% dmg
+	- <b>Fall</b> 300% dmg > 200% dmg
+	- <b>Order In The Court!</b> 1000% dmg > 700% dmg
+	- <b>Turnabout Order In The Court!</b> 2000% dmg > 1400% dmg
+	- <b>Turnabout Order In The Court!</b> 50m > 40m
+
 - 1.6.0
 	- Added new skin.
 	- Added new Achievement.
@@ -173,12 +239,15 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 
 - 1.0.0
 	- Initial Release
+
+
+</details>
  
 ## Future Plans
 - Implement new skills
 - Fix some bugs (in Known issues)
 - Add stand alone scepter support
-- Maybe add items displays
+- add displays from SOTV
 - New skins
 - New achievements
 - Clean up the atrocity that I call code
@@ -192,5 +261,6 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 - Capcom -> Model & Texturing
 - Mixamo -> Animations
 - TheTimesweeper -> Hitbox viewer was extremely helpful
-- TeaL & Ethanol 10 -> Who helped me troubleshoot in discord calls.
+- KingEnderBrine -> I love you for making the item placer helper.
+- TeaL & Ethanol 10 -> Other members of Popcorn Factory who helped me out.
 - The vast amount of Vtuber streams I watched while coding which kept me sane.

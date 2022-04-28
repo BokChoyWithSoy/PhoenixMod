@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2940350768
+CRC: 2417822261
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9c99791f85e58383044274d7e2f7664b
+    Hash: 57c1c0c1f21ec08af81c1bc34ea4d86a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3c95d1c8fe5176bf995de0046345c777
@@ -56,12 +56,15 @@ Assets:
 - Assets/PhoenixAssets/Icons/texGavelIconStrong.png
 - Assets/PhoenixAssets/Icons/texPressIcon.png
 - Assets/PhoenixAssets/Icons/texBuffIcon.png
+- Assets/PhoenixAssets/Prefabs/lower.png
 - Assets/PhoenixAssets/VFX/Materials/matPunchImpactShadow.mat
 - Assets/PhoenixAssets/Animations/FastFall.anim
+- Assets/PhoenixAssets/VFX/DustEffect.prefab
 - Assets/PhoenixAssets/VFX/Textures/texFistSwing.png
 - Assets/PhoenixAssets/VFX/Textures/texSlash.png
 - Assets/PhoenixAssets/VFX/Materials/matSwingShadow.mat
 - Assets/PhoenixAssets/VFX/Materials/matDust.mat
+- Assets/PhoenixAssets/Prefabs/hair.png
 - Assets/PhoenixAssets/VFX/Textures/texPunchImpact.png
 - Assets/PhoenixAssets/Materials/Champagne_Bottle_Rap_DIFF.png
 - Assets/PhoenixAssets/Materials/Materials/Champagne_Bottle_Rap_DIFF.mat
@@ -72,6 +75,8 @@ Assets:
 - Assets/PhoenixAssets/Icons/texServbotIcon.png
 - Assets/PhoenixAssets/Icons/texTripIconStrong.png
 - Assets/PhoenixAssets/VFX/Materials/matSmoke.mat
+- Assets/PhoenixAssets/VFX/PaperParticle.prefab
+- Assets/PhoenixAssets/Prefabs/buckle.png
 - Assets/PhoenixAssets/Animations/Ascend.anim
 - Assets/PhoenixAssets/Animations/Jump.anim
 - Assets/PhoenixAssets/VFX/Materials/matHitSparkPunch.mat
@@ -84,27 +89,39 @@ Assets:
 - Assets/PhoenixAssets/Materials/matAltPhoenix.png
 - Assets/PhoenixAssets/Materials/matVase.png
 - Assets/PhoenixAssets/Icons/texPrimaryUpgrade.png
+- Assets/PhoenixAssets/Prefabs/shoes.png
 - Assets/PhoenixAssets/Mesh/Gavel.mesh
 - Assets/PhoenixAssets/Materials/matKnife.png
+- Assets/PhoenixAssets/Materials/hqdefault.png
 - Assets/PhoenixAssets/Icons/texBottleIcon.png
+- Assets/PhoenixAssets/Icons/texPaperIconGreen.png
+- Assets/PhoenixAssets/Materials/Paper 2.mat
 - Assets/PhoenixAssets/Animations/WalkRight.anim
 - Assets/PhoenixAssets/VFX/SecondaryObjectEffect.prefab
 - Assets/PhoenixAssets/Materials/matVase.mat
 - Assets/PhoenixAssets/Materials/matHitboxPreview.mat
 - Assets/PhoenixAssets/VFX/Textures/texEmbers.png
+- Assets/PhoenixAssets/Prefabs/eye.png
 - Assets/PhoenixAssets/Materials/Objection.png
 - Assets/PhoenixAssets/Materials/matPhoenix.mat
 - Assets/PhoenixAssets/Materials/lambert4.png
 - Assets/PhoenixAssets/Animations/Tumble.anim
 - Assets/PhoenixAssets/Animations/Dying.anim
 - Assets/PhoenixAssets/Materials/matWood.mat
+- Assets/PhoenixAssets/Animations/animKiryu.controller
+- Assets/PhoenixAssets/Icons/texArmourBuff.png
 - Assets/PhoenixAssets/Animations/Throw.anim
+- Assets/PhoenixAssets/Prefabs/kiryu.FBX
 - Assets/PhoenixAssets/VFX/Mesh/meshSwing.asset
+- Assets/PhoenixAssets/Prefabs/head.png
 - Assets/PhoenixAssets/VFX/Mesh/meshPunchShockwave.mesh
 - Assets/PhoenixAssets/Prefabs/BottleGhost.prefab
 - Assets/PhoenixAssets/Prefabs/PhoenixDisplay.prefab
+- Assets/PhoenixAssets/Prefabs/upper.png
+- Assets/PhoenixAssets/Materials/Paper 1.mat
 - Assets/FBX/Bottle.fbx
 - Assets/PhoenixAssets/Animations/animPhoenixMenu.controller
+- Assets/PhoenixAssets/VFX/Textures/New Material.mat
 - Assets/PhoenixAssets/Icons/texTripIcon.png
 - Assets/PhoenixAssets/VFX/Materials/matHenrySwing2.mat
 - Assets/PhoenixAssets/Materials/matPhoenixMastery.png
@@ -123,12 +140,14 @@ Assets:
 - Assets/PhoenixAssets/Animations/RunBackwards.anim
 - Assets/PhoenixAssets/Prefabs/PhoneGhost.prefab
 - Assets/PhoenixAssets/VFX/Materials/matRipple.mat
+- Assets/PhoenixAssets/VFX/Textures/New Material 1.mat
 - Assets/PhoenixAssets/VFX/Textures/texSmoke.png
 - Assets/PhoenixAssets/Animations/SlowFall.anim
 - Assets/PhoenixAssets/Materials/Materials/Holographic.mat
 - Assets/PhoenixAssets/Icons/texDripSkin.png
 - Assets/PhoenixAssets/Animations/WalkLeft.anim
 - Assets/PhoenixAssets/VFX/Materials/matSwingEffect.mat
+- Assets/PhoenixAssets/Materials/Paper 3.png
 - Assets/PhoenixAssets/Icons/texBuffIconNoBackground.png
 - Assets/PhoenixAssets/Animations/Dead.anim
 - Assets/PhoenixAssets/VFX/Textures/texHenrySwing2.png
@@ -139,6 +158,8 @@ Assets:
 - Assets/PhoenixAssets/Icons/texGavelIcon.png
 - Assets/FBX/Knife.fbx
 - Assets/PhoenixAssets/VFX/Textures/texRipple.png
+- Assets/PhoenixAssets/Materials/Lock.mat
+- Assets/PhoenixAssets/Prefabs/beard.png
 - Assets/PhoenixAssets/Materials/matPhoenixDrip.png
 - Assets/PhoenixAssets/Materials/Holographic.png
 - Assets/PhoenixAssets/Animations/SideGetUp.anim
@@ -152,6 +173,7 @@ Assets:
 - Assets/PhoenixAssets/VFX/Textures/texSwingEffect.png
 - Assets/PhoenixAssets/Icons/texMasterySword.png
 - Assets/PhoenixAssets/Animations/MenuIdleIn.anim
+- Assets/PhoenixAssets/Materials/Paper 2.png
 - Assets/FBX/Hammer.fbx
 - Assets/PhoenixAssets/VFX/Mesh/meshBoxingGlove.mesh
 - Assets/PhoenixAssets/Icons/texPhoneIcon.png
@@ -160,6 +182,7 @@ Assets:
 - Assets/PhoenixAssets/Prefabs/KnifeGhost.prefab
 - Assets/PhoenixAssets/Materials/matPhoenixOther.png
 - Assets/PhoenixAssets/Icons/texMainSkin.png
+- Assets/PhoenixAssets/Icons/texPaperIconRed.png
 - Assets/FBX/Servbot.fbx
 - Assets/PhoenixAssets/VFX/SpecialEffect.prefab
 - Assets/PhoenixAssets/Prefabs/VaseGhost.prefab
@@ -175,7 +198,11 @@ Assets:
 - Assets/PhoenixAssets/Icons/texTumbleIcon.png
 - Assets/PhoenixAssets/Materials/matPhoenixDrip.mat
 - Assets/PhoenixAssets/Materials/TakeThat.mat
+- Assets/PhoenixAssets/Prefabs/accesories.png
+- Assets/PhoenixAssets/Materials/Paper 1.png
 - Assets/PhoenixAssets/Animations/RunRight.anim
+- Assets/PhoenixAssets/Materials/Paper 3.mat
+- Assets/PhoenixAssets/Prefabs/hand.png
 - Assets/PhoenixAssets/VFX/Materials/matSlash.mat
 - Assets/PhoenixAssets/Materials/seamless-wood3.jpg
 - Assets/PhoenixAssets/Materials/matPhoenixAlt.png
@@ -186,6 +213,7 @@ Assets:
 - Assets/PhoenixAssets/Animations/RunBack.anim
 - Assets/PhoenixAssets/Materials/Materials/matAltPhoenix.mat
 - Assets/PhoenixAssets/VFX/Materials/matPunchImpact.mat
+- Assets/PhoenixAssets/Animations/PaperThrow.anim
 - Assets/PhoenixAssets/Prefabs/ServbotGhost.prefab
 - Assets/FBX/Arm.fbx
 - Assets/PhoenixAssets/Icons/texSecondaryUpgradeIcon.png

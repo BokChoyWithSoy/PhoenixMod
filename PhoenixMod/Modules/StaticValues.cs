@@ -16,6 +16,6 @@ namespace PhoenixWright.Modules
 
         internal const float fallDamageCoefficient = 2f;
 
-        internal const float bombDamageCoefficient = 10f;
+        internal const float bombDamageCoefficient = 7f;
     }
 }

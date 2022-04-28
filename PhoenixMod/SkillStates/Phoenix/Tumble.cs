@@ -11,11 +11,11 @@ namespace PhoenixWright.SkillStates
     {
         
 
-        public static float damageCoefficient = 2f;
+        public static float damageCoefficient = 4f;
         public static float procCoefficient = 1f;
         public static float duration = 0.5f;
-        public static float initialSpeedCoefficient = 7f;
-        public static float finalSpeedCoefficient = 2.5f;
+        public static float initialSpeedCoefficient = 10f;
+        public static float finalSpeedCoefficient = 8.5f;
 
         private bool hasFired;
         public static string dodgeSoundString = "HenryRoll";
@@ -27,7 +27,7 @@ namespace PhoenixWright.SkillStates
         public Vector3 rayPosition;
 
         protected string hitboxName = "fall";
-        protected BlastAttack blastAttack;
+        protected OverlapAttack attack;
         protected float attackStartTime = 0.001f * duration;
         protected float attackEndTime = 8f *duration;
 
@@ -77,28 +77,20 @@ namespace PhoenixWright.SkillStates
                 hitBoxGroup = Array.Find<HitBoxGroup>(modelTransform.GetComponents<HitBoxGroup>(), (HitBoxGroup element) => element.groupName == this.hitboxName);
             }
 
-            blastAttack = new BlastAttack();
-            blastAttack.radius = 10f;
-            blastAttack.procCoefficient = procCoefficient;
-            blastAttack.position = aimRay.origin;
-            blastAttack.attacker = base.gameObject;
-            blastAttack.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);
-            blastAttack.baseDamage = this.damageStat * damageCoefficient;
-            blastAttack.falloffModel = BlastAttack.FalloffModel.None;
-            blastAttack.teamIndex = TeamComponent.GetObjectTeam(blastAttack.attacker);
-            blastAttack.damageType = DamageType.Stun1s;
-            blastAttack.attackerFiltering = AttackerFiltering.Default;
-
-            if (NetworkServer.active)
-            {
-                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 5f * Fall.duration);
-                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 1f * Fall.duration);
-            }
+            this.attack = new OverlapAttack();
+            this.attack.damageType = DamageType.BypassArmor;
+            this.attack.attacker = base.gameObject;
+            this.attack.inflictor = base.gameObject;
+            this.attack.teamIndex = base.GetTeam();
+            this.attack.damage = damageCoefficient * this.damageStat;
+            this.attack.procCoefficient = procCoefficient;
+            this.attack.hitBoxGroup = hitBoxGroup;
+            this.attack.isCrit = base.RollCrit();
         }
 
         private void RecalculateRollSpeed()
         {
-            this.rollSpeed = this.moveSpeedStat * Mathf.Lerp(Fall.initialSpeedCoefficient, Fall.finalSpeedCoefficient, base.fixedAge / Fall.duration);
+            this.rollSpeed = (this.moveSpeedStat) * Mathf.Lerp(Fall.initialSpeedCoefficient, Fall.finalSpeedCoefficient, base.fixedAge / Tumble.duration);
         }
 
         public override void FixedUpdate()
@@ -107,7 +99,7 @@ namespace PhoenixWright.SkillStates
             this.RecalculateRollSpeed();
 
             if (base.characterDirection) base.characterDirection.forward = this.forwardDirection;
-            if (base.cameraTargetParams) base.cameraTargetParams.fovOverride = Mathf.Lerp(Fall.dodgeFOV, 60f, base.fixedAge / Fall.duration);
+            if (base.cameraTargetParams) base.cameraTargetParams.fovOverride = Mathf.Lerp(Fall.dodgeFOV, 60f, base.fixedAge / Tumble.duration);
 
             Vector3 normalized = (base.transform.position - this.previousPosition).normalized;
             if (base.characterMotor && base.characterDirection && normalized != Vector3.zero)
@@ -124,16 +116,13 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime)
             {
                 FireAttack();
-                FireAttack();
-                FireAttack();
                 if (PhoenixController.GetEvidenceType())
                 {
                     base.skillLocator.utility.Reset();
-                    ShufflePrimary();
                 }
             }
 
-            if (base.isAuthority && base.fixedAge >= Fall.duration)
+            if (base.isAuthority && base.fixedAge >= Tumble.duration)
             {
                 this.outer.SetNextStateToMain();
                 return;
@@ -172,7 +161,19 @@ namespace PhoenixWright.SkillStates
                 }
                 else Util.PlaySound("FallVoice", base.gameObject);
             }
-            this.blastAttack.Fire();
+            this.attack.Fire();
+            if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME") && PhoenixController.GetEvidenceType())
+            {
+                base.skillLocator.utility.Reset();
+                ShufflePrimary();
+                PhoenixController.SetEvidenceType(false);
+            }
+            if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME") && PhoenixController.GetEvidenceType())
+            {
+                base.skillLocator.utility.Reset();
+                base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
+                PhoenixController.resetPaperAttackCount();
+            }
         }
 
         private void ShufflePrimary()

@@ -10,8 +10,8 @@ namespace PhoenixWright.SkillStates
 {
     public class GavelStrong : BaseSkillState
     {
-        public static float damageCoefficient = 10f;
-        public static float procCoefficient = 5f;
+        public static float damageCoefficient = 7f;
+        public static float procCoefficient = 2f;
         public static float duration = 0.7f;
         public Vector3 rayPosition;
 
@@ -32,16 +32,19 @@ namespace PhoenixWright.SkillStates
 
             rayPosition = aimRay.origin;
 
-            EffectManager.SpawnEffect(Modules.Assets.gavelEffect, new EffectData
+            if (base.isAuthority)
             {
-                origin = new Vector3(base.transform.position.x, base.transform.position.y + 10, base.transform.position.z),
-                scale = 1f,
+                EffectManager.SpawnEffect(Modules.Assets.gavelEffect, new EffectData
+                {
+                    origin = new Vector3(base.transform.position.x, base.transform.position.y + 10, base.transform.position.z),
+                    scale = 1f,
 
-            }, true);
+                }, true);
+            }
 
             if (NetworkServer.active)
             {
-                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 2f);
+                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 1f);
             }
 
             if (Modules.Config.loweredVolume.Value)
@@ -51,7 +54,7 @@ namespace PhoenixWright.SkillStates
             else Util.PlaySound("SpecialSound", base.gameObject);
 
             blastAttackStrong = new BlastAttack();
-            blastAttackStrong.radius = 50f;
+            blastAttackStrong.radius = 40f;
             blastAttackStrong.procCoefficient = procCoefficient;
             blastAttackStrong.position = rayPosition;
             blastAttackStrong.attacker = base.gameObject;
@@ -73,7 +76,10 @@ namespace PhoenixWright.SkillStates
             stopwatch += Time.fixedDeltaTime;
             if (stopwatch >= duration * 0.4f)
             {
-                FireAttack();
+                if(base.isAuthority)
+                {
+                    FireAttack();
+                }
             }
 
 
@@ -96,7 +102,20 @@ namespace PhoenixWright.SkillStates
             {
                 this.hasFired = true;
 
-                blastAttackStrong.Fire();
+                if (base.isAuthority)
+                {
+                    blastAttackStrong.Fire();
+                }
+
+                if (base.isAuthority)
+                {
+                    EffectManager.SpawnEffect(Modules.Assets.dustEffect, new EffectData
+                    {
+                        origin = new Vector3(base.transform.position.x, base.transform.position.y, base.transform.position.z),
+                        scale = 1f,
+
+                    }, true);
+                }
 
                 base.PlayAnimation("FullBody, Override", "Getup", "ShootGun.playbackRate", duration);
                 Wave wave = new Wave

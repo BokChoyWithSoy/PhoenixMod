@@ -11,7 +11,7 @@ namespace PhoenixWright.SkillStates
     {
         public static float damageCoefficient = 4f;
         public static float procCoefficient = 1f;
-        public static float baseDuration = 1f;
+        public static float baseDuration = 0.75f;
         public static float throwForce = 80f;
 
         public static SkillDef primaryVase = Phoenix.primaryVase;

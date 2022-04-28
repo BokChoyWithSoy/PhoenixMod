@@ -17,10 +17,15 @@ namespace PhoenixWright.Modules
             entityStates.Add(typeof(ThrowServbot));
             entityStates.Add(typeof(ThrowPhone));
             entityStates.Add(typeof(ThrowBottle));
+            entityStates.Add(typeof(ThrowPaper));
+
+            entityStates.Add(typeof(Press));
+            entityStates.Add(typeof(PressTurnabout));
 
             entityStates.Add(typeof(Fall));
             entityStates.Add(typeof(Tumble));
 
+            entityStates.Add(typeof(Gavel));
             entityStates.Add(typeof(GavelStrong));
 
             entityStates.Add(typeof(Death));

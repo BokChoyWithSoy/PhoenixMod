@@ -10,7 +10,7 @@ namespace PhoenixWright.SkillStates
 {
     public class PressTurnabout : BaseSkillState
     {
-        public static float damageCoefficient = 8f;
+        public static float damageCoefficient = 6f;
         public static float procCoefficient = 2f;
         public static float duration = 1f;
         public Vector3 rayPosition;
@@ -30,7 +30,7 @@ namespace PhoenixWright.SkillStates
         {
             base.OnEnter();
             Ray aimRay = base.GetAimRay();
-            Ray ray = new Ray(new Vector3(aimRay.origin.x, aimRay.origin.y + 0.2f, aimRay.origin.z), aimRay.direction);
+            Ray ray = new Ray(aimRay.origin + 1f * aimRay.direction, aimRay.direction);
             this.hasFired = false;
 
             RaycastHit hit;
@@ -51,33 +51,39 @@ namespace PhoenixWright.SkillStates
 
             if(random == 0)
             {
-                EffectManager.SpawnEffect(Modules.Assets.pressobjectEffect, new EffectData
+                if (base.isAuthority)
                 {
-                    origin = rayPosition,
-                    scale = 1f,
-                    rotation = Quaternion.LookRotation(aimRay.direction)
+                    EffectManager.SpawnEffect(Modules.Assets.pressobjectEffect, new EffectData
+                    {
+                        origin = rayPosition,
+                        scale = 1f,
+                        rotation = Quaternion.LookRotation(aimRay.direction)
 
-                }, true);
-                if (Modules.Config.loweredVolume.Value)
-                {
-                    Util.PlaySound("ObjectionQuiet", base.gameObject);
+                    }, true);
+                    if (Modules.Config.loweredVolume.Value)
+                    {
+                        Util.PlaySound("ObjectionQuiet", base.gameObject);
+                    }
+                    else Util.PlaySound("Objection", base.gameObject);
                 }
-                else Util.PlaySound("Objection", base.gameObject);
             }
             else
             {
-                EffectManager.SpawnEffect(Modules.Assets.presstTakeEffect, new EffectData
+                if (base.isAuthority)
                 {
-                    origin = rayPosition,
-                    scale = 1f,
-                    rotation = Quaternion.LookRotation(aimRay.direction)
+                    EffectManager.SpawnEffect(Modules.Assets.presstTakeEffect, new EffectData
+                    {
+                        origin = rayPosition,
+                        scale = 1f,
+                        rotation = Quaternion.LookRotation(aimRay.direction)
 
-                }, true);
-                if (Modules.Config.loweredVolume.Value)
-                {
-                    Util.PlaySound("TakeThatQuiet", base.gameObject);
+                    }, true);
+                    if (Modules.Config.loweredVolume.Value)
+                    {
+                        Util.PlaySound("TakeThatQuiet", base.gameObject);
+                    }
+                    else Util.PlaySound("TakeThat", base.gameObject);
                 }
-                else Util.PlaySound("TakeThat", base.gameObject);
             }
 
             blastAttack = new BlastAttack();
@@ -100,7 +106,8 @@ namespace PhoenixWright.SkillStates
             stopwatch += Time.fixedDeltaTime;
             if (this.stopwatch >= attackStartTime && this.stopwatch <= attackEndTime )
             {
-                FireAttack();
+
+                    FireAttack();
             }
 
 
@@ -126,8 +133,11 @@ namespace PhoenixWright.SkillStates
         {
             if (!this.hasFired)
             {
-                this.hasFired = true;
-                blastAttack.Fire();
+                if (base.isAuthority)
+                {
+                    this.hasFired = true;
+                    blastAttack.Fire();
+                }
             }
         }
 

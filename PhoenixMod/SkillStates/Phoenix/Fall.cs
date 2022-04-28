@@ -11,7 +11,7 @@ namespace PhoenixWright.SkillStates
     {
         
 
-        public static float damageCoefficient = 3f;
+        public static float damageCoefficient = 2f;
         public static float procCoefficient = 5f;
         public static float duration = 0.5f;
         public static float initialSpeedCoefficient = 5f;
@@ -59,6 +59,11 @@ namespace PhoenixWright.SkillStates
             Vector3 b = base.characterMotor ? base.characterMotor.velocity : Vector3.zero;
             this.previousPosition = base.transform.position - b;
 
+            if (NetworkServer.active)
+            {
+                base.characterBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, 1f);
+                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, 2f);
+            }
 
             base.StartAimMode(duration, true);
             base.PlayAnimation("FullBody, Override", "FallFlat", "Roll.playbackRate", Fall.duration * 2);
@@ -117,12 +122,19 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime)
             {
                 FireAttack();
-                if(PhoenixController.GetEvidenceType())
+                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME") && PhoenixController.GetEvidenceType())
                 {
                     base.skillLocator.utility.Reset();
+                    PhoenixController.SetEvidenceType(false);
                     ShufflePrimary();
                 }
-            }
+                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME") && PhoenixController.GetEvidenceType())
+                {
+                    base.skillLocator.utility.Reset();
+                    base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.resetPaperAttackCount();
+                }
+        }
 
             if (base.isAuthority && base.fixedAge >= Fall.duration)
             {

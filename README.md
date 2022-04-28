@@ -12,7 +12,7 @@ Created by BokChoyWithSoy. Help me out for bugs and issues by contacting me on d
 
 ### Passive: Turnabout
 #### <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507829273817088/texBuffIcon.png">
-Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode, permanently empowering Phoenix's skills.
+<b>Whenever you hit an enemy with Press The Witness while holding a decisive piece of evidence</b>, gain a stack of turnabout, if you have 50 stacks of turnabout, Phoenix will enter turnabout mode,<b> permanently</b> empowering Phoenix's skills.
 
 ### Primary: Throw Evidence
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927507210026745956/texServbotIcon.png">
@@ -24,23 +24,23 @@ Stunning. Agile. Throw a random piece of evidence, junk will deal 200% damage an
 
 ### Turnabout Primary: Take That!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509050730614815/texPrimaryUpgrade.png"><br>
-Stunning. Agile. Summon a giant hand which travels in a line, dealing 600% damage.
+Stunning. Agile. Summon a giant hand which travels in a line, dealing 400% damage.
 
 ### Secondary: Press The Witness
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927509762449498112/texPressIcon.png"><br>
-Stunning. Press the witness, dealing 600% damage. Gain turnabout if you have decisive evidence.
+Stunning. Press the witness, dealing 400% damage. Gain turnabout if you have decisive evidence.
 
 ### Turnabout Secondary: Objection!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510244827996180/texSecondaryUpgradeIcon.png"><br>
-Freezing. Raise an objection, dealing 800% damage.
+Freezing. Raise an objection, dealing 600% damage.
 
 ### Utility: Fall
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927510540060880996/texTripIcon.png"><br>
-Stunning. Fall forward on your face gaining 300 armour and dealing 300% damage. You cannot be hit during the fall. Gain an extra charge when In turnabout mode or reset the skill if you have decisive evidence.
+Stunning. Fall forward on your face gaining 300 armour and dealing 200% damage. You cannot be hit during the fall. Gain an extra charge when In turnabout mode or reset the skill if you have decisive evidence.
 
 ### Special: Order In The Court!
 <img src="https://cdn.discordapp.com/attachments/399901440023330816/927511214836314142/texGavelIcon.png"><br>
-Stunning. After a short delay, a giant gavel falls from the sky dealing 1000% damage. You cannot be hit for 2 seconds. Double the range and damage and weaken enemies if you are in turnabout mode or have decisive evidence.
+Stunning. After a short delay, a giant gavel falls from the sky dealing 700% damage. You cannot be hit for 2 seconds. Double the range and damage and weaken enemies if you are in turnabout mode or have decisive evidence.
 
 ## Support me on Ko-fi
 If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
@@ -49,6 +49,34 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 </a>
 
 ## Changelog
+- 1.6.0
+	- Fixed an issue where you could earn achievements on any character.
+	- Fixed an issue where secondary skill would collide with the player model.
+	
+	<b> BALANCE CHANGES <b>
+	- <b>Throw Evidence<b> duration 1s > duration 0.75
+	- <b>Take That!<b> 600% dmg > 400% dmg
+	- <b>Press<b> 600% dmg > 400% dmg
+	- <b>Turnabout Press<b> 800% dmg > 600% dmg
+	- <b>Fall<b> 300% dmg > 200% dmg
+	- <b>Order In The Court!<b> 1000% dmg > 700% dmg
+	- <b>Turnabout Order In The Court!<b> 2000% dmg > 1400% dmg
+	- <b>Turnabout Order In The Court!<b> 50m > 40m
+
+- 1.6.0
+	- Added new skin.
+	- Added new Achievement.
+	- Fixed running animation snapping to another point.
+	- Fixed jump animation snapping to another point.
+
+- 1.5.2
+	- Changed running animation
+	- Fixed an issue where turnabout gavel would hit allies and self.
+
+- 1.5.1
+	- Secondary skill now will collide with the floor when aimed at the floor.
+	- Added the ability to cancel other skills into special skill.
+
 - 1.5.0
 	- Added new skin.
 	- Added new achievement.

@@ -34,13 +34,16 @@ namespace PhoenixWright.Modules.Achievements
         {
             orig(self);
 
-            if (self && self.teamIndex == TeamIndex.Player && self.inventory)
-            {
-                if (InventoryCheck(self.inventory))
+                if (self && self.teamIndex == TeamIndex.Player && self.inventory)
                 {
-                    base.Grant();
+                    if (InventoryCheck(self.inventory))
+                    {
+                        if (base.meetsBodyRequirement)
+                        {
+                            base.Grant();
+                        }
+                    }
                 }
-            }
         }
 
         private bool InventoryCheck(Inventory inventory)
