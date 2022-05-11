@@ -64,42 +64,16 @@ namespace PhoenixWright.SkillStates
         public static void FireAttack()
         {
             blastAttack.position = PhoenixPlugin.characterPos;
-            blastAttack.Fire();
-        }
 
-        private void ShufflePrimary()
-        {
-            int random = UnityEngine.Random.Range(0, 3);
-            switch (random)
+            if(blastAttack.Fire().hitCount > 0)
             {
-                case 0:
-                    UnsetAll();
-                    PhoenixController.SetEvidenceType(false);
-                    break;
-                case 1:
-                    UnsetAll();
-                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
-                    PhoenixController.SetEvidenceType(false);
-                    break;
-                case 2:
-                    UnsetAll();
-                    base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
-                    PhoenixController.SetEvidenceType(false);
-                    break;
+                PhoenixWright.Modules.Survivors.PhoenixController.paperEvidenceCount++;
             }
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
             return InterruptPriority.Death;
-        }
-
-        private void UnsetAll()
-        {
-            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
-            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
-            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
-            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
         }
     }
 }

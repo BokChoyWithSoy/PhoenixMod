@@ -71,16 +71,16 @@ namespace PhoenixWright.Modules
             #endregion
 
             #region Achievements
-            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: Mastery");
-            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESC", "As Phoenix, beat the game or obliterate on Monsoon.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: Mastery");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESCRIPTION", "As Phoenix, beat the game or obliterate on Monsoon.");
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: Mastery");
 
-            LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: A Dear Friend");
-            LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_DESC", "As Phoenix, collect a ceremonial dagger.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: A Dear Friend");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "SWORDUNLOCKABLE_ACHIEVEMENT_DESCRIPTION", "As Phoenix, collect a ceremonial dagger.");
             LanguageAPI.Add(prefix + "SWORDUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: A Dear Friend");
 
-            LanguageAPI.Add(prefix + "DRIPUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: Dripped Out");
-            LanguageAPI.Add(prefix + "DRIPUNLOCKABLE_ACHIEVEMENT_DESC", "As Phoenix, collect Kajaro's band, Runald's band, Paul's goat hoof and Monster Tooth.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "DRIPUNLOCKABLE_ACHIEVEMENT_NAME", "Phoenix: Dripped Out");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "DRIPUNLOCKABLE_ACHIEVEMENT_DESCRIPTION", "As Phoenix, collect Kajaro's band, Runald's band, Paul's goat hoof and Monster Tooth.");
             LanguageAPI.Add(prefix + "DRIPUNLOCKABLE_UNLOCKABLE_NAME", "Phoenix: Dripped Out");
             #endregion
             #endregion

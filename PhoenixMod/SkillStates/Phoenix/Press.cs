@@ -134,8 +134,13 @@ namespace PhoenixWright.SkillStates
                         if (Modules.Config.loweredVolume.Value)
                         {
                             Util.PlaySound("TurnaboutMusicQuiet", base.gameObject);
+                            Util.PlaySound("EnterTurnaboutQuiet", base.gameObject);
                         }
-                        else Util.PlaySound("TurnaboutMusic", base.gameObject);
+                        else
+                        {
+                            Util.PlaySound("TurnaboutMusic", base.gameObject);
+                            Util.PlaySound("EnterTurnabout", base.gameObject);
+                        }
                         PhoenixPlugin.turnaboutActive = false;
                     }
                 }

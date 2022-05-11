@@ -19,8 +19,11 @@ namespace PhoenixWright.Modules.Survivors
         internal static SkillDef primaryArm;
         internal static SkillDef primaryPaperRed;
         internal static SkillDef primaryPaperGreen;
+        internal static SkillDef primaryPaperStrong;
         internal static SkillDef secondaryPress;
-        internal static SkillDef secondaryPressStrong;
+        internal static SkillDef secondaryPressStrong;        
+        internal static SkillDef secondaryLock;
+        internal static SkillDef secondaryLockStrong;
         internal static SkillDef rollSkillDef2;
         internal static SkillDef gavelStrong;
         internal static SkillDef tumbleStrongSkillDef;
@@ -166,6 +169,31 @@ namespace PhoenixWright.Modules.Survivors
                 keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
             });
 
+            Phoenix.primaryPaperStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_STRONG_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_STRONG_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_PRIMARY_PAPER_STRONG_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPaperIconStrong"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.ThrowPaperStrong)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_AGILE", "KEYWORD_STUNNING" }
+            });
+
             #endregion
 
             #region PrimaryVase
@@ -195,7 +223,7 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryVase);
-            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryPaperRed);
+            //Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryPaperRed);
             #endregion
 
             #region PrimaryKnife
@@ -360,13 +388,38 @@ namespace PhoenixWright.Modules.Survivors
                 keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SECONDARY" }
             });
 
-            SkillDef secondaryLock = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            Phoenix.secondaryLock = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texPressIcon"),
+                skillName = prefix + "_PHOENIX_BODY_SECONDARY_LOCK_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_LOCK_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_LOCK_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texLockSecondary"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LockSecondary)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 20f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SECONDARY" }
+            });            
+            
+            Phoenix.secondaryLockStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SECONDARY_LOCK_STRONG_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_LOCK_STRONG_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_LOCK_STRONG_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texLockSecondaryStrong"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LockSecondaryStrong)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
                 baseRechargeInterval = 20f,
@@ -414,7 +467,7 @@ namespace PhoenixWright.Modules.Survivors
             #endregion
 
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
-            Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryLock);
+            //Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryLock);
 
             #region Utility
             SkillDef rollSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
@@ -497,7 +550,7 @@ namespace PhoenixWright.Modules.Survivors
                 skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
                 skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTumbleIcon"),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTumbleStrongIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Tumble)),
                 activationStateMachineName = "Body",
                 baseMaxStock = 2,
@@ -518,7 +571,7 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddUtilitySkills(bodyPrefab, rollSkillDef);
-            Modules.Skills.AddUtilitySkills(bodyPrefab, tumbleSkillDef);
+            //Modules.Skills.AddUtilitySkills(bodyPrefab, tumbleSkillDef);
             #endregion
 
             #region Special
@@ -708,68 +761,8 @@ namespace PhoenixWright.Modules.Survivors
             // add item displays here
             //  HIGHLY recommend using KingEnderBrine's ItemDisplayPlacementHelper mod for this
             #region Item Displays
-            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-            {
-                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Jetpack"),
-                displayRuleGroup = new DisplayRuleGroup
-                {
-                    rules = new ItemDisplayRule[]
-                    {
-                        new ItemDisplayRule
-                        {
-                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBugWings"),
-                            childName = "Chest",
-                            localPos = new Vector3(-0.00511F, 0.05807F, -0.09967F),
-                            localAngles = new Vector3(21.4993F, 358.6616F, 358.3334F),
-                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
-                            limbMask = LimbFlags.None
-                        }
-                    }
-                }
-            });
 
-            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-            {
-                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/GoldGat"),
-                displayRuleGroup = new DisplayRuleGroup
-                {
-                    rules = new ItemDisplayRule[]
-                    {
-                        new ItemDisplayRule
-                        {
-                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGoldGat"),
-                            childName = "Right Shoulder",
-                            localPos = new Vector3(0.13416F, 0.23563F, -0.32966F),
-                            localAngles = new Vector3(288.111F, 339.51F, 356.2275F),
-                            localScale = new Vector3(0.15F, 0.15F, 0.15F),
-                            limbMask = LimbFlags.None
-                        }
-                    }
-                }
-            });
-
-            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
-            {
-                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/BFG"),
-                displayRuleGroup = new DisplayRuleGroup
-                {
-                    rules = new ItemDisplayRule[]
-                    {
-                        new ItemDisplayRule
-                        {
-                            ruleType = ItemDisplayRuleType.ParentedPrefab,
-                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBFG"),
-                            childName = "Chest",
-                            localPos = new Vector3(0.04495F, 0.04455F, 0.00431F),
-                            localAngles = new Vector3(0F, 0F, 313.6211F),
-                            localScale = new Vector3(0.3F, 0.3F, 0.3F),
-                            limbMask = LimbFlags.None
-                        }
-                    }
-                }
-            });
+            //base game items
 
             itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
             {
@@ -2753,6 +2746,713 @@ namespace PhoenixWright.Modules.Survivors
                 }
             });
 
+            //SOTV Item displays
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.AttackSpeedAndMoveSpeed,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayCoffee"),
+                            childName = "Right Leg",
+                            localPos = new Vector3(-0.10985F, 0.12737F, 0.01514F),
+                            localAngles = new Vector3(-0.00001F, 180F, 180F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.BearVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+        {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBearVoid"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.11009F, 0.02129F, 0.16743F),
+                            localAngles = new Vector3(352.4048F, 344.3428F, 8.18645F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+        }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.BleedOnHitVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTriTipVoid"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.2639F, 0.27048F, -0.25197F),
+                            localAngles = new Vector3(35.9665F, 27.56639F, 14.05124F),
+                            localScale = new Vector3(0.4F, 0.4F, 0.4F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.ChainLightningVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayUkuleleVoid"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.01149F, 0.01341F, -0.15973F),
+                            localAngles = new Vector3(349.274F, 178.7936F, 14.3271F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.CloverVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayCloverVoid"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.09434F, 0.20207F, 0.05097F),
+                            localAngles = new Vector3(319.3075F, 15.57478F, 86.9045F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.CritDamage,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLaserSight"),
+                            childName = "Right Arm Lower",
+                            localPos = new Vector3(-0.01398F, 0.28569F, -0.03613F),
+                            localAngles = new Vector3(5.85999F, 112.4123F, 278.7357F),
+                            localScale = new Vector3(0.0465F, 0.0465F, 0.0465F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.ElementalRingVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayVoidRing"),
+                            childName = "Right Arm Lower",
+                            localPos = new Vector3(0.00341F, 0.32236F, 0.01401F),
+                            localAngles = new Vector3(287.7512F, 265.4616F, 105.7352F),
+                            localScale = new Vector3(0.3F, 0.3F, 0.3F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.CritGlassesVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGlassesVoid"),
+                            childName = "Head",
+                            localPos = new Vector3(0.00135F, 0.12765F, 0.14661F),
+                            localAngles = new Vector3(347.2212F, 356.7163F, 7.996F),
+                            localScale = new Vector3(0.14788F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.LunarSun,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySunHead"),
+                            childName = "Head",
+                            localPos = new Vector3(0.00698F, 0.19833F, 0.02922F),
+                            localAngles = new Vector3(328.3619F, 356.4809F, 8.21707F),
+                            localScale = new Vector3(1.2F, 1.2F, 1.2F),
+                            limbMask = LimbFlags.None
+                        },
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplaySunHeadNeck"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00695F, -0.02869F, 0.06769F),
+                            localAngles = new Vector3(357.1531F, 20.53568F, 0.89384F),
+                            localScale = new Vector3(1.3F, 1.3F, 1.3F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.EquipmentMagazineVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayFuelCellVoid"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.0242F, 0.01376F, -0.17823F),
+                            localAngles = new Vector3(17.6067F, 333.4188F, 13.4999F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.ExplodeOnDeathVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayWillowWispVoid"),
+                            childName = "Hips",
+                            localPos = new Vector3(-0.17576F, 0.0017F, 0.11115F),
+                            localAngles = new Vector3(328.3619F, 356.4809F, 8.21707F),
+                            localScale = new Vector3(0.0465F, 0.0465F, 0.0465F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.ExtraLifeVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHippoVoid"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.00847F, 0.0759F, -0.13269F),
+                            localAngles = new Vector3(347.3998F, 167.992F, 11.25176F),
+                            localScale = new Vector3(0.4F, 0.4F, 0.4F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.FragileDamageBonus,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDelicateWatch"),
+                            childName = "Left Arm Lower",
+                            localPos = new Vector3(-0.01135F, 0.30127F, -0.00683F),
+                            localAngles = new Vector3(274.331F, 27.58414F, 334.2618F),
+                            localScale = new Vector3(0.7F, 0.8F, 0.7F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.FreeChest,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShippingRequestForm"),
+                            childName = "Left Leg",
+                            localPos = new Vector3(0.09325F, 0.1477F, 0.03634F),
+                            localAngles = new Vector3(273.9354F, 76.54321F, 186.1321F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.GoldOnHurt,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRollOfPennies"),
+                            childName = "Left Arm Lower",
+                            localPos = new Vector3(0.07616F, 0.14417F, -0.02815F),
+                            localAngles = new Vector3(14.41057F, 105.9124F, 157.6283F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.HalfAttackSpeedHalfCooldowns,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLunarShoulderNature"),
+                            childName = "Left Arm Upper",
+                            localPos = new Vector3(-0.01345F, -0.03115F, -0.04162F),
+                            localAngles = new Vector3(359.7319F, 106.0152F, 214.1257F),
+                            localScale = new Vector3(0.7F, 0.7F, 0.7F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.HalfSpeedDoubleHealth,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayLunarShoulderStone"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(-0.0187F, -0.01035F, -0.06246F),
+                            localAngles = new Vector3(337.6837F, 100.9652F, 195.5736F),
+                            localScale = new Vector3(0.7F, 0.7F, 0.7F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.HealingPotion,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayHealingPotion"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.10886F, 0.12749F, 0.16503F),
+                            localAngles = new Vector3(17.34065F, 275.3904F, 14.8417F),
+                            localScale = new Vector3(0.05F, 0.05F, 0.05F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.ImmuneToDebuff,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRainCoatBelt"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.01552F, 0.03508F, 0.06727F),
+                            localAngles = new Vector3(3.65836F, 13.23351F, 352.7898F),
+                            localScale = new Vector3(1.1F, 1.1F, 1.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.MissileVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMissileLauncherVoid"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.35974F, 0.4021F, -0.22142F),
+                            localAngles = new Vector3(346.6386F, 345.6217F, 32.2748F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.MoreMissile,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayICBM"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(-0.00884F, 0.15095F, -0.1085F),
+                            localAngles = new Vector3(341.5276F, 103.6745F, 171.1494F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.MoveSpeedOnKill,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGrappleHook"),
+                            childName = "Right Arm Lower",
+                            localPos = new Vector3(0.23818F, 0.13324F, 0.01027F),
+                            localAngles = new Vector3(273.9353F, 76.5432F, 186.1321F),
+                            localScale = new Vector3(0.3F, 0.3F, 0.3F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.MushroomVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMushroomVoid"),
+                            childName = "Right Arm Upper",
+                            localPos = new Vector3(-0.00442F, -0.01537F, 0.02413F),
+                            localAngles = new Vector3(0.44384F, 70.59093F, 224.4747F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.OutOfCombatArmor,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayOddlyShapedOpal"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.00114F, 0.07736F, 0.12514F),
+                            localAngles = new Vector3(334.5104F, 357.6981F, 189.5376F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.PermanentDebuffOnHit,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayScorpion"),
+                            childName = "Hips",
+                            localPos = new Vector3(-0.02696F, 0.02094F, -0.12116F),
+                            localAngles = new Vector3(12.98954F, 359.3605F, 358.4683F),
+                            localScale = new Vector3(1.5F, 1.5F, 1.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.PrimarySkillShuriken,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayShuriken"),
+                            childName = "Right Arm Lower",
+                            localPos = new Vector3(-0.01129F, 0.37265F, -0.01793F),
+                            localAngles = new Vector3(273.9353F, 76.5432F, 186.1321F),
+                            localScale = new Vector3(0.6F, 0.6F, 0.6F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.RandomEquipmentTrigger,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBottledChaos"),
+                            childName = "Left Arm Upper",
+                            localPos = new Vector3(0.0413F, 0.12869F, -0.09363F),
+                            localAngles = new Vector3(355.2653F, 193.9402F, 197.8134F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.RandomlyLunar,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayDomino"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.60765F, 0.75336F, 0.07805F),
+                            localAngles = new Vector3(274.9098F, 59.8631F, 145.5208F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.RegeneratingScrap,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayRegeneratingScrap"),
+                            childName = "Head",
+                            localPos = new Vector3(0.07823F, 0.17631F, -0.06869F),
+                            localAngles = new Vector3(18.99674F, 354.5888F, 19.72143F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.SlowOnHitVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBaubleVoid"),
+                            childName = "Right Leg",
+                            localPos = new Vector3(-0.39872F, 0.1144F, 0.23546F),
+                            localAngles = new Vector3(273.9353F, 76.5432F, 186.1321F),
+                            localScale = new Vector3(0.5F, 0.5F, 0.5F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.StrengthenBurn,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGasTank"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.04611F, -0.35589F, 0.16849F),
+                            localAngles = new Vector3(273.9216F, 74.46684F, 203.5066F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.TreasureCacheVoid,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayKeyVoid"),
+                            childName = "Hips",
+                            localPos = new Vector3(-0.22026F, 0.04781F, 0.02632F),
+                            localAngles = new Vector3(5.27006F, 173.8339F, 90.50729F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Items.VoidMegaCrabItem,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMegaCrabItem"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.0061F, -0.14232F, 0.15262F),
+                            localAngles = new Vector3(7.66534F, 7.6849F, 183.3206F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            //Base Game Equipment Displays
+
             itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
             {
                 keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Fruit"),
@@ -3237,6 +3937,69 @@ namespace PhoenixWright.Modules.Survivors
 
             itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
             {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/Jetpack"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+         {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBugWings"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.00511F, 0.05807F, -0.09967F),
+                            localAngles = new Vector3(21.4993F, 358.6616F, 358.3334F),
+                            localScale = new Vector3(0.1F, 0.1F, 0.1F),
+                            limbMask = LimbFlags.None
+                        }
+         }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/GoldGat"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayGoldGat"),
+                            childName = "Right Shoulder",
+                            localPos = new Vector3(0.13416F, 0.23563F, -0.32966F),
+                            localAngles = new Vector3(288.111F, 339.51F, 356.2275F),
+                            localScale = new Vector3(0.15F, 0.15F, 0.15F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/BFG"),
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBFG"),
+                            childName = "Chest",
+                            localPos = new Vector3(0.04495F, 0.04455F, 0.00431F),
+                            localAngles = new Vector3(0F, 0F, 313.6211F),
+                            localScale = new Vector3(0.3F, 0.3F, 0.3F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
                 keyAsset = RoR2.LegacyResourcesAPI.Load<EquipmentDef>("EquipmentDefs/DeathProjectile"),
                 displayRuleGroup = new DisplayRuleGroup
                 {
@@ -3297,6 +4060,145 @@ namespace PhoenixWright.Modules.Survivors
                     }
                 }
             });
+
+            //SOTV Equipment 
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Equipment.BossHunter,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTriconGhost"),
+                            childName = "Head",
+                            localPos = new Vector3(0F, 0.393F, -0.053F),
+                            localAngles = new Vector3(11.45647F, 0.00001F, 0F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        },                   
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayBlunderbuss"),
+                            childName = "Head",
+                            localPos = new Vector3(0F, 0.393F, -0.053F),
+                            localAngles = new Vector3(11.45647F, 0.00001F, 0F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Equipment.BossHunterConsumed,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayTricornUsed"),
+                            childName = "Head",
+                            localPos = new Vector3(0.01951F, 0.24506F, -0.01688F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(1F, 1F, 1F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Equipment.EliteVoidEquipment,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayAffixVoid"),
+                            childName = "Head",
+                            localPos = new Vector3(-0.00222F, 0.08705F, 0.13122F),
+                            localAngles = new Vector3(73.98045F, 13.9495F, 18.87792F),
+                            localScale = new Vector3(0.12F, 0.12F, 0.12F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Equipment.Molotov,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayMolotov"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.16606F, -0.25524F, 0.14767F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Equipment.MultiShopCard,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayExecutiveCard"),
+                            childName = "Chest",
+                            localPos = new Vector3(-0.02193F, -0.33623F, 0.16979F),
+                            localAngles = new Vector3(87.43418F, 1.21722F, 6.00731F),
+                            localScale = new Vector3(0.7F, 0.7F, 0.7F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
+            itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
+            {
+                keyAsset = DLC1Content.Equipment.VendingMachine,
+                displayRuleGroup = new DisplayRuleGroup
+                {
+                    rules = new ItemDisplayRule[]
+                    {
+                        new ItemDisplayRule
+                        {
+                            ruleType = ItemDisplayRuleType.ParentedPrefab,
+                            followerPrefab = ItemDisplays.LoadDisplay("DisplayVendingMachine"),
+                            childName = "Hips",
+                            localPos = new Vector3(0.14738F, -0.11606F, 0.0605F),
+                            localAngles = new Vector3(0F, 0F, 0F),
+                            localScale = new Vector3(0.2F, 0.2F, 0.2F),
+                            limbMask = LimbFlags.None
+                        }
+                    }
+                }
+            });
+
             #endregion
 
             itemDisplayRuleSet.keyAssetRuleGroups = itemDisplayRules.ToArray();

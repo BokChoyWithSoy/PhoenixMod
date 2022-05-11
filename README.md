@@ -2,7 +2,7 @@
 
 Adds Phoenix Wright to Risk of Rain 2, based off his moveset in Marvel vs Capcom 3.
 
-Network Compatible (Except for one issue that I need to fix)
+Network Compatible
 
 Created by BokChoyWithSoy. Help me out for bugs and issues by contacting me on discord: BokChoyWithSoy#3842
 
@@ -48,20 +48,88 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 <img src="https://media.discordapp.net/attachments/399901440023330816/952862894721208330/download.png"><br>
 </a>
 
+## Popcorn Factory
+<b>Check out other mods from the Popcorn Factory team!</b>
+<div>
+	<a href="https://thunderstore.io/package/Ethanol10/Ganondorf_Mod/">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/960043613428011079/Ethanol10-Ganondorf_Mod-2.1.5.png.128x128_q95.png"><br>
+		<p>Ganondorf Mod (Ethanol 10)</p>
+	</a>
+</div>
+<div>
+	<a href="https://thunderstore.io/package/TeaL/DekuMod/">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/960043614036168784/TeaL-DekuMod-3.1.1.png.128x128_q95.png"><br>
+		<p>Deku Mod (TeaL)</p>
+	</a>
+</div>
+<div>
+	<a href="https://thunderstore.io/package/PopcornFactory/Wisp_WarframeSurvivorMod/?utm_source=discord">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/960043613692239942/PopcornFactory-Wisp_WarframeSurvivorMod-1.0.2.png.128x128_q95.png"><br>
+		<p>Wisp Mod (Popcorn Factory Team)</p>
+	</a>
+</div>
+<div>
+	<a href="https://thunderstore.io/package/PopcornFactory/DittoMod/">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/969519878652444672/PopcornFactory-DittoMod-1.1.7.png.128x128_q95.png"><br>
+		<p>Ditto Mod (TeaL)</p>
+	</a>
+</div>
+
 ## Changelog
-- 1.6.0
+
+<details open>
+  <summary>Click to expand patch notes</summary>
+
+- 1.8.0
+	- Added all DLC items to Phoenix item displays.
+	- game now plays a sound effect when decisive evidence is in your primary slot.
+	- Fixed an issue where the throwing sound effect could not be heard.
+	- Fixed an issue where the voice line for Phoenix's turnabout activation could not be heard.
+
+- 1.7.4
+	- Fixed an issue where the achievements did not work with the most recent update.
+	- All projectiles should be visible to all players.
+
+- 1.7.3
+	- Turnabout music is now centred on the player.
+	- Order In The Court! now generates dust particles.
+
+- 1.7.2
+	- Turnabout music should be heard by all players now.
+	- Fixed an issue where turnabout music would play upon getting a stack of turnabout.
+
+- 1.7.1
+	- Fixed an issue where you could not hear some sound effects.
+	- Fixed an issue where you could not see some animations.
+	- Fixed an issue where jumping and using your secondary would collide with yourself.
+	
+- 1.7.0
+	- Added item displays for the base game.
+	- Reduced the proc rates of "Objection In The Court!"
+	- Fixed an issue where Fall did not give player invincibility or armour.
+	- Fixed an issue where you could earn achievements on any character.
+	- Fixed an issue where the turnabout music was not centered on player character.
+
+	<b> BALANCE CHANGES </b>
+	- <b>Turnabout Order In The Court!</b> proc rate 5 > proc rate 2
+	- <b>Turnabout Order In The Court!</b> Invincibility buff 2 sec > 1 sec
+
+- 1.6.2
+	- Fixed an issue where the achievement was lagging out the game.
+
+- 1.6.1
 	- Fixed an issue where you could earn achievements on any character.
 	- Fixed an issue where secondary skill would collide with the player model.
 	
-	<b> BALANCE CHANGES <b>
-	- <b>Throw Evidence<b> duration 1s > duration 0.75
-	- <b>Take That!<b> 600% dmg > 400% dmg
-	- <b>Press<b> 600% dmg > 400% dmg
-	- <b>Turnabout Press<b> 800% dmg > 600% dmg
-	- <b>Fall<b> 300% dmg > 200% dmg
-	- <b>Order In The Court!<b> 1000% dmg > 700% dmg
-	- <b>Turnabout Order In The Court!<b> 2000% dmg > 1400% dmg
-	- <b>Turnabout Order In The Court!<b> 50m > 40m
+	<b> BALANCE CHANGES </b>
+	- <b>Throw Evidence</b> duration 1s > duration 0.75
+	- <b>Take That!</b> 600% dmg > 400% dmg
+	- <b>Press</b> 600% dmg > 400% dmg
+	- <b>Turnabout Press</b> 800% dmg > 600% dmg
+	- <b>Fall</b> 300% dmg > 200% dmg
+	- <b>Order In The Court!</b> 1000% dmg > 700% dmg
+	- <b>Turnabout Order In The Court!</b> 2000% dmg > 1400% dmg
+	- <b>Turnabout Order In The Court!</b> 50m > 40m
 
 - 1.6.0
 	- Added new skin.
@@ -187,18 +255,18 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 
 - 1.0.0
 	- Initial Release
+
+
+</details>
  
 ## Future Plans
 - Implement new skills
-- Fix some bugs (in Known issues)
 - Add stand alone scepter support
-- Maybe add items displays
 - New skins
 - New achievements
 - Clean up the atrocity that I call code
 
 ## Known Issues
-- In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around, this problem only exists for clients.
 
 ## Credits
 - Rob's HenryMod -> prevented me from experiencing excruciating pain
@@ -206,5 +274,6 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 - Capcom -> Model & Texturing
 - Mixamo -> Animations
 - TheTimesweeper -> Hitbox viewer was extremely helpful
-- TeaL & Ethanol 10 -> Who helped me troubleshoot in discord calls.
+- KingEnderBrine -> I love you for making the item placer helper.
+- TeaL & Ethanol 10 -> Other members of Popcorn Factory who helped me out.
 - The vast amount of Vtuber streams I watched while coding which kept me sane.

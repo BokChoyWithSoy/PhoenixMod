@@ -2,7 +2,7 @@
 
 Adds Phoenix Wright to Risk of Rain 2, based off his moveset in Marvel vs Capcom 3.
 
-Network Compatible (Except for one issue that I need to fix)
+Network Compatible
 
 Created by BokChoyWithSoy. Help me out for bugs and issues by contacting me on discord: BokChoyWithSoy#3842
 
@@ -68,11 +68,27 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
 		<p>Wisp Mod (Popcorn Factory Team)</p>
 	</a>
 </div>
+<div>
+	<a href="https://thunderstore.io/package/PopcornFactory/DittoMod/">
+		<img src="https://cdn.discordapp.com/attachments/399901440023330816/969519878652444672/PopcornFactory-DittoMod-1.1.7.png.128x128_q95.png"><br>
+		<p>Ditto Mod (TeaL)</p>
+	</a>
+</div>
 
 ## Changelog
 
 <details open>
   <summary>Click to expand patch notes</summary>
+
+- 1.8.0
+	- Added all DLC items to Phoenix item displays.
+	- game now plays a sound effect when decisive evidence is in your primary slot.
+	- Fixed an issue where the throwing sound effect could not be heard.
+	- Fixed an issue where the voice line for Phoenix's turnabout activation could not be heard.
+
+- 1.7.4
+	- Fixed an issue where the achievements did not work with the most recent update.
+	- All projectiles should be visible to all players.
 
 - 1.7.3
 	- Turnabout music is now centred on the player.
@@ -245,15 +261,12 @@ If you like my stupid mod idea, then consider supporting me on ko-fi! <br>
  
 ## Future Plans
 - Implement new skills
-- Fix some bugs (in Known issues)
 - Add stand alone scepter support
-- add displays from SOTV
 - New skins
 - New achievements
 - Clean up the atrocity that I call code
 
 ## Known Issues
-- In multiplayer, for some goddamn reason, the normal primary spawns the prefab of the empowered primary and you have people throwing arms around, this problem only exists for clients.
 
 ## Credits
 - Rob's HenryMod -> prevented me from experiencing excruciating pain

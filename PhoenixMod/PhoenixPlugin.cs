@@ -35,7 +35,7 @@ namespace PhoenixWright
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "1.7.3";
+        public const string MODVERSION = "1.7.4";
 
         public static PhoenixController phoenixController;
         public static Vector3 characterPos;
@@ -116,18 +116,35 @@ namespace PhoenixWright
                 self.SetBuffCount(Modules.Buffs.turnaboutBuff.buffIndex, currentStacks);
                 if (PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
                 {
-                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
-                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
-                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
-                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
-                    self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
+                    #region primary
+                    if (self.skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME"))
+                    {
+                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                        self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
+                    }
+                    if (self.skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME"))
+                    {
+                        self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryPaperStrong, GenericSkill.SkillOverridePriority.Contextual);
+                    }
+                    #endregion
 
-                    if(self.skillLocator.secondary.skillNameToken.Equals(PhoenixPlugin.developerPrefix +"_PHOENIX_BODY_SECONDARY_PRESS_NAME"))
+                    PhoenixController.setLock(false);
+
+                    #region secondary
+                    if (self.skillLocator.secondary.skillNameToken.Equals(PhoenixPlugin.developerPrefix +"_PHOENIX_BODY_SECONDARY_PRESS_NAME"))
                     {
                         self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
                     }
+                    if (self.skillLocator.secondary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SECONDARY_LOCK_NAME"))
+                    {
+                        self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryLockStrong, GenericSkill.SkillOverridePriority.Contextual);
+                    }
+                    #endregion
 
-                    #region secondary
+                    #region utility
                     if (self.skillLocator.utility.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_UTILITY_FALL_NAME"))
                     {
                         self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.rollSkillDef2, GenericSkill.SkillOverridePriority.Contextual);
