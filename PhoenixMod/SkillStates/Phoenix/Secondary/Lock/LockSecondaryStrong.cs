@@ -11,7 +11,7 @@ namespace PhoenixWright.SkillStates
     public class LockSecondaryStrong : BaseSkillState
     {
         public static float damageCoefficient = 1f;
-        public static float procCoefficient = 1f;
+        public static float procCoefficient = 0.2f;
         public static float duration = 0.25f;
         public Vector3 rayPosition;
 

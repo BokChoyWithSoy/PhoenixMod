@@ -69,6 +69,7 @@ namespace PhoenixWright.SkillStates
             {
                 PhoenixWright.Modules.Survivors.PhoenixController.paperEvidenceCount++;
             }
+            PhoenixController.ResetLockParticle();
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()

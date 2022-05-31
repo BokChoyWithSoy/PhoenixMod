@@ -12,7 +12,7 @@ namespace PhoenixWright.SkillStates
         : BaseSkillState
     {
         public static float damageCoefficient = 1f;
-        public static float procCoefficient = 1f;
+        public static float procCoefficient = 0.5f;
         public static float baseDuration = 0.5f;
         public static float throwForce = 80f;
         
@@ -47,7 +47,7 @@ namespace PhoenixWright.SkillStates
 
             if (NetworkServer.active)
             {
-                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, duration);
+                base.healthComponent.AddBarrierAuthority(base.healthComponent.health * 0.009f);
             }
 
         }
@@ -86,11 +86,21 @@ namespace PhoenixWright.SkillStates
         {
             base.FixedUpdate();
 
+
             if (PhoenixController.getPaperAttackCount() >= 3)
             {
                 PhoenixController.SetEvidenceType(true);
+                if(PhoenixController.paperSound)
+                {
+                    PhoenixController.paperSound = false;
+                    if (Modules.Config.loweredVolume.Value)
+                    {
+                        Util.PlaySound("EvidenceSoundQuiet", base.gameObject);
+                    }
+                    else Util.PlaySound("EvidenceSound", base.gameObject);
+                }
                 base.skillLocator.primary.SetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
-            }
+            } else PhoenixController.paperSound = true;
 
             if (!hasFired)
             {

@@ -109,6 +109,8 @@ namespace PhoenixWright
         {
             orig(self);
 
+            PhoenixController.ResetLockParticle();
+
             characterPos = self.transform.position;
 
             if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
@@ -130,8 +132,6 @@ namespace PhoenixWright
                         self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryPaperStrong, GenericSkill.SkillOverridePriority.Contextual);
                     }
                     #endregion
-
-                    PhoenixController.setLock(false);
 
                     #region secondary
                     if (self.skillLocator.secondary.skillNameToken.Equals(PhoenixPlugin.developerPrefix +"_PHOENIX_BODY_SECONDARY_PRESS_NAME"))
@@ -156,6 +156,25 @@ namespace PhoenixWright
                     #endregion
 
                     self.skillLocator.special.SetSkillOverride(self.skillLocator.special, Phoenix.gavelStrong, GenericSkill.SkillOverridePriority.Contextual);
+
+                    if (PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
+                    {
+                        if (PhoenixPlugin.turnaboutActive)
+                        {
+                            PhoenixController.setLock(false);
+                            if (Modules.Config.loweredVolume.Value)
+                            {
+                                Util.PlaySound("TurnaboutMusicQuiet", base.gameObject);
+                                Util.PlaySound("EnterTurnaboutQuiet", base.gameObject);
+                            }
+                            else
+                            {
+                                Util.PlaySound("TurnaboutMusic", base.gameObject);
+                                Util.PlaySound("EnterTurnabout", base.gameObject);
+                            }
+                            PhoenixPlugin.turnaboutActive = false;
+                        }
+                    }
 
                 }
             }

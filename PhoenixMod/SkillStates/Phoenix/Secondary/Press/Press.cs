@@ -127,23 +127,6 @@ namespace PhoenixWright.SkillStates
                     base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
                     PhoenixController.resetPaperAttackCount();
                 }
-                if (PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
-                { 
-                    if (PhoenixPlugin.turnaboutActive)
-                    {
-                        if (Modules.Config.loweredVolume.Value)
-                        {
-                            Util.PlaySound("TurnaboutMusicQuiet", base.gameObject);
-                            Util.PlaySound("EnterTurnaboutQuiet", base.gameObject);
-                        }
-                        else
-                        {
-                            Util.PlaySound("TurnaboutMusic", base.gameObject);
-                            Util.PlaySound("EnterTurnabout", base.gameObject);
-                        }
-                        PhoenixPlugin.turnaboutActive = false;
-                    }
-                }
             }
         }
 

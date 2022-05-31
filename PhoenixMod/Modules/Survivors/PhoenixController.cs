@@ -22,6 +22,7 @@ namespace PhoenixWright.Modules.Survivors
         public static float lockAttackTimer;
         public static float paperAttackTimer;
         public static float paperEvidenceCount;
+        public static bool paperSound;
 
         public static ParticleSystem lock1Particle;
         public static ParticleSystem lock2Particle;
@@ -43,6 +44,7 @@ namespace PhoenixWright.Modules.Survivors
             scepterActive = false;
             dying = false;
             LockActive = false;
+            paperSound = true;
 
             if (childLocator)
             {
@@ -54,14 +56,7 @@ namespace PhoenixWright.Modules.Survivors
                 blackLock2Particle = childLocator.FindChild("BlackLock2").GetComponent<ParticleSystem>();
                 blackLock3Particle = childLocator.FindChild("BlackLock3").GetComponent<ParticleSystem>();
                 blackLock4Particle = childLocator.FindChild("BlackLock4").GetComponent<ParticleSystem>();
-                lock1Particle.Stop();
-                lock2Particle.Stop();
-                lock3Particle.Stop();
-                lock4Particle.Stop();
-                blackLock1Particle.Stop();
-                blackLock2Particle.Stop();
-                blackLock3Particle.Stop();
-                blackLock4Particle.Stop();
+                ResetLockParticle();
             }
         }
 
@@ -75,32 +70,27 @@ namespace PhoenixWright.Modules.Survivors
                     lock2Particle.Play();
                     lock3Particle.Play();
                     lock4Particle.Play();
+                    blackLock1Particle.Stop();
+                    blackLock2Particle.Stop();
+                    blackLock3Particle.Stop();
+                    blackLock4Particle.Stop();
                 }
                 else if(characterBody.skillLocator.secondary.skillNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SECONDARY_LOCK_STRONG_NAME")
                 {
-                    lock1Particle.Stop();
-                    lock2Particle.Stop();
-                    lock3Particle.Stop();
-                    lock4Particle.Stop();
                     blackLock1Particle.Play();
                     blackLock2Particle.Play();
                     blackLock3Particle.Play();
                     blackLock4Particle.Play();
+                    lock1Particle.Stop();
+                    lock2Particle.Stop();
+                    lock3Particle.Stop();
+                    lock4Particle.Stop();
                 }
+                else ResetLockParticle();
                 stopwatch += Time.deltaTime;
                 lockAttackTimer += Time.deltaTime;
             }
-            else
-            {
-                lock1Particle.Stop();
-                lock2Particle.Stop();
-                lock3Particle.Stop();
-                lock4Particle.Stop();
-                blackLock1Particle.Stop();
-                blackLock2Particle.Stop();
-                blackLock3Particle.Stop();
-                blackLock4Particle.Stop();
-            }
+
 
             if(lockAttackTimer > 0.25f)
             {
@@ -109,24 +99,16 @@ namespace PhoenixWright.Modules.Survivors
                     if (characterBody.skillLocator.secondary.skillNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SECONDARY_LOCK_NAME")
                     {
                         PhoenixWright.SkillStates.LockSecondary.FireAttack();
-                        blackLock1Particle.Stop();
-                        blackLock2Particle.Stop();
-                        blackLock3Particle.Stop();
-                        blackLock4Particle.Stop();
                     }
                     if (characterBody.skillLocator.secondary.skillNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SECONDARY_LOCK_STRONG_NAME")
                     {
                         PhoenixWright.SkillStates.LockSecondaryStrong.FireAttack();
-                        lock1Particle.Stop();
-                        lock2Particle.Stop();
-                        lock3Particle.Stop();
-                        lock4Particle.Stop();
                     }
                 }
                 lockAttackTimer = 0;
             }
 
-            if (paperEvidenceCount >= 10)
+            if (paperEvidenceCount >= 5)
             {
                 PhoenixPlugin.currentStacks++;
                 if (Modules.Config.loweredVolume.Value)
@@ -153,8 +135,6 @@ namespace PhoenixWright.Modules.Survivors
             }
         }
 
-
-        //return current stacks.
         //return if evidence is decisive or not.
         public static bool GetEvidenceType()
         {
@@ -225,6 +205,21 @@ namespace PhoenixWright.Modules.Survivors
             characterBody.skillLocator.primary.UnsetSkillOverride(characterBody.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
             characterBody.skillLocator.primary.UnsetSkillOverride(characterBody.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
             characterBody.skillLocator.primary.UnsetSkillOverride(characterBody.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+        }
+
+        public static void ResetLockParticle()
+        {
+            if(!LockActive)
+            {
+                lock1Particle.Stop();
+                lock2Particle.Stop();
+                lock3Particle.Stop();
+                lock4Particle.Stop();
+                blackLock1Particle.Stop();
+                blackLock2Particle.Stop();
+                blackLock3Particle.Stop();
+                blackLock4Particle.Stop();
+            }
         }
     }
 }

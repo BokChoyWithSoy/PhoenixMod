@@ -11,18 +11,18 @@ namespace PhoenixWright.Modules
             string prefix = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_";
 
             string desc = "Phoenix is a survivor who starts off weak in investigation mode and becomes very powerful once he collects enough evidence and enters turnabout mode.<color=#CCD3E0>" + Environment.NewLine + Environment.NewLine;
-            desc = desc + "< ! > Red evidence is junk and green evidence is decisive evidence. Ocne enough is collected enter turnabout mode." + Environment.NewLine + Environment.NewLine;
-            desc = desc + "< ! > If you hit an enemy with press with decisive evidence, you will gain a stack of turnabout." + Environment.NewLine + Environment.NewLine;
+            desc = desc + "< ! > Red evidence is junk and green evidence is decisive evidence. Once enough is collected enter turnabout mode." + Environment.NewLine + Environment.NewLine;
+            desc = desc + "< ! > If you hit an enemy with press the witness with decisive evidence, you will gain a stack of turnabout." + Environment.NewLine + Environment.NewLine;
             desc = desc + "< ! > Fall deals damage on top of providing brief invulnerability." + Environment.NewLine + Environment.NewLine;
             desc = desc + "< ! > Order in the court! can be used to wipe crowds with ease." + Environment.NewLine + Environment.NewLine;
 
             string outro = "..and so he left, trying to find a way home.";
-            string outroFailure = "..and so he vanished, defended the innocent but not himself.";
+            string outroFailure = "..and so he vanished, defending the innocent but not himself.";
 
             LanguageAPI.Add(prefix + "NAME", "Attorney");
             LanguageAPI.Add(prefix + "DESCRIPTION", desc);
             LanguageAPI.Add(prefix + "SUBTITLE", "The Ace Attorney");
-            LanguageAPI.Add(prefix + "LORE", "sample lore");
+            LanguageAPI.Add(prefix + "LORE", "Phoenix Wright, is one of the main protagonists of the Ace Attorney series by Capcom. He is a veteran defense attorney known for his ability to turnabout the court to his favor. Together with his assistant Maya Fey, they solve case after case, searching for the truth.");
             LanguageAPI.Add(prefix + "OUTRO_FLAVOR", outro);
             LanguageAPI.Add(prefix + "OUTRO_FAILURE", outroFailure);
 
@@ -43,8 +43,11 @@ namespace PhoenixWright.Modules
             LanguageAPI.Add(prefix + "PRIMARY_THROW2_NAME", "Take That!");
             LanguageAPI.Add(prefix + "PRIMARY_THROW2_DESCRIPTION", Helpers.stunningPrefix + Helpers.agilePrefix + $"State your case, summoning a giant hand which travels in a line, dealing <style=cIsDamage>400% damage</style>.");
 
-            LanguageAPI.Add(prefix + "PRIMARY_PAPER_NAME", "Outdated Autopsy");
-            LanguageAPI.Add(prefix + "PRIMARY_PAPER_DESCRIPTION", Helpers.agilePrefix + $"Throw out your outdated autopsy report, dealing <style=cIsDamage>100% damage</style> and <style=cIsUtility>300 armor</style> while using this skill. Every 5th attack, this skill will become decisive evidence.");
+            LanguageAPI.Add(prefix + "PRIMARY_PAPER_NAME", "Paperwork");
+            LanguageAPI.Add(prefix + "PRIMARY_PAPER_DESCRIPTION", Helpers.agilePrefix + $"Show them your paperwork, dealing <style=cIsDamage>100% damage</style> and <style=cIsUtility>gaining 1% of your max health as barrier</style>. Every 3rd attack, this skill will become decisive evidence.");
+
+            LanguageAPI.Add(prefix + "PRIMARY_PAPER_STRONG_NAME", "Outdated Autopsy");
+            LanguageAPI.Add(prefix + "PRIMARY_PAPER_STRONG_DESCRIPTION", Helpers.agilePrefix + $"Throw out your outdated autopsy report, dealing <style=cIsDamage>200% damage</style> and <style=cIsUtility>20 barrier</style>. Every 5th attack, this skill will become decisive evidence.");
             #endregion
 
             #region Secondary
@@ -53,6 +56,12 @@ namespace PhoenixWright.Modules
 
             LanguageAPI.Add(prefix + "SECONDARY_PRESS2_NAME", "Objection!");
             LanguageAPI.Add(prefix + "SECONDARY_PRESS2_DESCRIPTION", Helpers.freezingPrefix + $"Raise an objection dealing <style=cIsDamage>{100f * (6)}% damage</style>.");
+
+            LanguageAPI.Add(prefix + "SECONDARY_LOCK_NAME", "Red Psyche Lock");
+            LanguageAPI.Add(prefix + "SECONDARY_LOCK_DESCRIPTION", Helpers.stunningPrefix + $"Summon red psyche locks, constantly dealing <style=cIsDamage>{100f * 0.5}% damage</style> in a small area around you.");
+
+            LanguageAPI.Add(prefix + "SECONDARY_LOCK_STRONG_NAME", "Black Psyche Lock");
+            LanguageAPI.Add(prefix + "SECONDARY_LOCK_STRONG_DESCRIPTION", Helpers.stunningPrefix + $"Summon black psyche locks, constantly dealing <style=cIsDamage>{100f}% damage</style> in a large area around you.");
             #endregion
 
             #region Utility
@@ -90,7 +99,6 @@ namespace PhoenixWright.Modules
                 LanguageAPI.Add("KEYWORD SECONDARY", "[ Decisive Evidence ]\nGain Turnabout stacks equal to the amount of enemies hit.");
                 LanguageAPI.Add("KEYWORD UTILITY", "[ Decisive Evidence ]\nReset Cooldown on use.");
                 LanguageAPI.Add("KEYWORD SPECIAL", "[ Decisive Evidence ]\nDouble damage and range and weaken all enemies in range.");
-
             #endregion
         }
 

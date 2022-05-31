@@ -34,12 +34,12 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	90985944	ArmSound	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\ArmSound_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\ArmSound\ArmSound		8229
-	197588153	Evidence2	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Evidence2_3F75BDB9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\EvidenceSound\Evidence2		7394
+	197588153	Evidence2	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Evidence2_3F75BDB9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\EvidenceSoundQuiet\Evidence2		7394
 	199427777	Special1	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Special1_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\SpecialSound\Special1		15751
 	220895610	GainStack9	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack9_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\GainStackQuiet\GainStack9		6656
 	290080851	GainStack5	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack5_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\GainStackQuiet\GainStack5		11757
 	304531364	GainStack6	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack6_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\GainStackQuiet\GainStack6		11670
-	344067763	Evidence1	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Evidence1_3F75BDB9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\Sounds\EvidenceSound\Evidence1		5856
+	344067763	Evidence1	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\Evidence1_3F75BDB9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\EvidenceSoundQuiet\Evidence1		5856
 	348101739	GainStack4	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack4_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\GainStackQuiet\GainStack4		16604
 	355334556	GainStack2	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\GainStack2_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\GainStackQuiet\GainStack2		8417
 	383508926	EnterTurnabout	C:\Users\evilz\Documents\WwiseProjects\PhoenixWright\.cache\Windows\SFX\EnterTurnabout_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\QuietSounds\Quiet Changer\EnterTurnaboutQuiet\EnterTurnabout		16469

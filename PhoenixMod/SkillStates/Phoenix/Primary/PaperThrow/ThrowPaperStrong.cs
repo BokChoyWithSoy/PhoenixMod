@@ -12,7 +12,7 @@ namespace PhoenixWright.SkillStates
         : BaseSkillState
     {
         public static float damageCoefficient = 2f;
-        public static float procCoefficient = 1f;
+        public static float procCoefficient = 0.5f;
         public static float baseDuration = 0.5f;
         public static float throwForce = 80f;
         
@@ -47,7 +47,7 @@ namespace PhoenixWright.SkillStates
 
             if (NetworkServer.active)
             {
-                base.characterBody.AddTimedBuff(Modules.Buffs.armorBuff, duration);
+                base.healthComponent.AddBarrierAuthority(20);
             }
 
         }

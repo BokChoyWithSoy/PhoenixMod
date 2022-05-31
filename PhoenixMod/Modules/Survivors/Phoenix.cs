@@ -388,6 +388,31 @@ namespace PhoenixWright.Modules.Survivors
                 keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SECONDARY" }
             });
 
+            Phoenix.secondaryPressStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
+                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSecondaryUpgradeIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.PressTurnabout)),
+                activationStateMachineName = "Slide",
+                baseMaxStock = 1,
+                baseRechargeInterval = 5f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { "KEYWORD_STUNNING" }
+            });
+
             Phoenix.secondaryLock = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_PHOENIX_BODY_SECONDARY_LOCK_NAME",
@@ -437,33 +462,7 @@ namespace PhoenixWright.Modules.Survivors
                 stockToConsume = 1,
                 keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD SECONDARY" }
             });
-            #endregion
 
-            #region Secondary
-            Phoenix.secondaryPressStrong = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
-                skillNameToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_SECONDARY_PRESS2_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texSecondaryUpgradeIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.PressTurnabout)),
-                activationStateMachineName = "Slide",
-                baseMaxStock = 1,
-                baseRechargeInterval = 5f,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = true,
-                cancelSprintingOnActivation = true,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1,
-                 keywordTokens = new string[] { "KEYWORD_STUNNING" }
-             });
             #endregion
 
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
@@ -524,7 +523,7 @@ namespace PhoenixWright.Modules.Survivors
             {
                 skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL2_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTumbleIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Tumble)),
                 activationStateMachineName = "Body",
@@ -549,7 +548,7 @@ namespace PhoenixWright.Modules.Survivors
             {
                 skillName = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
                 skillNameToken = prefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME",
-                skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL_DESCRIPTION",
+                skillDescriptionToken = prefix + "_PHOENIX_BODY_UTILITY_FALL2_DESCRIPTION",
                 skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texTumbleStrongIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Tumble)),
                 activationStateMachineName = "Body",
