@@ -223,7 +223,7 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryVase);
-            Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryPaperRed);
+            //Modules.Skills.AddPrimarySkill(bodyPrefab, Phoenix.primaryPaperRed);
             #endregion
 
             #region PrimaryKnife
@@ -467,7 +467,7 @@ namespace PhoenixWright.Modules.Survivors
             #endregion
 
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryPress);
-            Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryLock);
+            //Modules.Skills.AddSecondarySkills(bodyPrefab, secondaryLock);
 
             #region Utility
             SkillDef rollSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
@@ -571,7 +571,7 @@ namespace PhoenixWright.Modules.Survivors
             });
 
             Modules.Skills.AddUtilitySkills(bodyPrefab, rollSkillDef);
-            Modules.Skills.AddUtilitySkills(bodyPrefab, tumbleSkillDef);
+            //Modules.Skills.AddUtilitySkills(bodyPrefab, tumbleSkillDef);
             #endregion
 
             #region Special
