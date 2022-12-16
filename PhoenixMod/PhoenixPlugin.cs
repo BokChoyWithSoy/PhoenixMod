@@ -6,9 +6,6 @@ using RoR2;
 using System.Collections.Generic;
 using System.Security;
 using System.Security.Permissions;
-using UnityEngine;
-using System.Security;
-using System.Security.Permissions;
 
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
@@ -16,6 +13,7 @@ using System.Security.Permissions;
 namespace PhoenixWright
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency("com.rune580.riskofoptions")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     [BepInPlugin(MODUID, MODNAME, MODVERSION)]
     [R2APISubmoduleDependency(new string[]
@@ -35,10 +33,9 @@ namespace PhoenixWright
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "1.7.4";
+        public const string MODVERSION = "1.8.1";
 
         public static PhoenixController phoenixController;
-        public static Vector3 characterPos;
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "BOK";
@@ -88,7 +85,6 @@ namespace PhoenixWright
             On.RoR2.CharacterModel.Awake += CharacterModel_Awake;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.CharacterBody.FixedUpdate += CharacterBody_FixedUpdate;
-            MusicTrackDef music = new MusicTrackDef();
         }
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
@@ -109,70 +105,23 @@ namespace PhoenixWright
         {
             orig(self);
 
-            characterPos = self.transform.position;
-
             if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
             {
                 self.SetBuffCount(Modules.Buffs.turnaboutBuff.buffIndex, currentStacks);
                 if (PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
                 {
-                    #region primary
-                    if (self.skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME"))
-                    {
-                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
-                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
-                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
-                        self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
-                        self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
-                    }
-                    if (self.skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME"))
-                    {
-                        self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryPaperStrong, GenericSkill.SkillOverridePriority.Contextual);
-                    }
-                    #endregion
-
-                    PhoenixController.setLock(false);
-
-                    #region secondary
-                    if (self.skillLocator.secondary.skillNameToken.Equals(PhoenixPlugin.developerPrefix +"_PHOENIX_BODY_SECONDARY_PRESS_NAME"))
-                    {
-                        self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
-                    }
-                    if (self.skillLocator.secondary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SECONDARY_LOCK_NAME"))
-                    {
-                        self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryLockStrong, GenericSkill.SkillOverridePriority.Contextual);
-                    }
-                    #endregion
-
-                    #region utility
-                    if (self.skillLocator.utility.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_UTILITY_FALL_NAME"))
-                    {
-                        self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.rollSkillDef2, GenericSkill.SkillOverridePriority.Contextual);
-                    }
-                    if (self.skillLocator.utility.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_UTILITY_FALL2_NAME"))
-                    {
-                        self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.tumbleStrongSkillDef, GenericSkill.SkillOverridePriority.Contextual);
-                    }
-                    #endregion
-
-                    self.skillLocator.special.SetSkillOverride(self.skillLocator.special, Phoenix.gavelStrong, GenericSkill.SkillOverridePriority.Contextual);
-
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryBottle, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryKnife, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryPhone, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.UnsetSkillOverride(self.skillLocator.primary, Phoenix.primaryServbot, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.primary.SetSkillOverride(self.skillLocator.primary, Phoenix.primaryArm, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.secondary.SetSkillOverride(self.skillLocator.secondary, Phoenix.secondaryPressStrong, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.utility.SetSkillOverride(self.skillLocator.utility, Phoenix.utilityFall, GenericSkill.SkillOverridePriority.Contextual);
+                    self.skillLocator.special.SetSkillOverride(self.skillLocator.special, Phoenix.specialGavelStrong, GenericSkill.SkillOverridePriority.Contextual);
                 }
+                AkSoundEngine.SetRTPCValue(559438376, Modules.Config.TurnaboutMusic.Value);
             }
 
-        }
-
-        private void CharacterBody_OnDeathStart(On.RoR2.CharacterBody.orig_OnDeathStart orig, CharacterBody self)
-        {
-            orig(self);
-            if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
-            {
-                if (Modules.Config.loweredVolume.Value)
-                {
-                    Util.PlaySound("PhoenixDyingQuiet", self.gameObject);
-                }
-                else Util.PlaySound("PhoenixDying", self.gameObject);
-            }
         }
 
         private void CharacterModel_Awake(On.RoR2.CharacterModel.orig_Awake orig, CharacterModel self)

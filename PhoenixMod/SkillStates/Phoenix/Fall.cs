@@ -9,8 +9,6 @@ namespace PhoenixWright.SkillStates
 {
     public class Fall : BaseSkillState
     {
-        
-
         public static float damageCoefficient = 2f;
         public static float procCoefficient = 5f;
         public static float duration = 0.5f;
@@ -20,10 +18,8 @@ namespace PhoenixWright.SkillStates
         private bool hasFired;
         public static string dodgeSoundString = "HenryRoll";
         public static float dodgeFOV = EntityStates.Commando.DodgeState.dodgeFOV;
-        private float stopwatch;
         private float rollSpeed;
         private Vector3 forwardDirection;
-        private Animator animator;
         private Vector3 previousPosition;
 
         protected string hitboxName = "fall";
@@ -35,7 +31,6 @@ namespace PhoenixWright.SkillStates
         {
             base.OnEnter();
             this.hasFired = false;
-            this.animator = base.GetModelAnimator();
 
             if (base.isAuthority && base.inputBank && base.characterDirection)
             {
@@ -122,19 +117,13 @@ namespace PhoenixWright.SkillStates
             if (base.fixedAge >= attackStartTime && base.fixedAge < attackEndTime)
             {
                 FireAttack();
-                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME") && PhoenixController.GetEvidenceType())
+                if (PhoenixController.GetEvidenceType())
                 {
                     base.skillLocator.utility.Reset();
                     PhoenixController.SetEvidenceType(false);
                     ShufflePrimary();
                 }
-                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME") && PhoenixController.GetEvidenceType())
-                {
-                    base.skillLocator.utility.Reset();
-                    base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
-                    PhoenixController.resetPaperAttackCount();
-                }
-        }
+            }
 
             if (base.isAuthority && base.fixedAge >= Fall.duration)
             {

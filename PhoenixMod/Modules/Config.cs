@@ -1,6 +1,6 @@
 ﻿using BepInEx.Configuration;
-using UnityEngine;
-using System;
+using RiskOfOptions;
+using RiskOfOptions.Options;
 
 namespace PhoenixWright.Modules
 {
@@ -9,8 +9,11 @@ namespace PhoenixWright.Modules
         public static ConfigEntry<bool> loweredVolume;
         public static ConfigEntry<bool> gainTurnaboutOnHit;
         public static ConfigEntry<int> necessaryStacksTurnabout;
+        public static ConfigEntry<float> TurnaboutMusic;
         public static void ReadConfig()
         {
+            TurnaboutMusic = PhoenixPlugin.instance.Config.Bind<float>(new ConfigDefinition("Turnabout Music", ""), 75f, new ConfigDescription("Set Turnabout Mode Theme Volume"));
+            ModSettingsManager.AddOption(new SliderOption(TurnaboutMusic));
             loweredVolume = PhoenixPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Sound settings", "SFX"), false, new ConfigDescription("Set to true to lower SFX"));
             gainTurnaboutOnHit = PhoenixPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Turnabout stacks", "Limit turnabout stacks"), false, new ConfigDescription("Set to true to gain max of one turnabout per hit"));
             necessaryStacksTurnabout = PhoenixPlugin.instance.Config.Bind<int>(new ConfigDefinition("Turnabout stacks", "Necessary Stacks for Turnabout Mode"), 50, new ConfigDescription("Set to 0 to start game with turnabout mode active"));

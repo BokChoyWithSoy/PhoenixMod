@@ -15,10 +15,8 @@ namespace PhoenixWright.SkillStates
         public static float duration = 0.7f;
         public Vector3 rayPosition;
 
-
         private bool hasFired;
         private float stopwatch;
-        private Animator animator;
 
         protected BlastAttack blastAttack;
         protected BlastAttack blastAttackStrong;
@@ -114,17 +112,9 @@ namespace PhoenixWright.SkillStates
                 {
                     if (base.isAuthority)
                     {
+                        PhoenixController.SetEvidenceType(false);
                         blastAttackStrong.Fire();
-                        if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME") && PhoenixController.GetEvidenceType())
-                        {
-                            PhoenixController.SetEvidenceType(false);
-                            ShufflePrimary();
-                        }
-                        if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME") && PhoenixController.GetEvidenceType())
-                        {
-                            base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
-                            PhoenixController.resetPaperAttackCount();
-                        }
+                        ShufflePrimary();
                     }
                 }
                 else if (base.isAuthority)
