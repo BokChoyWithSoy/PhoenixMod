@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PhoenixWright.Modules.Achievements
 {
     [RegisterAchievement(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SWORDUNLOCKABLE_ACHIEVEMENT",
-PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SWORDUNLOCKABLE_REWARD_ID", null, null)]
+PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SWORDUNLOCKABLE_REWARD_ID", null, 0)]
     internal class SwordAchievement : ModdedUnlockable
     {
         public override string AchievementIdentifier { get; } = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_SWORDUNLOCKABLE_ACHIEVEMENT_ID";

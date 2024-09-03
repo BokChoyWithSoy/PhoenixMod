@@ -257,7 +257,7 @@ namespace PhoenixWright.Modules
 
             characterModel.autoPopulateLightInfos = true;
             characterModel.invisibilityCount = 0;
-            characterModel.temporaryOverlays = new List<TemporaryOverlay>();
+            characterModel.temporaryOverlays = new List<TemporaryOverlayInstance>();
 
             if (mainRendererIndex > characterModel.baseRendererInfos.Length)
             {

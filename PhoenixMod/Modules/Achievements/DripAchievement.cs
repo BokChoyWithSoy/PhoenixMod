@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PhoenixWright.Modules.Achievements
 {
     [RegisterAchievement(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_DRIPUNLOCKABLE_ACHIEVEMENT",
-    PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_DRIPUNLOCKABLE_REWARD_ID", null, null)]
+    PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_DRIPUNLOCKABLE_REWARD_ID", null, 0)]
     internal class DripAchievement : ModdedUnlockable
     {
         public override string AchievementIdentifier { get; } = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_DRIPUNLOCKABLE_ACHIEVEMENT_ID";

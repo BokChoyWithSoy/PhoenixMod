@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PhoenixWright.Modules.Achievements
 {
     [RegisterAchievement(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_MASTERYUNLOCKABLE_ACHIEVEMENT",
-PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_MASTERYUNLOCKABLE_REWARD_ID", null, null)]
+PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_MASTERYUNLOCKABLE_REWARD_ID", null, 0)]
     internal class MasteryAchievement : ModdedUnlockable
     {
         public override string AchievementIdentifier { get; } = PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_MASTERYUNLOCKABLE_ACHIEVEMENT_ID";
