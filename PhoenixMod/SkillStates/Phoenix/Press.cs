@@ -118,15 +118,29 @@ namespace PhoenixWright.SkillStates
                     PhoenixPlugin.currentStacks += blastAttack.Fire().hitCount;
                 }
                 else PhoenixPlugin.currentStacks++;
-
-                ShufflePrimary();
-
+                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_THROW_NAME") && PhoenixController.GetEvidenceType())
+                {
+                    ShufflePrimary();
+                }
+                if (skillLocator.primary.skillNameToken.Equals(PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_PRIMARY_PAPER_NAME") && PhoenixController.GetEvidenceType())
+                {
+                    base.skillLocator.primary.UnsetSkillOverride(base.skillLocator.primary, Phoenix.primaryPaperGreen, GenericSkill.SkillOverridePriority.Contextual);
+                    PhoenixController.resetPaperAttackCount();
+                }
                 if (PhoenixPlugin.currentStacks >= PhoenixController.maxStacks)
                 { 
                     if (PhoenixPlugin.turnaboutActive)
                     {
-                        AkSoundEngine.SetRTPCValue("TurnaboutMusic", Modules.Config.TurnaboutMusic.Value);
-                        AkSoundEngine.PostEvent(559438376, this.gameObject);
+                        if (Modules.Config.loweredVolume.Value)
+                        {
+                            Util.PlaySound("TurnaboutMusicQuiet", base.gameObject);
+                            Util.PlaySound("EnterTurnaboutQuiet", base.gameObject);
+                        }
+                        else
+                        {
+                            Util.PlaySound("TurnaboutMusic", base.gameObject);
+                            Util.PlaySound("EnterTurnabout", base.gameObject);
+                        }
                         PhoenixPlugin.turnaboutActive = false;
                     }
                 }

@@ -17,15 +17,22 @@ namespace PhoenixWright.SkillStates
         private float duration;
         private float fireTime;
         private bool hasFired;
+        private bool justSwitched = true;
+        private Animator animator;
 
         public override void OnEnter()
         {
             base.OnEnter();
-            duration = SpawnArm.baseDuration / this.attackSpeedStat;
-            fireTime = 0.4f * this.duration;
+            this.duration = SpawnArm.baseDuration / this.attackSpeedStat;
+            if (justSwitched)
+            {
+                this.fireTime = 0.5f * this.duration;
+            }
+            else this.fireTime = 0.2f * this.duration;
             base.characterBody.SetAimTimer(2f);
+            this.animator = base.GetModelAnimator();
 
-            base.PlayAnimation("FullBody, Override", "Point", "ThrowBomb.playbackRate", duration);
+            base.PlayAnimation("FullBody, Override", "Point", "ThrowBomb.playbackRate", this.duration);
         }
 
         public override void OnExit()

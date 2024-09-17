@@ -11,22 +11,25 @@ namespace PhoenixWright.Modules
 
         internal static void RegisterStates()
         {
-            //Register Primary Skills
-            entityStates.Add(typeof(Primary));
+            //Register Primary Attacks
+            entityStates.Add(typeof(ThrowVase));
+            entityStates.Add(typeof(ThrowKnife));
+            entityStates.Add(typeof(ThrowServbot));
+            entityStates.Add(typeof(ThrowPhone));
+            entityStates.Add(typeof(ThrowBottle));
             entityStates.Add(typeof(SpawnArm));
+            entityStates.Add(typeof(ThrowPaper));
 
-            //Register Secondary Skills
             entityStates.Add(typeof(Press));
             entityStates.Add(typeof(PressTurnabout));
+            entityStates.Add(typeof(LockSecondary));
 
-            //Register Utility Skills
             entityStates.Add(typeof(Fall));
+            entityStates.Add(typeof(Tumble));
 
-            //Register Special Skills
             entityStates.Add(typeof(Gavel));
             entityStates.Add(typeof(GavelStrong));
 
-            //Register Death State
             entityStates.Add(typeof(Death));
 
         }
