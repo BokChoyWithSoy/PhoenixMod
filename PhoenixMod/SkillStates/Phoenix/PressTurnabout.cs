@@ -1,10 +1,8 @@
 ﻿using EntityStates;
 using RoR2;
 using UnityEngine;
-using UnityEngine.Networking;
-using System;
-using System.Collections;
-using PhoenixWright.Modules.Survivors;
+using R2API.Networking.Interfaces;
+using PhoenixWright.Modules.Networking;
 
 namespace PhoenixWright.SkillStates
 {
@@ -62,9 +60,9 @@ namespace PhoenixWright.SkillStates
                     }, true);
                     if (Modules.Config.loweredVolume.Value)
                     {
-                        Util.PlaySound("ObjectionQuiet", base.gameObject);
+                        new PlaySoundNetworkRequest(base.characterBody.netId, 95798163).Send(R2API.Networking.NetworkDestination.Clients);
                     }
-                    else Util.PlaySound("Objection", base.gameObject);
+                    else new PlaySoundNetworkRequest(base.characterBody.netId, 95798163).Send(R2API.Networking.NetworkDestination.Clients);
                 }
             }
             else
@@ -80,9 +78,9 @@ namespace PhoenixWright.SkillStates
                     }, true);
                     if (Modules.Config.loweredVolume.Value)
                     {
-                        Util.PlaySound("TakeThatQuiet", base.gameObject);
+                        new PlaySoundNetworkRequest(base.characterBody.netId, 2487928752).Send(R2API.Networking.NetworkDestination.Clients);
                     }
-                    else Util.PlaySound("TakeThat", base.gameObject);
+                    else new PlaySoundNetworkRequest(base.characterBody.netId, 2487928752).Send(R2API.Networking.NetworkDestination.Clients);
                 }
             }
 

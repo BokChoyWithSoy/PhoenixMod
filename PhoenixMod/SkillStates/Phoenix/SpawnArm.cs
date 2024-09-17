@@ -1,9 +1,11 @@
 ﻿using EntityStates;
 using RoR2;
 using RoR2.Projectile;
-using RoR2.Skills;
 using UnityEngine;
-using PhoenixWright.Modules.Survivors;
+using PhoenixWright.Modules.Networking;
+using R2API.Networking.Interfaces;
+
+
 
 namespace PhoenixWright.SkillStates
 {
@@ -17,22 +19,15 @@ namespace PhoenixWright.SkillStates
         private float duration;
         private float fireTime;
         private bool hasFired;
-        private bool justSwitched = true;
-        private Animator animator;
 
         public override void OnEnter()
         {
             base.OnEnter();
-            this.duration = SpawnArm.baseDuration / this.attackSpeedStat;
-            if (justSwitched)
-            {
-                this.fireTime = 0.5f * this.duration;
-            }
-            else this.fireTime = 0.2f * this.duration;
+            duration = SpawnArm.baseDuration / this.attackSpeedStat;
+            fireTime = 0.4f * this.duration;
             base.characterBody.SetAimTimer(2f);
-            this.animator = base.GetModelAnimator();
 
-            base.PlayAnimation("FullBody, Override", "Point", "ThrowBomb.playbackRate", this.duration);
+            base.PlayAnimation("FullBody, Override", "Point", "ThrowBomb.playbackRate", duration);
         }
 
         public override void OnExit()
@@ -73,9 +68,9 @@ namespace PhoenixWright.SkillStates
                 Fire();
                 if (Modules.Config.loweredVolume.Value)
                 {
-                    Util.PlaySound("ArmSoundQuiet", base.gameObject);
+                    new PlaySoundNetworkRequest(base.characterBody.netId, 4107067948).Send(R2API.Networking.NetworkDestination.Clients);
                 }
-                else Util.PlaySound("ArmSound", base.gameObject);
+                else new PlaySoundNetworkRequest(base.characterBody.netId, 4107067948).Send(R2API.Networking.NetworkDestination.Clients);
             }
 
             if (base.fixedAge >= this.duration && base.isAuthority)

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{771DFED5-7C50-413F-B843-150E1CC104C6}" SchemaVersion="119">
+	<GameParameters>
+		<WorkUnit Name="Default Work Unit" ID="{771DFED5-7C50-413F-B843-150E1CC104C6}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="VolumePhoenixSFX" ID="{25F3AB8B-D8B7-48DA-BB53-BAF39F5DF356}"/>
+				<GameParameter Name="VolumePhoenixVoice" ID="{4FABD440-A4F2-4DAF-A6F5-086EB3D9F08E}"/>
+				<GameParameter Name="VolumePhoenixMusic" ID="{E3931EBA-420B-45D0-A150-9D38816488A4}"/>
+			</ChildrenList>
+		</WorkUnit>
+	</GameParameters>
+</WwiseDocument>

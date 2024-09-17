@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="150">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Windows</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{EA0935DD-B6CC-7703-E2C1-D36D7493AD0B}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+			<GameParameters>
+				<GameParameter Id="822163944" Name="SS_Air_RPM"/>
+				<GameParameter Id="907468302" Name="VolumePhoenixVoice"/>
+				<GameParameter Id="966734485" Name="VolumePhoenixSFX"/>
+				<GameParameter Id="1029930033" Name="SS_Air_Fury"/>
+				<GameParameter Id="1351367891" Name="SS_Air_Fear"/>
+				<GameParameter Id="2203219169" Name="VolumePhoenixMusic"/>
+				<GameParameter Id="2648548617" Name="SS_Air_Month"/>
+				<GameParameter Id="3002758120" Name="SS_Air_Freefall"/>
+				<GameParameter Id="3074696722" Name="SS_Air_Size"/>
+				<GameParameter Id="3203397129" Name="SS_Air_TimeOfDay"/>
+				<GameParameter Id="3715662592" Name="SS_Air_Storm"/>
+				<GameParameter Id="3847924954" Name="SS_Air_Presence"/>
+				<GameParameter Id="4160247818" Name="SS_Air_Turbulence"/>
+			</GameParameters>
+			<AcousticTextures>
+				<AcousticTexture Id="504532776" Name="Brick">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="12"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="18"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="23"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="513139656" Name="Mountain">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="0"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="841620460" Name="Concrete">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="14"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1755085759" Name="Wood_Deep">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="1"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="8"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="20"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1873957695" Name="Anechoic">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1970351858" Name="Fabric">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="3"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="13"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="48"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="72"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2058049674" Name="Wood">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="32"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="25"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="20"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2412606308" Name="Carpet">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="46"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="45"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="76"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2637588553" Name="Tile">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="67"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="41"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="12"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="0"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2928161104" Name="Curtains">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="7"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="60"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="84"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="3195498748" Name="Cork_Tiles">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="14"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="30"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="73"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="3670307564" Name="Drywall">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="2"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="4168643977" Name="Acoustic_Banner">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="37"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="4262522749" Name="Wood_Bright">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="32"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="25"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="10"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="9"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+			</AcousticTextures>
+		</SoundBank>
+		<SoundBank Id="3244724476" Type="User" Language="SFX" Hash="{E17F2C0D-72E9-E4EE-A5A8-B3B22937D2C2}">
+			<ShortName>PhoenixBank</ShortName>
+			<Path>PhoenixBank.bnk</Path>
+			<Media>
+				<File Id="79220565" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TurnaboutAttack.wav</ShortName>
+					<CachePath>SFX/TurnaboutAttack_818F3B66.wem</CachePath>
+				</File>
+				<File Id="94166590" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TakeThat.wav</ShortName>
+					<CachePath>SFX/TakeThat_818F3B66.wem</CachePath>
+				</File>
+				<File Id="97928746" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Dying.wav</ShortName>
+					<CachePath>SFX/Dying_818F3B66.wem</CachePath>
+				</File>
+				<File Id="129639707" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Objection.wav</ShortName>
+					<CachePath>SFX/Objection_818F3B66.wem</CachePath>
+				</File>
+				<File Id="142402814" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>EnterTurnabout.wav</ShortName>
+					<CachePath>SFX/EnterTurnabout_818F3B66.wem</CachePath>
+				</File>
+				<File Id="312593916" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gavel2.wav</ShortName>
+					<CachePath>SFX/Gavel2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="385300684" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>HoldIt.wav</ShortName>
+					<CachePath>SFX/HoldIt_818F3B66.wem</CachePath>
+				</File>
+				<File Id="404060652" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Gavel1.wav</ShortName>
+					<CachePath>SFX/Gavel1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="473957536" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack9.wav</ShortName>
+					<CachePath>SFX/GainStack9_818F3B66.wem</CachePath>
+				</File>
+				<File Id="491528081" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack10.wav</ShortName>
+					<CachePath>SFX/GainStack10_818F3B66.wem</CachePath>
+				</File>
+				<File Id="494732442" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Fall.wav</ShortName>
+					<CachePath>SFX/Fall_818F3B66.wem</CachePath>
+				</File>
+				<File Id="557173905" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Lobby2.wav</ShortName>
+					<CachePath>SFX/Lobby2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="644887042" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack6.wav</ShortName>
+					<CachePath>SFX/GainStack6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="650972892" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack3.wav</ShortName>
+					<CachePath>SFX/GainStack3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="656629175" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>TurnaboutTheme.wav</ShortName>
+					<CachePath>SFX/TurnaboutTheme_818F3B66.wem</CachePath>
+				</File>
+				<File Id="710503753" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack8.wav</ShortName>
+					<CachePath>SFX/GainStack8_818F3B66.wem</CachePath>
+				</File>
+				<File Id="730806703" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Lobby3.wav</ShortName>
+					<CachePath>SFX/Lobby3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="743621200" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack7.wav</ShortName>
+					<CachePath>SFX/GainStack7_818F3B66.wem</CachePath>
+				</File>
+				<File Id="755768726" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack12.wav</ShortName>
+					<CachePath>SFX/GainStack12_818F3B66.wem</CachePath>
+				</File>
+				<File Id="828053341" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Lobby5.wav</ShortName>
+					<CachePath>SFX/Lobby5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="895255617" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack1.wav</ShortName>
+					<CachePath>SFX/GainStack1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="896272169" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Fall2.wav</ShortName>
+					<CachePath>SFX/Fall2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="905368178" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack4.wav</ShortName>
+					<CachePath>SFX/GainStack4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="957656760" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack11.wav</ShortName>
+					<CachePath>SFX/GainStack11_818F3B66.wem</CachePath>
+				</File>
+				<File Id="963490881" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack5.wav</ShortName>
+					<CachePath>SFX/GainStack5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="991698004" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Lobby4.wav</ShortName>
+					<CachePath>SFX/Lobby4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="994379939" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Lobby.wav</ShortName>
+					<CachePath>SFX/Lobby_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1011389375" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>GainStack2.wav</ShortName>
+					<CachePath>SFX/GainStack2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1064161662" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Throw.wav</ShortName>
+					<CachePath>SFX/Throw_818F3B66.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="4242188613" Name="PhoenixDying">
+					<MediaRefs>
+						<MediaRef Id="97928746"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3345964952" Name="PhoenixEnterTurnabout">
+					<MediaRefs>
+						<MediaRef Id="142402814"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1975761789" Name="PhoenixFall">
+					<MediaRefs>
+						<MediaRef Id="494732442"/>
+						<MediaRef Id="896272169"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1079616277" Name="PhoenixGainStack">
+					<MediaRefs>
+						<MediaRef Id="473957536"/>
+						<MediaRef Id="491528081"/>
+						<MediaRef Id="644887042"/>
+						<MediaRef Id="650972892"/>
+						<MediaRef Id="710503753"/>
+						<MediaRef Id="743621200"/>
+						<MediaRef Id="755768726"/>
+						<MediaRef Id="895255617"/>
+						<MediaRef Id="905368178"/>
+						<MediaRef Id="957656760"/>
+						<MediaRef Id="963490881"/>
+						<MediaRef Id="1011389375"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1688684367" Name="PhoenixGavel">
+					<MediaRefs>
+						<MediaRef Id="312593916"/>
+						<MediaRef Id="404060652"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3304771474" Name="PhoenixHoldIt">
+					<MediaRefs>
+						<MediaRef Id="385300684"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="152941974" Name="PhoenixLobby">
+					<MediaRefs>
+						<MediaRef Id="557173905"/>
+						<MediaRef Id="730806703"/>
+						<MediaRef Id="828053341"/>
+						<MediaRef Id="991698004"/>
+						<MediaRef Id="994379939"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="95798163" Name="PhoenixObjection">
+					<MediaRefs>
+						<MediaRef Id="129639707"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4107067948" Name="PhoenixPoint">
+					<MediaRefs>
+						<MediaRef Id="79220565"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2487928752" Name="PhoenixTakeThat">
+					<MediaRefs>
+						<MediaRef Id="94166590"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2883528150" Name="PhoenixThrow">
+					<MediaRefs>
+						<MediaRef Id="1064161662"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3561233033" Name="PhoenixTurnaboutTheme">
+					<MediaRefs>
+						<MediaRef Id="656629175"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+			<GameParameters>
+				<GameParameter Id="907468302" Name="VolumePhoenixVoice"/>
+				<GameParameter Id="966734485" Name="VolumePhoenixSFX"/>
+				<GameParameter Id="2203219169" Name="VolumePhoenixMusic"/>
+			</GameParameters>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{CA7D6953-6C5F-FF88-1F1B-A70F18D6F513}</FileHash>
+</SoundBanksInfo>

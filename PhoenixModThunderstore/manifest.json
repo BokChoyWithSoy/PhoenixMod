@@ -1,10 +1,16 @@
 {
   "name": "Phoenix_Wright_Mod",
-  "version_number": "1.8.0",
+  "version_number": "1.9.0",
   "website_url": "https://github.com/BokChoyWithSoy/PhoenixMod",
-  "description": "All DLC item displays added and quality of life change.",
-  "dependencies": [
-    "bbepis-BepInExPack-5.4.9",
-    "tristanmcpherson-R2API-3.0.59"
-  ]
+  "description": "Updated for SotS. Added Sound Settings using Risk of Options",
+    "dependencies": [
+        "bbepis-BepInExPack-5.4.1905",
+        "RiskofThunder-HookGenPatcher-1.2.3",
+        "RiskofThunder-R2API_Core-5.0.0",
+        "RiskofThunder-R2API_Prefab-1.0.0",
+        "RiskofThunder-R2API_Language-1.0.0",
+        "RiskofThunder-R2API_Sound-1.0.0",
+        "RiskofThunder-R2API_Networking-1.0.0",
+        "RiskofThunder-R2API_Unlockable-1.0.0"
+    ]
 }

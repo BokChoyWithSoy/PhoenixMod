@@ -9,6 +9,8 @@ using System.Security.Permissions;
 using UnityEngine;
 using System.Security;
 using System.Security.Permissions;
+using PhoenixWright.Modules.Networking;
+using BepInEx.Bootstrap;
 
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
@@ -35,7 +37,7 @@ namespace PhoenixWright
         //   this shouldn't even have to be said
         public const string MODUID = "com.BokChoyWithSoy.PhoenixWright";
         public const string MODNAME = "PhoenixWright";
-        public const string MODVERSION = "1.7.4";
+        public const string MODVERSION = "1.9.0";
 
         public static PhoenixController phoenixController;
         public static Vector3 characterPos;
@@ -54,8 +56,15 @@ namespace PhoenixWright
             instance = this;
 
             // load assets and read config
-            Modules.Assets.Initialize();
             Modules.Config.ReadConfig();
+            Modules.Config.OnChangeHooks();
+            Modules.Assets.Initialize();
+
+            if (Chainloader.PluginInfos.ContainsKey("com.rune580.riskofoptions"))
+            {
+                Modules.Config.SetupRiskOfOptions();
+            }
+
             Modules.States.RegisterStates(); // register states for networking
             Modules.Buffs.RegisterBuffs(); // add and register custom buffs/debuffs
             Modules.Projectiles.RegisterProjectiles(); // add and register custom projectiles
@@ -162,29 +171,26 @@ namespace PhoenixWright
 
         }
 
-        private void CharacterBody_OnDeathStart(On.RoR2.CharacterBody.orig_OnDeathStart orig, CharacterBody self)
-        {
-            orig(self);
-            if (self.baseNameToken == PhoenixPlugin.developerPrefix + "_PHOENIX_BODY_NAME")
-            {
-                if (Modules.Config.loweredVolume.Value)
-                {
-                    Util.PlaySound("PhoenixDyingQuiet", self.gameObject);
-                }
-                else Util.PlaySound("PhoenixDying", self.gameObject);
-            }
-        }
-
         private void CharacterModel_Awake(On.RoR2.CharacterModel.orig_Awake orig, CharacterModel self)
         {
             orig(self);
+
+            if (AkSoundEngine.IsInitialized())
+            {
+                AkSoundEngine.SetRTPCValue("VolumePhoenixVoice", Modules.Config.phoenixVoiceVolume.Value);
+                AkSoundEngine.SetRTPCValue("VolumePhoenixMusic", Modules.Config.phoenixMusicVolume.Value);
+                AkSoundEngine.SetRTPCValue("VolumePhoenixSFX", Modules.Config.phoenixSFXVolume.Value);
+            }
+
             if (self.gameObject.name.Contains("PhoenixDisplay"))
             {
                 if (Modules.Config.loweredVolume.Value)
                 {
-                    Util.PlaySound("PhoenixMenuSoundQuiet", self.gameObject);
+                    Util.PlaySound("PhoenixLobby", this.gameObject);
+
                 }
-                else Util.PlaySound("PhoenixMenuSound", self.gameObject);
+                else Util.PlaySound("PhoenixLobby", this.gameObject);
+
                 currentStacks = 0;
                 turnaboutActive = true;
             }

@@ -1,6 +1,6 @@
 ﻿using EntityStates;
-using RoR2;
-using UnityEngine;
+using PhoenixWright.Modules.Networking;
+using R2API.Networking.Interfaces;
 
 namespace PhoenixWright.SkillStates.BaseStates
 {
@@ -19,7 +19,8 @@ namespace PhoenixWright.SkillStates.BaseStates
         public override void OnEnter()
         {
             base.OnEnter();
-            Util.PlaySound("PhoenixDying", base.gameObject);
+            AkSoundEngine.StopAll();
+            new PlaySoundNetworkRequest(base.characterBody.netId, 4242188613).Send(R2API.Networking.NetworkDestination.Clients);
             base.PlayAnimation("FullBody, Override", "Dying", "Roll.playbackRate", 1000f);
         }
 

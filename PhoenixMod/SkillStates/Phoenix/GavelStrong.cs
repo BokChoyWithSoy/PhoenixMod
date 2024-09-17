@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using System;
 using System.Collections;
 using PhoenixWright.Modules.Survivors;
+using PhoenixWright.Modules.Networking;
+using R2API.Networking.Interfaces;
 
 namespace PhoenixWright.SkillStates
 {
@@ -49,9 +51,9 @@ namespace PhoenixWright.SkillStates
 
             if (Modules.Config.loweredVolume.Value)
             {
-                Util.PlaySound("SpecialSoundQuiet", base.gameObject);
+                new PlaySoundNetworkRequest(base.characterBody.netId, 1688684367).Send(R2API.Networking.NetworkDestination.Clients);
             }
-            else Util.PlaySound("SpecialSound", base.gameObject);
+            else new PlaySoundNetworkRequest(base.characterBody.netId, 1688684367).Send(R2API.Networking.NetworkDestination.Clients);
 
             blastAttackStrong = new BlastAttack();
             blastAttackStrong.radius = 40f;

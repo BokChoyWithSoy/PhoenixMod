@@ -1,10 +1,9 @@
 ﻿using EntityStates;
 using RoR2;
 using UnityEngine;
-using UnityEngine.Networking;
-using System;
-using System.Collections;
 using PhoenixWright.Modules.Survivors;
+using PhoenixWright.Modules.Networking;
+using R2API.Networking.Interfaces;
 
 namespace PhoenixWright.SkillStates
 {
@@ -77,10 +76,10 @@ namespace PhoenixWright.SkillStates
                     hasFired = true;
                     if (Modules.Config.loweredVolume.Value)
                     {
-                        Util.PlaySound("HoldItQuiet", base.gameObject);
-                    }
-                    else Util.PlaySound("HoldIt", base.gameObject);
-                    if (base.isAuthority)
+                    new PlaySoundNetworkRequest(base.characterBody.netId, 3304771474).Send(R2API.Networking.NetworkDestination.Clients);
+                }
+                    else new PlaySoundNetworkRequest(base.characterBody.netId, 3304771474).Send(R2API.Networking.NetworkDestination.Clients);
+                if (base.isAuthority)
                     {
                         if (blastAttack.Fire().hitCount > 0)
                         {
@@ -133,13 +132,13 @@ namespace PhoenixWright.SkillStates
                     {
                         if (Modules.Config.loweredVolume.Value)
                         {
-                            Util.PlaySound("TurnaboutMusicQuiet", base.gameObject);
-                            Util.PlaySound("EnterTurnaboutQuiet", base.gameObject);
+                            new PlaySoundNetworkRequest(base.characterBody.netId, 3561233033).Send(R2API.Networking.NetworkDestination.Clients);
+                            new PlaySoundNetworkRequest(base.characterBody.netId, 3345964952).Send(R2API.Networking.NetworkDestination.Clients);
                         }
                         else
                         {
-                            Util.PlaySound("TurnaboutMusic", base.gameObject);
-                            Util.PlaySound("EnterTurnabout", base.gameObject);
+                            new PlaySoundNetworkRequest(base.characterBody.netId, 3561233033).Send(R2API.Networking.NetworkDestination.Clients);
+                            new PlaySoundNetworkRequest(base.characterBody.netId, 3345964952).Send(R2API.Networking.NetworkDestination.Clients);
                         }
                         PhoenixPlugin.turnaboutActive = false;
                     }

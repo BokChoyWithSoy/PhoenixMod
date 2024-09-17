@@ -140,13 +140,13 @@ namespace PhoenixWright.Modules
         private static void CreateArm()
         {
             armPrefab = CloneProjectilePrefab("magefirebolt", "ArmProjectile");
-            armPrefab.transform.localScale = new Vector3(4, 4, 4);
 
             ProjectileImpactExplosion armAOE = armPrefab.GetComponent<ProjectileImpactExplosion>();
             InitializeImpactExplosion(armAOE);
 
             armAOE.blastRadius = 10f;
             armAOE.destroyOnEnemy = true;
+            armAOE.destroyOnWorld = false;
             armAOE.lifetime = 12f;
             armAOE.timerAfterImpact = true;
             armAOE.lifetimeAfterImpact = 0f;

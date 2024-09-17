@@ -4,6 +4,8 @@ using RoR2.Projectile;
 using RoR2.Skills;
 using UnityEngine;
 using PhoenixWright.Modules.Survivors;
+using PhoenixWright.Modules.Networking;
+using R2API.Networking.Interfaces;
 
 namespace PhoenixWright.SkillStates
 {
@@ -47,9 +49,9 @@ namespace PhoenixWright.SkillStates
                 this.hasFired = true;
                 if (Modules.Config.loweredVolume.Value)
                 {
-                    Util.PlaySound("ThrowVaseQuiet", base.gameObject);
+                    new PlaySoundNetworkRequest(base.characterBody.netId, 2883528150).Send(R2API.Networking.NetworkDestination.Clients);
                 }
-                else Util.PlaySound("ThrowVase", base.gameObject);
+                else new PlaySoundNetworkRequest(base.characterBody.netId, 2883528150).Send(R2API.Networking.NetworkDestination.Clients);
 
                 if (base.isAuthority)
                 {

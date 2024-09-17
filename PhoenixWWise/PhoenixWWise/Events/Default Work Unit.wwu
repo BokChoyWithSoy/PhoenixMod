@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F4567277-E283-428A-A8A8-74DA2A633062}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{F4567277-E283-428A-A8A8-74DA2A633062}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="PhoenixFall" ID="{70DB3DD0-E865-4334-86C2-C13DFFB7C402}">
+					<ChildrenList>
+						<Action Name="" ID="{9A089A50-7208-4908-B14C-50FB8CF82485}" ShortID="457124321">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Fall" ID="{B28BB313-AF45-441A-8933-5644E448C683}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixObjection" ID="{0CA1D36B-19A2-4C5E-ADAB-3DC8473A8680}">
+					<ChildrenList>
+						<Action Name="" ID="{9D7799A8-7D64-459E-BCB7-C21DA5C55F3F}" ShortID="352223502">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Objection" ID="{379438B1-EB5C-4BB8-A2A6-D9C2FC509808}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixLobby" ID="{6C14D8C0-FB2F-4ADC-B2B6-CF1735A3A046}">
+					<ChildrenList>
+						<Action Name="" ID="{17A0778F-C47E-4459-9D15-B403ABC6B41D}" ShortID="754373705">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Lobby" ID="{52AB07B1-E25C-4214-98F0-F4F0562E9419}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixHoldIt" ID="{5CA41D51-F98B-4C07-83D4-4E0980C54B73}">
+					<ChildrenList>
+						<Action Name="" ID="{57082B25-C3D2-4B61-A799-78CDF3CE8AC6}" ShortID="200356405">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="HoldIt" ID="{E8C8C01E-6BA2-4421-B6CD-617F126F6A6E}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixGavel" ID="{AE33C557-7137-46A6-9129-6CE508A1D004}">
+					<ChildrenList>
+						<Action Name="" ID="{75A8E3E0-212E-4403-A689-AC555812E127}" ShortID="786946668">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Gavel" ID="{EC5143A9-01DB-4E48-B150-18EA93B48768}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixGainStack" ID="{993CFE9F-8483-4D95-9649-A0A02DE5A5B4}">
+					<ChildrenList>
+						<Action Name="" ID="{AEE2054B-A6FF-450D-BCC4-6AC18D1323C3}" ShortID="970228374">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="GainStack" ID="{FB8E9FC7-5691-4FA4-9070-CF764C551978}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixEnterTurnabout" ID="{63110BD0-7F27-4036-9528-43A37CCA1C41}">
+					<ChildrenList>
+						<Action Name="" ID="{B0322F4B-89EC-4B96-86D7-15B78AD830A6}" ShortID="939735244">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="EnterTurnabout" ID="{6A30F8BD-861C-4242-A765-3427AAD17A86}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixDying" ID="{529D736A-64CB-4607-A04A-BCC03296BF9D}">
+					<ChildrenList>
+						<Action Name="" ID="{EBF483D1-0865-430A-864B-8E23051A5026}" ShortID="410540827">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Dying" ID="{454D50ED-C511-46B9-B308-B07790C1D843}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixPoint" ID="{5740DF84-2C30-493D-A4D4-D54B0AC7140F}">
+					<ChildrenList>
+						<Action Name="" ID="{7CECFE1B-8BDC-43C0-AC66-89A81D2B0A1E}" ShortID="917434502">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Point" ID="{8CD237F8-E60C-4111-9627-E0E2035A882E}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixThrow" ID="{C83ED1A7-77D7-49A6-A779-3F130302CB2C}">
+					<ChildrenList>
+						<Action Name="" ID="{A7C95618-8A41-433D-9A51-0655A0612CE9}" ShortID="971290076">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Throw" ID="{72C9B7C7-8D11-4F72-85BE-54385B82BCEC}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixTurnaboutTheme" ID="{AAB4986E-F76A-41B4-943C-7BD4F21AD817}">
+					<ChildrenList>
+						<Action Name="" ID="{09E2F3E6-DC60-4DE7-95F9-DFB67EC1D7A3}" ShortID="641742303">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TurnaboutTheme" ID="{A742512C-00DB-47A0-9DEB-6DD49F86674D}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PhoenixTakeThat" ID="{1BD47B21-2E51-4C18-BF78-F5E5BE3FC7A5}">
+					<ChildrenList>
+						<Action Name="" ID="{C0081246-A3D9-4B2A-9C25-BC2588727583}" ShortID="2635157">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TakeThat" ID="{E550F54E-C4E9-4F4A-8C33-5222DE8D5561}" WorkUnitID="{5FF31EE7-282F-4A29-B618-91F519C6C0E8}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using PhoenixWright.Modules.Survivors;
+using PhoenixWright.Modules.Networking;
+using R2API.Networking.Interfaces;
 
 namespace PhoenixWright.SkillStates
 {
@@ -72,6 +74,7 @@ namespace PhoenixWright.SkillStates
             base.PlayAnimation("FullBody, Override", "GetUp", "Roll.playbackRate", Fall.duration * 2);
             if(Modules.Config.loweredVolume.Value)
             {
+
                 Util.PlaySound("FallQuiet", base.gameObject);
             }
             else Util.PlaySound("Fall", base.gameObject);
@@ -171,9 +174,10 @@ namespace PhoenixWright.SkillStates
                 hasFired = true;
                 if (Modules.Config.loweredVolume.Value)
                 {
-                    Util.PlaySound("FallVoiceQuiet", base.gameObject);
+                    new PlaySoundNetworkRequest(base.characterBody.netId, 1975761789).Send(R2API.Networking.NetworkDestination.Clients);
+
                 }
-                else Util.PlaySound("FallVoice", base.gameObject);
+                else new PlaySoundNetworkRequest(base.characterBody.netId, 1975761789).Send(R2API.Networking.NetworkDestination.Clients);
             }
             this.attack.Fire();
         }
